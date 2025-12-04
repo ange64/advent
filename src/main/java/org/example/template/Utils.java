@@ -1,6 +1,10 @@
 package org.example.template;
 
+import org.example.problems.Pb2016_11;
+
 import java.util.Arrays;
+import java.util.function.Supplier;
+import java.util.regex.Matcher;
 
 public class Utils {
 
@@ -14,6 +18,14 @@ public class Utils {
     }
 
     public static void print2dArray(char[][] array, String separator){
+        System.out.println(LINE_SEP);
+        for (var row : array) {
+            String str = Arrays.toString(row).replaceAll(", ", separator);
+            System.out.println(str.replaceAll("[\\[\\]]", ""));
+        }
+    }
+
+    public static void print2dArray(byte[][] array, String separator) {
         System.out.println(LINE_SEP);
         for (var row : array) {
             String str = Arrays.toString(row).replaceAll(", ", separator);
@@ -79,4 +91,35 @@ public class Utils {
     }
 
 
+
+    public static int strToI(String s) {
+        return Integer.parseInt(s);
+    }
+
+    public static int subStrToI(String s, int start, int end) {
+        return Integer.parseInt(s.substring(start, end));
+    }
+
+    public static <T> T[] fillArray(T[] array, Supplier<T> init){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = init.get();
+        }
+        return array;
+    }
+
+    public static void printPackedArray(short[] array) {
+        var str = "[";
+        for (var s : array) {
+            str += "(" + (s >> 8) + "," + (s & 255) + ")";
+        }
+        System.out.println(str + ']');
+    }
+
+    public static void printPackedArray(int[] array) {
+        var str = "[";
+        for (var s : array) {
+            str += "(" + (s >>> 16) + "," + (s & 0xFFFF) + ")";
+        }
+        System.out.println(str + ']');
+    }
 }
