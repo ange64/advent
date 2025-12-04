@@ -22,7 +22,7 @@ public class Pb2016_11 extends Template<Pb2016_11.Building> {
 
     @Override
     protected void exec_part_1(Building data) throws Exception {
-        data.print();
+        //data.print();
         var visited = new HashSet<Integer>();
         var queue = new ArrayDeque<Building>();
         queue.add(data);

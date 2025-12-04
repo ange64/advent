@@ -40,6 +40,8 @@ public abstract class Template<T>  implements Runnable{
 
     protected abstract T parseInput(String[] lines);
 
+    protected void init() {}
+
 
     protected void resetState() {}
 
@@ -51,6 +53,7 @@ public abstract class Template<T>  implements Runnable{
     }
 
     private void executePart(ThrowConsumer<T> f, int part) {
+        this.init();
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////");
         System.out.println(" ---------------- execute " + name + " part " + part + " with test data -------------");
         resetState();
@@ -59,6 +62,7 @@ public abstract class Template<T>  implements Runnable{
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        this.init();
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////");
         System.out.println(" ---------------- execute " + name + " part " + part + " with real data -------------");
         resetState();

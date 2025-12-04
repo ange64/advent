@@ -81,17 +81,6 @@ public class Utils {
         }
     }
 
-
-    public static void print2dArray(byte[][] array, String separator){
-        System.out.println(LINE_SEP);
-        for (var row : array) {
-            String str = Arrays.toString(row).replaceAll(", ", separator);
-            System.out.println(str.replaceAll("[\\[\\]]", ""));
-        }
-    }
-
-
-
     public static int strToI(String s) {
         return Integer.parseInt(s);
     }
