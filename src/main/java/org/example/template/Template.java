@@ -41,6 +41,9 @@ public abstract class Template<T>  implements Runnable{
     protected abstract T parseInput(String[] lines);
 
 
+    protected void resetState() {}
+
+
     @Override
     public void run() {
         executePart(this::exec_part_1, 1);
@@ -50,6 +53,7 @@ public abstract class Template<T>  implements Runnable{
     private void executePart(ThrowConsumer<T> f, int part) {
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////");
         System.out.println(" ---------------- execute " + name + " part " + part + " with test data -------------");
+        resetState();
         try {
            f.accept(testInput);
         } catch (Exception e) {
@@ -57,8 +61,13 @@ public abstract class Template<T>  implements Runnable{
         }
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////");
         System.out.println(" ---------------- execute " + name + " part " + part + " with real data -------------");
+        resetState();
         try {
+            long time = System.nanoTime();
             f.accept(input);
+            long after = System.nanoTime();
+            long delta = (after - time);
+            System.out.println("delta time " + delta / 1_000_000 + "ms");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
