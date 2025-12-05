@@ -1,4 +1,4 @@
-package org.example.problems;
+package org.example.problems.year2016;
 
 import org.example.template.Template;
 
@@ -14,12 +14,6 @@ public class Pb2016_11 extends Template<Pb2016_11.Building> {
     public Pb2016_11() {
         super(2016, 11, "Radioisotope Thermoelectric Generators");
     }
-
-    @Override
-    protected void init() {
-
-    }
-
     @Override
     protected void exec_part_1(Building data) throws Exception {
         //data.print();
@@ -46,7 +40,6 @@ public class Pb2016_11 extends Template<Pb2016_11.Building> {
 
     @Override
     protected void exec_part_2(Building data) throws Exception {
-
     }
 
     @Override

@@ -1,11 +1,8 @@
-package org.example.problems;
+package org.example.problems.year2016;
 
 import org.example.template.Template;
 
-import java.net.Inet4Address;
-import java.util.Arrays;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public class Pb2016_12 extends Template<Pb2016_12.Command[]> {
 

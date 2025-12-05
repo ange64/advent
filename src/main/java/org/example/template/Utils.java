@@ -1,10 +1,7 @@
 package org.example.template;
 
-import org.example.problems.Pb2016_11;
-
 import java.util.Arrays;
 import java.util.function.Supplier;
-import java.util.regex.Matcher;
 
 public class Utils {
 
@@ -16,6 +13,15 @@ public class Utils {
             System.out.println(str.replaceAll("[\\[\\]]", ""));
         }
     }
+
+    public static void print2dArray(long[][] array, String separator){
+        System.out.println(LINE_SEP);
+        for (var row : array) {
+            String str = Arrays.toString(row).replaceAll(", ", separator);
+            System.out.println(str.replaceAll("[\\[\\]]", ""));
+        }
+    }
+
 
     public static void print2dArray(char[][] array, String separator){
         System.out.println(LINE_SEP);

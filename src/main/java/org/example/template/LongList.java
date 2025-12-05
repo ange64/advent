@@ -2,48 +2,48 @@ package org.example.template;
 
 import java.util.Arrays;
 
-public class IntList {
+public class LongList {
 
-    private int[] array;
+    private long[] array;
     int pointer = -1;
 
-    public IntList() {
-        array = new int[16];
+    public LongList() {
+        array = new long[16];
     }
 
-    public IntList(int initial) {
-        array = new int[initial];
+    public LongList(int initial) {
+        array = new long[initial];
     }
 
-    public IntList initializeTo(int value) {
+    public LongList initializeTo(long value) {
         Arrays.fill(array, value);
         return this;
     }
 
-    public void add(int i) {
+    public void add(long i) {
         if (pointer == array.length - 1) {
-            int[] temp = new int[array.length << 2];
+            long[] temp = new long[array.length << 2];
             System.arraycopy(array, 0, temp, 0, array.length);
             array = temp;
         }
         array[++pointer] = i;
     }
 
-    public void force(int i) {
+    public void force(long i) {
         array[++pointer] = i;
     }
 
-    public int get(int i) {
+    public long get(int i) {
         if (i > pointer) throw new IndexOutOfBoundsException("accessing outside of list");
         return array[i];
     }
 
-    public int pop() {
+    public long pop() {
         if (pointer == -1) throw new IndexOutOfBoundsException("accessing outside of list");
         return array[pointer--];
     }
 
-    public int last() {
+    public long last() {
         return array[pointer];
     }
 
@@ -51,12 +51,12 @@ public class IntList {
         return pointer + 1;
     }
 
-    public int cappacity() {
+    public long cappacity() {
         return array.length;
     }
 
 
-    public void set(int v, int idx) {
+    public void set(long v, int idx) {
         if (idx > pointer) throw new IndexOutOfBoundsException("accessing outside of list");
         array[idx] = v;
     }
@@ -65,14 +65,13 @@ public class IntList {
         pointer = -1;
     }
 
-    public void hardClear(int defaultValue) {
+    public void hardClear(long defaultValue) {
         Arrays.fill(array, defaultValue);
     }
 
-    public int[] toArray() {
-        int[] result = new int[pointer + 1];
+    public long[] toArray() {
+        long[] result = new long[pointer + 1];
         System.arraycopy(array, 0, result, 0, pointer + 1);
         return result;
     }
-
 }

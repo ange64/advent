@@ -15,23 +15,15 @@ public abstract class Template<T>  implements Runnable{
     private int day;
     private int year;
 
+    private String basePath;
+
     private String name;
 
     public Template(int year, int day, String name) {
         this.day = day;
         this.year = year;
-        var base = loader.getResource( year + "/" + day + "/").toString().substring(6);
-        try {
-            this.testInput = parseInput(
-                    Files.readAllLines(Path.of(base +  "test.txt")).toArray(new String[0])
-            );
-            this.input = parseInput(
-                    Files.readAllLines(Path.of(base  + "real.txt")).toArray(new String[0])
-            );
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         this.name = name;
+        basePath =  loader.getResource( year + "/" + day + "/").toString().substring(6);
     }
 
     protected abstract void exec_part_1(T data) throws Exception;
@@ -55,18 +47,24 @@ public abstract class Template<T>  implements Runnable{
     private void executePart(ThrowConsumer<T> f, int part) {
         this.init();
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////");
-        System.out.println(" ---------------- execute " + name + " part " + part + " with test data -------------");
+        System.out.println(" ---------------- execute day " + "day :" + name + " part " + part + " with test data ------");
         resetState();
         try {
+            if (testInput == null) {
+                testInput = parseInput(Files.readAllLines(Path.of(basePath +  "test.txt")).toArray(new String[0]));
+            }
            f.accept(testInput);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         this.init();
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////");
-        System.out.println(" ---------------- execute " + name + " part " + part + " with real data -------------");
+        System.out.println(" ---------------- execute day " + "day :" + name + " part " + part + " with real data -------");
         resetState();
         try {
+            if (input == null) {
+                input = parseInput(Files.readAllLines(Path.of(basePath +  "real.txt")).toArray(new String[0]));
+            }
             long time = System.nanoTime();
             f.accept(input);
             long after = System.nanoTime();

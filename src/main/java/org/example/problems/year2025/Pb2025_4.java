@@ -1,4 +1,4 @@
-package org.example.problems;
+package org.example.problems.year2025;
 
 import org.example.template.IntList;
 import org.example.template.Template;
