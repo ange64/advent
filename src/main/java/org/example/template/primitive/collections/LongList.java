@@ -1,8 +1,8 @@
-package org.example.template;
+package org.example.template.primitive.collections;
 
 import java.util.Arrays;
 
-public class LongList {
+public class LongList extends PrimitiveList{
 
     private long[] array;
     int pointer = -1;
@@ -34,12 +34,12 @@ public class LongList {
     }
 
     public long get(int i) {
-        if (i > pointer) throw new IndexOutOfBoundsException("accessing outside of list");
+        if (i > pointer)  super.throwOOB(i);
         return array[i];
     }
 
     public long pop() {
-        if (pointer == -1) throw new IndexOutOfBoundsException("accessing outside of list");
+        if (pointer == -1) super.throwOOB(pointer);
         return array[pointer--];
     }
 
@@ -51,13 +51,12 @@ public class LongList {
         return pointer + 1;
     }
 
-    public long cappacity() {
+    public long capacity() {
         return array.length;
     }
 
-
     public void set(long v, int idx) {
-        if (idx > pointer) throw new IndexOutOfBoundsException("accessing outside of list");
+        if (idx > pointer) super.throwOOB(pointer);
         array[idx] = v;
     }
 

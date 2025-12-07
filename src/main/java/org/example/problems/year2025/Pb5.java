@@ -1,10 +1,8 @@
 package org.example.problems.year2025;
 
-import org.example.template.LongList;
+import org.example.template.primitive.collections.LongList;
 import org.example.template.Template;
-import org.example.template.Utils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 

@@ -15,7 +15,7 @@ public class Pb2016_8 extends Template<Pb2016_8.Command[]> {
         char[][] grid = Utils.charGrid(6,50, '.');
         for (Command c : data) {
             c.applyTo(grid);
-            Utils.print2dArray(grid, " ");
+            Utils.print2dArray(grid, " ", 0);
         }
         int count = 0;
         for (char[] chars : grid) {

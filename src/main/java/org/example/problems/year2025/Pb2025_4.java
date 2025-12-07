@@ -1,11 +1,7 @@
 package org.example.problems.year2025;
 
-import org.example.template.IntList;
+import org.example.template.primitive.collections.IntList;
 import org.example.template.Template;
-import org.example.template.Utils;
-
-import javax.swing.plaf.IconUIResource;
-import java.util.Arrays;
 
 public class Pb2025_4 extends Template<byte[][]> {
 
