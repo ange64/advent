@@ -2,6 +2,7 @@ package org.example.template.primitive.arrays;
 
 import  org.example.template.primitive.functional.*;
 
+@SuppressWarnings("unused")
 public abstract class ArrUtils {
 
     public static int indexOf(long[] array, long target) {
@@ -151,50 +152,50 @@ public abstract class ArrUtils {
     }
 
     public static void forEach(long[] array, Consumer.Long c) {
-        for (int i = 0; i < array.length; i++) {
-            c.accept(array[i]);
+        for (long l : array) {
+            c.accept(l);
         }
     }
 
     public static void forEach(int[] array, Consumer.Int c) {
-        for (int i = 0; i < array.length; i++) {
-            c.accept(array[i]);
+        for (int j : array) {
+            c.accept(j);
         }
     }
 
     public static void forEach(short[] array, Consumer.Short c) {
-        for (int i = 0; i < array.length; i++) {
-            c.accept(array[i]);
+        for (short value : array) {
+            c.accept(value);
         }
     }
 
     public static void forEach(byte[] array, Consumer.Byte c) {
-        for (int i = 0; i < array.length; i++) {
-            c.accept(array[i]);
+        for (byte b : array) {
+            c.accept(b);
         }
     }
 
     public static void forEach(char[] array, Consumer.Char c) {
-        for (int i = 0; i < array.length; i++) {
-            c.accept(array[i]);
+        for (char value : array) {
+            c.accept(value);
         }
     }
 
     public static void forEach(boolean[] array, Consumer.Bool c) {
-        for (int i = 0; i < array.length; i++) {
-            c.accept(array[i]);
+        for (boolean b : array) {
+            c.accept(b);
         }
     }
 
     public static void forEach(float[] array, Consumer.Float c) {
-        for (int i = 0; i < array.length; i++) {
-            c.accept(array[i]);
+        for (float v : array) {
+            c.accept(v);
         }
     }
 
     public static void forEach(double[] array, Consumer.Double c) {
-        for (int i = 0; i < array.length; i++) {
-            c.accept(array[i]);
+        for (double v : array) {
+            c.accept(v);
         }
     }
 
@@ -379,6 +380,643 @@ public abstract class ArrUtils {
             if (p.test(array[i])) return i;
         }
         return  -1;
+    }
+
+    public static long max(long[] array) {
+        long m = 0;
+        for (long i : array) {
+            if (i > m) m = i;
+        }
+        return m;
+    }
+
+    public static int max(int[] array) {
+        int m = 0;
+        for (int i : array) {
+            if (i > m) m = i;
+        }
+        return m;
+    }
+
+    public static short max(short[] array) {
+        short m = 0;
+        for (short i : array) {
+            if (i > m) m = i;
+        }
+        return m;
+    }
+
+    public static char max(char[] array) {
+        char m = 0;
+        for (char i : array) {
+            if (i > m) m = i;
+        }
+        return m;
+    }
+
+    public static byte max(byte[] array) {
+        byte m = 0;
+        for (byte i : array) {
+            if (i > m) m = i;
+        }
+        return m;
+    }
+
+    public static float max(float[] array) {
+        float m = 0;
+        for (float i : array) {
+            if (i > m) m = i;
+        }
+        return m;
+    }
+
+    public static double max(double[] array) {
+        double m = 0;
+        for (double i : array) {
+            if (i > m) m = i;
+        }
+        return m;
+    }
+
+    public static long min(long[] array) {
+        long m = Long.MAX_VALUE;
+        for (long i : array) {
+            if (i < m) m = i;
+        }
+        return m;
+    }
+
+    public static int min(int[] array) {
+        int m = Integer.MAX_VALUE;
+        for (int i : array) {
+            if (i < m) m = i;
+        }
+        return m;
+    }
+
+    public static short min(short[] array) {
+        short m = Short.MAX_VALUE;
+        for (short i : array) {
+            if (i < m) m = i;
+        }
+        return m;
+    }
+
+    public static char min(char[] array) {
+        char m = Character.MAX_VALUE;
+        for (char i : array) {
+            if (i < m) m = i;
+        }
+        return m;
+    }
+
+    public static byte min(byte[] array) {
+        byte m = Byte.MAX_VALUE;
+        for (byte i : array) {
+            if (i < m) m = i;
+        }
+        return m;
+    }
+
+    public static float min(float[] array) {
+        float m = Float.MAX_VALUE;
+        for (float i : array) {
+            if (i < m) m = i;
+        }
+        return m;
+    }
+
+    public static double min(double[] array) {
+        double m = Double.MAX_VALUE;
+        for (double i : array) {
+            if (i < m) m = i;
+        }
+        return m;
+    }
+
+    /// bounded
+    public static long max(long[] array, int start, int end) {
+        long m = 0;
+        for (int i = start; i < end; i++) {
+            if (i > m) m = array[i];
+        }
+        return m;
+    }
+
+    public static int max(int[] array, int start, int end) {
+        int m = 0;
+        for (int i = start; i < end; i++) {
+            if (i > m) m = array[i];
+        }
+        return m;
+    }
+
+    public static short max(short[] array, int start, int end) {
+        short m = 0;
+        for (int i = start; i < end; i++) {
+            if (i > m) m = array[i];
+        }
+        return m;
+    }
+
+    public static char max(char[] array, int start, int end) {
+        char m = 0;
+        for (int i = start; i < end; i++) {
+            if (i > m) m = array[i];
+        }
+        return m;
+    }
+
+    public static byte max(byte[] array, int start, int end) {
+        byte m = 0;
+        for (int i = start; i < end; i++) {
+            if (i > m) m = array[i];
+        }
+        return m;
+    }
+
+    public static float max(float[] array, int start, int end) {
+        float m = 0;
+        for (int i = start; i < end; i++) {
+            if (i > m) m = array[i];
+        }
+        return m;
+    }
+
+    public static double max(double[] array, int start, int end) {
+        double m = 0;
+        for (int i = start; i < end; i++) {
+            if (i > m) m = array[i];
+        }
+        return m;
+    }
+
+    public static long min(long[] array, int start, int end) {
+        long m = Long.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (i < m) m = array[i];
+        }
+        return m;
+    }
+
+    public static int min(int[] array, int start, int end) {
+        int m = Integer.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (i < m) m = array[i];
+        }
+        return m;
+    }
+
+    public static short min(short[] array, int start, int end) {
+        short m = Short.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (i < m) m = array[i];
+        }
+        return m;
+    }
+
+    public static char min(char[] array, int start, int end) {
+        char m = Character.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (i < m) m = array[i];
+        }
+        return m;
+    }
+
+    public static byte min(byte[] array, int start, int end) {
+        byte m = Byte.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (i < m) m = array[i];
+        }
+        return m;
+    }
+
+    public static float min(float[] array, int start, int end) {
+        float m = Float.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (i < m) m = array[i];
+        }
+        return m;
+    }
+
+    public static double min(double[] array, int start, int end) {
+        double m = Double.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (i < m) m = array[i];
+        }
+        return m;
+    }
+
+
+    public static long maxBy(long[] array, Comparator.Long c) {
+        long m = 0;
+        for (long i : array) {
+            if (c.compare(i,m) > 0) m = i;
+        }
+        return m;
+    }
+
+    public static int maxBy(int[] array, Comparator.Int c) {
+        int m = 0;
+        for (int i : array) {
+            if (c.compare(i,m) > 0) m = i;
+        }
+        return m;
+    }
+
+    public static short maxBy(short[] array, Comparator.Short c) {
+        short m = 0;
+        for (short i : array) {
+            if (c.compare(i,m) > 0) m = i;
+        }
+        return m;
+    }
+
+    public static char maxBy(char[] array, Comparator.Char c) {
+        char m = 0;
+        for (char i : array) {
+            if (c.compare(i,m) > 0) m = i;
+        }
+        return m;
+    }
+
+    public static byte maxBy(byte[] array, Comparator.Byte c) {
+        byte m = 0;
+        for (byte i : array) {
+            if (c.compare(i,m) > 0) m = i;
+        }
+        return m;
+    }
+
+    public static float maxBy(float[] array, Comparator.Float c) {
+        float m = 0;
+        for (float i : array) {
+            if (c.compare(i,m) > 0) m = i;
+        }
+        return m;
+    }
+
+    public static double maxBy(float[] array, Comparator.Double c) {
+        double m = 0;
+        for (double i : array) {
+            if (c.compare(i,m) > 0) m = i;
+        }
+        return m;
+    }
+
+
+    public static long minBy(long[] array, Comparator.Long c) {
+        long m = Long.MAX_VALUE;
+        for (long i : array) {
+            if (c.compare(i,m) < 0) m = i;
+        }
+        return m;
+    }
+
+    public static int minBy(int[] array, Comparator.Int c) {
+        int m = Integer.MAX_VALUE;
+        for (int i : array) {
+            if (c.compare(i,m) < 0) m = i;
+        }
+        return m;
+    }
+
+    public static short minBy(short[] array, Comparator.Short c) {
+        short m = Short.MAX_VALUE;
+        for (short i : array) {
+            if (c.compare(i,m) < 0) m = i;
+        }
+        return m;
+    }
+
+    public static char minBy(char[] array, Comparator.Char c) {
+        char m = Character.MAX_VALUE;
+        for (char i : array) {
+            if (c.compare(i,m) < 0) m = i;
+        }
+        return m;
+    }
+
+    public static byte minBy(byte[] array, Comparator.Byte c) {
+        byte m = Byte.MAX_VALUE;
+        for (byte i : array) {
+            if (c.compare(i,m) < 0) m = i;
+        }
+        return m;
+    }
+
+    public static float minBy(float[] array, Comparator.Float c) {
+        float m = Float.MAX_VALUE;
+        for (float i : array) {
+            if (c.compare(i,m) < 0) m = i;
+        }
+        return m;
+    }
+
+    public static double minBy(float[] array, Comparator.Double c) {
+        double m = Double.MAX_VALUE;
+        for (double i : array) {
+            if (c.compare(i,m) < 0) m = i;
+        }
+        return m;
+    }
+
+    public static long maxBy(long[] array, int start, int end, Comparator.Long c) {
+        long m = 0;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) > 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static int maxBy(int[] array, int start, int end, Comparator.Int c) {
+        int m = 0;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) > 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static short maxBy(short[] array, int start, int end, Comparator.Short c) {
+        short m = 0;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) > 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static char maxBy(char[] array, int start, int end, Comparator.Char c) {
+        char m = 0;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) > 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static byte maxBy(byte[] array, int start, int end, Comparator.Byte c) {
+        byte m = 0;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) > 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static float maxBy(float[] array, int start, int end, Comparator.Float c) {
+        float m = 0;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i], m) > 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static double maxBy(double[] array, int start, int end, Comparator.Double c) {
+        double m = 0;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) > 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static long minBy(long[] array, int start, int end, Comparator.Long c) {
+        long m = Long.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) < 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static int minBy(int[] array, int start, int end, Comparator.Int c) {
+        int m = Integer.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) < 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static short minBy(short[] array, int start, int end, Comparator.Short c) {
+        short m = Short.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) < 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static char minBy(char[] array, int start, int end, Comparator.Char c) {
+        char m = Character.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) < 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static byte minBy(byte[] array, int start, int end, Comparator.Byte c) {
+        byte m = Byte.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) < 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static float minBy(float[] array, int start, int end, Comparator.Float c) {
+        float m = Float.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i], m) < 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static double minBy(double[] array, int start, int end, Comparator.Double c) {
+        double m = Double.MAX_VALUE;
+        for (int i = start; i < end; i++) {
+            if (c.compare(array[i],m) < 0) m = array[i];
+        }
+        return m;
+    }
+
+    public static boolean windowMatch(long[] array, int start, int length, Predicate.Long p) {
+        for (int i = start; i < start + length; i++) {
+            if (!p.test(array[i])) return false;
+        }
+        return true;
+    }
+
+    public static boolean windowMatch(int[] array, int start, int length, Predicate.Int p) {
+        for (int i = start; i < start + length; i++) {
+            if (!p.test(array[i])) return false;
+        }
+        return true;
+    }
+
+    public static boolean windowMatch(short[] array, int start, int length, Predicate.Short p) {
+        for (int i = start; i < start + length; i++) {
+            if (!p.test(array[i])) return false;
+        }
+        return true;
+    }
+
+    public static boolean windowMatch(char[] array, int start, int length, Predicate.Char p) {
+        for (int i = start; i < start + length; i++) {
+            if (!p.test(array[i])) return false;
+        }
+        return true;
+    }
+
+    public static boolean windowMatch(byte[] array, int start, int length, Predicate.Byte p) {
+        for (int i = start; i < start + length; i++) {
+            if (!p.test(array[i])) return false;
+        }
+        return true;
+    }
+
+    public static boolean windowMatch(boolean[] array, int start, int length, Predicate.Boolean p) {
+        for (int i = start; i < start + length; i++) {
+            if (!p.test(array[i])) return false;
+        }
+        return true;
+    }
+
+    public static boolean windowMatch(float[] array, int start, int length, Predicate.Float p) {
+        for (int i = start; i < start + length; i++) {
+            if (!p.test(array[i])) return false;
+        }
+        return true;
+    }
+
+    public static boolean windowMatch(double[] array, int start, int length, Predicate.Double p) {
+        for (int i = start; i < start + length; i++) {
+            if (!p.test(array[i])) return false;
+        }
+        return true;
+    }
+
+    public static boolean any(long[] array, Predicate.Long p) {
+        for (long l : array) {
+            if (p.test(l)) return true;
+        }
+        return false;
+    }
+
+    public static boolean any(int[] array, Predicate.Int p) {
+        for (int j : array) {
+            if (p.test(j)) return true;
+        }
+        return false;
+    }
+    public static boolean any(short[] array, Predicate.Short p) {
+        for (short value : array) {
+            if (p.test(value)) return true;
+        }
+        return false;
+    }
+
+    public static boolean any(byte[] array, Predicate.Byte p) {
+        for (byte b : array) {
+            if (p.test(b)) return true;
+        }
+        return false;
+    }
+
+    public static boolean any(char[] array, Predicate.Char p) {
+        for (char c : array) {
+            if (p.test(c)) return true;
+        }
+        return false;
+    }
+
+    public static boolean any(boolean[] array, Predicate.Boolean p) {
+        for (boolean b : array) {
+            if (p.test(b)) return true;
+        }
+        return false;
+    }
+
+    public static boolean any(float[] array, Predicate.Float p) {
+        for (float v : array) {
+            if (p.test(v)) return true;
+        }
+        return false;
+    }
+
+    public static boolean any(double[] array, Predicate.Double p) {
+        for (double v : array) {
+            if (p.test(v)) return true;
+        }
+        return false;
+    }
+
+    public static boolean none(long[] array, Predicate.Long p) {
+        for (long l : array) {
+            if (p.test(l)) return false;
+        }
+        return true;
+    }
+
+    public static boolean none(int[] array, Predicate.Int p) {
+        for (int j : array) {
+            if (p.test(j)) return false;
+        }
+        return true;
+    }
+
+    public static boolean none(short[] array, Predicate.Short p) {
+        for (short value : array) {
+            if (p.test(value)) return false;
+        }
+        return true;
+    }
+
+    public static boolean none(byte[] array, Predicate.Byte p) {
+        for (byte b : array) {
+            if (p.test(b)) return false;
+        }
+        return true;
+    }
+
+    public static boolean none(char[] array, Predicate.Char p) {
+        for (char c : array) {
+            if (p.test(c)) return false;
+        }
+        return true;
+    }
+
+    public static boolean none(boolean[] array, Predicate.Boolean p) {
+        for (boolean b : array) {
+            if (p.test(b)) return false;
+        }
+        return true;
+    }
+
+    public static boolean none(float[] array, Predicate.Float p) {
+        for (float v : array) {
+            if (p.test(v)) return false;
+        }
+        return true;
+    }
+
+    public static boolean none(double[] array, Predicate.Double p) {
+        for (double v : array) {
+            if (p.test(v)) return false;
+        }
+        return true;
+    }
+
+    private static final char[][] HEX_PAIRS = new char[256][2];
+    static {
+        for (int i = 0; i < 256; i++) {
+            HEX_PAIRS[i][0] = "0123456789abcdef".charAt(i >>> 4);
+            HEX_PAIRS[i][1] = "0123456789abcdef".charAt(i & 0x0F);
+        }
+    }
+
+    public static char[] hexOf(byte[] bytes) {
+        char[] out = new char[bytes.length * 2];
+        int j = 0;
+        for (byte b : bytes) {
+            char[] pair = HEX_PAIRS[b & 0xFF];
+            out[j++] = pair[0];
+            out[j++] = pair[1];
+        }
+        return out;
     }
 
 

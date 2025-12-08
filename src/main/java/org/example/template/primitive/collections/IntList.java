@@ -10,6 +10,10 @@ public class IntList extends PrimitiveList{
     public IntList() {
         array = new int[16];
     }
+    
+    public IntList(int... ints) {
+        array = ints;
+    }
 
     public IntList(int initial) {
         array = new int[initial];
@@ -74,4 +78,20 @@ public class IntList extends PrimitiveList{
         return result;
     }
 
+    public boolean contains(int elem) {
+        for (int i = 0; i < pointer + 1; i++) {
+            if (array[i] == elem) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        var sb = new StringBuilder("IntList[");
+        for (int i = 0; i < pointer + 1; i++) {
+            sb.append(array[i]).append(",");
+        }
+        sb.deleteCharAt(sb.length() - 1).append("]");
+        return sb.toString();
+    }
 }
