@@ -1,13 +1,18 @@
 package org.example.problems.year2025;
 
 import org.example.template.Template;
-import org.example.template.Utils;
-import org.example.template.primitive.collections.IntList;
+import org.example.template.primitive.arrays.ArrUtils;
 
 import java.util.*;
 
 public class Pb9 extends Template<Pb9.Point[]> {
 
+
+    static final int BIG = 200_000;
+    static final int[] TOP_LEFT = new int[]{-1, -1};
+    static final int[] TOP_RIGHT = new int[]{1, -1};
+    static final int[] BOT_LEFT = new int[]{-1, 1};
+    static final int[] BOT_RIGHT = new int[]{1, 1};
 
     public Pb9() {
         super(2025, 9, "Movie Theater");
@@ -27,51 +32,64 @@ public class Pb9 extends Template<Pb9.Point[]> {
 
     @Override
     protected void exec_part_2(Point[] data) throws Exception {
-        Set<Point> valid = computeDirectLines(data);
-        //computeIndirectLines(data, valid);
-        //char[][] grid = new char[15][15];
-       // for (char[] chars : grid) {
-       //     Arrays.fill(chars, '.');
-       // }
+        List<Point> verticals = new ArrayList<>();
+        List<Point> horizontals = new ArrayList<>();
+        computeVertiHori(data, verticals, horizontals);
+        Map<Point, int[]> dirs = computeDirections(data);
+        long[] area = new long[]{0};
+        ArrUtils.forAllPairs(data, (p1, p2) -> {
+            if (p1.x == p2.x || p1.y == p2.y) return; // same line, osef
+            if (!exploreX(p1, p1.x < p2.x ? 1 : -1, verticals, dirs)) return;
+            if (!exploreY(p1, p1.y < p2.y ? 1 : -1, horizontals, dirs)) return;
+            if (!exploreX(p2, p2.x < p1.x ? 1 : -1, verticals, dirs)) return;
+            if (!exploreY(p2, p2.y < p1.y ? 1 : -1, horizontals, dirs)) return;
+            long current = (Math.abs(p1.x - p2.x) + 1) * (Math.abs(p1.y - p2.y) + 1);
+            if (current > area[0]) area[0] = current;
+        });
+        System.out.println(area[0]);
+    }
 
-       // for (Point point : valid) {
-        //    grid[(int) point.y][(int) point.x] = 'O';
-       // }
-       //Utils.print2dArray(grid, "", 1);
-        List<Point> verti = new ArrayList<>();
-        List<Point> hori = new ArrayList<>();
-        for (int i = 0; i < data.length - 1; i++) {
-            if (data[i].y == data[i + 1].y) {
-                hori.add(data[i]);
-                hori.add(data[i + 1]);
+    void computeVertiHori(Point[] data, List<Point> verticals, List<Point> horizontals) {
+        ArrUtils.window(data, false, (p1, p2) -> {
+            if (p1.x == p2.x) {
+                verticals.add(p1);
+                verticals.add(p2);
             } else {
-                verti.add(data[i]);
-                verti.add(data[i + 1]);
+                horizontals.add(p1);
+                horizontals.add(p2);
             }
-        }
-        long max = 0;
-        for (int i = 0; i < data.length - 1; i++) {
-            for (int j = i + 1; j < data.length; j++) {
-                Point p1 = data[i];
-                Point p2 = data[j];
-                Point c1 = new Point(p1.x, p2.y);
-                Point c2 = new Point(p2.x, p1.y);
+        });
+    }
 
-            }
+    HashMap<Point, int[]> computeDirections(Point[] data) {
+        var result = new HashMap<Point, int[]>();
+        for (int i = 1; i < data.length - 1; i++) { //triple window
+            populateMap(data[i - 1], data[i], data[i + 1], result);
         }
-        System.out.println(max);
+        populateMap(data[data.length - 1], data[0], data[1], result);
+        return result;
+    }
+
+    void populateMap(Point a, Point b, Point c, HashMap<Point, int[]> dirs) {
+        if (a.x != b.x) {
+            if (a.x > b.x) dirs.put(b, c.y > b.y ? BOT_RIGHT : TOP_RIGHT);
+            else dirs.put(b, c.y > b.y ? BOT_LEFT : TOP_LEFT);
+        } else {
+            if (a.y > b.y) dirs.put(b, c.x > b.x ? BOT_RIGHT : BOT_LEFT);
+            else dirs.put(b, c.x > b.x ? TOP_LEFT : TOP_RIGHT);
+        }
     }
 
 
     long areaIfValid(Point p1, Point p2, Set<Point> valid) {
-        long x =  Math.min(p1.x, p2.x);
-        long y =  Math.min(p1.y, p2.y);
-        long x2 =  Math.max(p1.x, p2.x);
-        long y2 =  Math.max(p1.y, p2.y);
-        for (long i = x; i < x2 ; i++) {
+        long x = Math.min(p1.x, p2.x);
+        long y = Math.min(p1.y, p2.y);
+        long x2 = Math.max(p1.x, p2.x);
+        long y2 = Math.max(p1.y, p2.y);
+        for (long i = x; i < x2; i++) {
             if (!valid.contains(new Point(i, y)) || !valid.contains(new Point(i, y2))) return 0;
         }
-        for (long i = y; i < y2 ; i++) {
+        for (long i = y; i < y2; i++) {
             if (!valid.contains(new Point(x, i)) || !valid.contains(new Point(x2, i))) return 0;
         }
         return (x2 - x + 1) * (y2 - y + 1);
@@ -92,42 +110,41 @@ public class Pb9 extends Template<Pb9.Point[]> {
         return validCoords;
     }
 
-    void computeIndirectLines(Point[] data, Set<Point> valid) {
 
-    }
-
-    boolean exploreX(Point origin, int dx, List<Point> verticals) {
-        int linesCount = 0;
+    boolean exploreX(Point origin, int dx, List<Point> verticals, Map<Point, int[]> dirs) {
+        //if (dirs.get(origin)[0] != dx) return false; // bad direction
+        int crossed = 0;
         for (int i = 0; i < verticals.size(); i += 2) {
-            int delta = (int) (verticals.get(i).x - origin.x);
-            if (delta * dx <= 0) continue;
-            var interX = interX(verticals.get(i), verticals.get(i + 1), origin, 1000000 * dx);
-            if (interX != -1) linesCount++;
+            if (((verticals.get(i).x - origin.x) ^ dx) <= 0) continue;
+            var interX = interX(verticals.get(i), verticals.get(i + 1), origin, dx < 0 ? -BIG : BIG);
+            if (interX > 0) crossed++;
         }
-        return  linesCount % 2 == 1;
+        return crossed == 0 || crossed % 2 == 1;
     }
 
-    boolean exploreY(Point origin, int dy, List<Point> horizontals) {
+    boolean exploreY(Point origin, int dy, List<Point> horizontals, Map<Point, int[]> dirs) {
+       // if (dirs.get(origin)[1] != dy) return false; // bad direction
         int crossed = 0;
         for (int i = 0; i < horizontals.size(); i += 2) {
-            int delta = (int) (horizontals.get(i).y - origin.y);
-            if (delta * dy <= 0 ) continue;
-            var interY = interY(horizontals.get(i), horizontals.get(i + 1), origin, 1000000 * dy);
-            if (interY != -1) crossed++;
+            if (((horizontals.get(i).y - origin.y) ^ dy) <= 0) continue;
+            var interY = interY(horizontals.get(i), horizontals.get(i + 1), origin, dy < 0 ? -BIG : BIG);
+            if (interY > 0) crossed++;
         }
-        return crossed % 2 == 1;
+        return crossed == 0 || crossed % 2 == 1;
     }
 
 
-    //parameter v1 and v2 is vertical
+    //parameter v1 and v2 is vertical. exclusive intersection
     int interX(Point v1, Point v2, Point origin, int xEnd) {
+        if (origin.x == v1.x || v1.x == xEnd) return -1;
         if (((v1.x - origin.x) ^ (v1.x - xEnd)) > 0) return -1;
         if (((origin.y - v1.y) ^ (origin.y - v2.y)) > 0) return -1;
         return (int) v1.x;
     }
 
-    //parameter h1 and h2 is horizontal
+    //parameter h1 and h2 is horizontal. exclusive intersection
     int interY(Point h1, Point h2, Point origin, int yEnd) {
+        if (origin.y == h1.y || h1.y == yEnd) return -1;
         if (((origin.x - h1.x) ^ (origin.x - h2.x)) > 0) return -1;
         if (((h1.y - origin.y) ^ (h1.y - yEnd)) > 0) return -1;
         return (int) h1.y;

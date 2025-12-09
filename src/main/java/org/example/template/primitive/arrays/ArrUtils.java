@@ -2,6 +2,8 @@ package org.example.template.primitive.arrays;
 
 import  org.example.template.primitive.functional.*;
 
+import java.util.function.BiConsumer;
+
 @SuppressWarnings("unused")
 public abstract class ArrUtils {
 
@@ -1019,10 +1021,19 @@ public abstract class ArrUtils {
         return out;
     }
 
-
-    public static void sortBy(long[] array, Comparator.Long c) {
-
+    public static <T> void forAllPairs(T[] arr, BiConsumer<T,T> func) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                func.accept(arr[i], arr[j]);
+            }
+        }
     }
 
+    public static <T> void window(T[]arr, boolean looped, BiConsumer<T,T> func) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            func.accept(arr[i], arr[i + 1]);
+        }
+        if (looped) func.accept(arr[arr.length - 1], arr[0]);
+    }
 
 }
