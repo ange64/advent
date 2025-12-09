@@ -68,6 +68,10 @@ public class ByteList extends PrimitiveList{
         Arrays.fill(array, defaultValue);
     }
 
+    @Override
+    public void sort() {
+        Arrays.sort(array, 0, pointer + 1);
+    }
     public byte[] toArray() {
         byte[] result = new byte[pointer + 1];
         System.arraycopy(array, 0, result, 0, pointer + 1);

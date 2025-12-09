@@ -1,5 +1,7 @@
 package org.example.template.primitive.collections;
 
+import org.example.template.primitive.functional.Comparator;
+
 import java.util.Arrays;
 
 public class IntList extends PrimitiveList{
@@ -66,6 +68,11 @@ public class IntList extends PrimitiveList{
 
     public void softClear() {
         pointer = -1;
+    }
+
+    @Override
+    public void sort() {
+        Arrays.sort(array, 0, pointer + 1);
     }
 
     public void hardClear(int defaultValue) {

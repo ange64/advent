@@ -1,5 +1,7 @@
 package org.example.template.primitive.collections;
 
+import org.example.template.primitive.functional.Comparator;
+
 public abstract class PrimitiveList {
 
     int pointer;
@@ -12,6 +14,7 @@ public abstract class PrimitiveList {
         pointer = -1;
     }
 
+    public abstract void sort();
 
     protected void throwOOB(int index) {
         throw new IndexOutOfBoundsException("Out of boud for size " + size() + " at index " + index);
