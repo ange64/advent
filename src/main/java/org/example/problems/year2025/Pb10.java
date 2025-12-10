@@ -74,8 +74,8 @@ public class Pb10 extends Template<Pb10.Command[]> {
         @Override
         public String toString() {
 
-            return "L"+ Integer.toBinaryString(lights).substring(16)+
-                    "   B"+ Arrays.toString(ArrUtils.mapTo(buttons, i -> Integer.toBinaryString(16)))+
+            return "L"+ Integer.toBinaryString(lights) +
+                    "   B"+ Arrays.toString(ArrUtils.map(buttons, i -> Integer.toBinaryString(16)))+
                     "   J" + Arrays.toString(jolt);
         }
     }

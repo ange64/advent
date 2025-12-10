@@ -2,9 +2,7 @@ package org.example.template.primitive.arrays;
 
 import  org.example.template.primitive.functional.*;
 
-import java.util.Arrays;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 @SuppressWarnings("unused")
 public abstract class ArrUtils {
@@ -1065,7 +1063,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static <T> T[] mapTo(long[] array, Mapper.LongTo<T> mapper) {
+    public static <T> T[] map(long[] array, Mapper.LongTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1073,7 +1071,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] mapTo(int[] array, Mapper.IntTo<T> mapper) {
+    public static <T> T[] map(int[] array, Mapper.IntTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1081,7 +1079,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] mapTo(short[] array, Mapper.ShortTo<T> mapper) {
+    public static <T> T[] map(short[] array, Mapper.ShortTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1089,7 +1087,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] mapTo(char[] array, Mapper.CharTo<T> mapper) {
+    public static <T> T[] map(char[] array, Mapper.CharTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1097,7 +1095,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] mapTo(byte[] array, Mapper.ByteTo<T> mapper) {
+    public static <T> T[] map(byte[] array, Mapper.ByteTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1105,7 +1103,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] mapTo(boolean[] array, Mapper.BoolTo<T> mapper) {
+    public static <T> T[] map(boolean[] array, Mapper.BoolTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1113,7 +1111,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] mapTo(float[] array, Mapper.FloatTo<T> mapper) {
+    public static <T> T[] map(float[] array, Mapper.FloatTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1121,12 +1119,11 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] mapTo(double[] array, Mapper.DoubleTo<T> mapper) {
+    public static <T> T[] map(double[] array, Mapper.DoubleTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
         }
         return (T[]) result;
     }
-
 }
