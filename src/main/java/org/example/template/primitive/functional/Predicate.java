@@ -40,4 +40,44 @@ public interface Predicate {
     interface Double {
         boolean test(double d);
     }
+
+    @FunctionalInterface
+    interface BooleanIndexed {
+        boolean test(boolean b, int idx);
+    }
+
+    @FunctionalInterface
+    interface ByteIndexed {
+        boolean test(byte b, int idx);
+    }
+
+    @FunctionalInterface
+    interface ShortIndexed {
+        boolean test(short s, int idx);
+    }
+
+    @FunctionalInterface
+    interface CharIndexed {
+        boolean test(char c, int idx);
+    }
+
+    @FunctionalInterface
+    interface IntIndexed {
+        boolean test(int i, int idx);
+    }
+
+    @FunctionalInterface
+    interface LongIndexed {
+        boolean test(long l, int idx);
+    }
+
+    @FunctionalInterface
+    interface FloatIndexed {
+        boolean test(float f, int idx);
+    }
+
+    @FunctionalInterface
+    interface DoubleIndexed {
+        boolean test(double d, int idx);
+    }
 }

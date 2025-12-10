@@ -1,5 +1,6 @@
 package org.example.template.primitive.arrays;
 
+import org.example.template.primitive.PUtils;
 import  org.example.template.primitive.functional.*;
 
 import java.util.function.BiConsumer;
@@ -891,6 +892,58 @@ public abstract class ArrUtils {
         return true;
     }
 
+    public static boolean any(long[] array, Predicate.LongIndexed pi) {
+        for (int i = 0; i < array.length; i++) {
+            if (pi.test(array[i], i)) return true;
+        }
+        return false;
+    }
+
+    public static boolean any(int[] array, Predicate.IntIndexed pi) {
+        for (int i = 0; i < array.length; i++) {
+            if (pi.test(array[i], i)) return true;
+        }
+        return false;
+    }
+    public static boolean any(short[] array, Predicate.ShortIndexed pi) {
+        for (int i = 0; i < array.length; i++) {
+            if (pi.test(array[i], i)) return true;
+        }
+        return false;
+    }
+    public static boolean any(byte[] array, Predicate.ByteIndexed pi) {
+        for (int i = 0; i < array.length; i++) {
+            if (pi.test(array[i], i)) return true;
+        }
+        return false;
+    }
+    public static boolean any(char[] array, Predicate.CharIndexed pi) {
+        for (int i = 0; i < array.length; i++) {
+            if (pi.test(array[i], i)) return true;
+        }
+        return false;
+    }
+
+    public static boolean any(boolean[] array, Predicate.BooleanIndexed pi) {
+        for (int i = 0; i < array.length; i++) {
+            if (pi.test(array[i], i)) return true;
+        }
+        return false;
+    }
+
+    public static boolean any(float[] array, Predicate.FloatIndexed pi) {
+        for (int i = 0; i < array.length; i++) {
+            if (pi.test(array[i], i)) return true;
+        }
+        return false;
+    }
+    public static boolean any(double[] array, Predicate.DoubleIndexed pi) {
+        for (int i = 0; i < array.length; i++) {
+            if (pi.test(array[i], i)) return true;
+        }
+        return false;
+    }
+
     public static boolean any(long[] array, Predicate.Long p) {
         for (long l : array) {
             if (p.test(l)) return true;
@@ -1126,4 +1179,78 @@ public abstract class ArrUtils {
         }
         return (T[]) result;
     }
+
+    public static <T> T[] init(T[] array, java.util.function.Supplier<T> init){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = init.get();
+        }
+        return array;
+    }
+
+    public static int[] init(int[] array, Supplier.Int sup){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = sup.get();
+        }
+        return array;
+    }
+
+    public static short[] init(short[] array, Supplier.Short sup){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = sup.get();
+        }
+        return array;
+    }
+
+    public static char[] init(char[] array, Supplier.Char sup){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = sup.get();
+        }
+        return array;
+    }
+
+    public static byte[] init(byte[] array, Supplier.Byte sup){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = sup.get();
+        }
+        return array;
+    }
+
+    public static boolean[] init(boolean[] array, Supplier.Bool sup){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = sup.get();
+        }
+        return array;
+    }
+
+    public static float[] init(float[] array, Supplier.Long sup){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = sup.get();
+        }
+        return array;
+    }
+
+    public static double[] init(double[] array, Supplier.Long sup){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = sup.get();
+        }
+        return array;
+    }
+
+    public static int gcd(int[] array) {
+        int result = gcd(array[0],array[1]);
+        for(int i = 2; i < array.length; i++){
+            result = gcd(result, array[i]);
+        }
+        return result;
+    }
+
+    private static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return Math.abs(a);
+    }
+
 }

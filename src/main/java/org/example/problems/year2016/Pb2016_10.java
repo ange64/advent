@@ -1,11 +1,11 @@
 package org.example.problems.year2016;
 
 import org.example.template.Template;
+import org.example.template.primitive.arrays.ArrUtils;
 
 import java.util.*;
 
-import static org.example.template.Utils.fillArray;
-import static org.example.template.Utils.strToI;
+import static org.example.template.primitive.PUtils.strToI;
 
 public class Pb2016_10 extends Template<Pb2016_10.Command[]> {
 
@@ -20,9 +20,9 @@ public class Pb2016_10 extends Template<Pb2016_10.Command[]> {
 
     @Override
     protected void init() {
-        bots = fillArray(new Bot[250], Bot::new);
+        bots = ArrUtils.init(new Bot[250], Bot::new);
         outputs = new int[250];
-        swapQueue = fillArray(new ArrayDeque[250], ArrayDeque::new);
+        swapQueue = ArrUtils.init(new ArrayDeque[250], ArrayDeque::new);
         addQueue = new ArrayDeque<>();
     }
 
