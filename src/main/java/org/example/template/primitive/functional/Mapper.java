@@ -34,4 +34,37 @@ public interface Mapper {
         double map(double i);
     }
 
+    interface ByteTo<T> {
+        T map(byte i);
+    }
+
+    interface ShortTo<T> {
+        T map(short i);
+    }
+
+    interface IntTo<T> {
+        T map(int i);
+    }
+
+    interface LongTo<T> {
+        T map(long i);
+    }
+
+    interface CharTo<T>{
+        T map(char i);
+    }
+
+    interface BoolTo<T> {
+        T map(boolean i);
+    }
+
+    interface FloatTo<T> {
+        T map(float i);
+    }
+
+    interface DoubleTo<T> {
+        T map(double i);
+    }
+
+
 }

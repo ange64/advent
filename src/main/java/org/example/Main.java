@@ -11,8 +11,7 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception {
-        System.out.println((int) ('0') - 1);
-        var pb = new Pb9();
+        var pb = new Pb10();
         pb.run();
     }
 }

@@ -2,7 +2,9 @@ package org.example.template.primitive.arrays;
 
 import  org.example.template.primitive.functional.*;
 
+import java.util.Arrays;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 @SuppressWarnings("unused")
 public abstract class ArrUtils {
@@ -1034,6 +1036,97 @@ public abstract class ArrUtils {
             func.accept(arr[i], arr[i + 1]);
         }
         if (looped) func.accept(arr[arr.length - 1], arr[0]);
+    }
+
+    public static int[] strToI(String[] strs){
+        int[] result = new int[strs.length];
+        for (int i = 0; i < strs.length; i++) {
+            result[i] = Integer.parseInt(strs[i]);
+        }
+        return result;
+    }
+
+    public static long[] strToL(String[] strs){
+        long[] result = new long[strs.length];
+        for (int i = 0; i < strs.length; i++) {
+            result[i] = Long.parseLong(strs[i]);
+        }
+        return result;
+    }
+
+    public static String toCompactStr(boolean[] arr) {
+        StringBuilder sb = new StringBuilder("[");
+        for (boolean b : arr) {
+            sb.append(b ? 'T' : 'F');
+            sb.append(',');
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append("]");
+        return sb.toString();
+    }
+
+    public static <T> T[] mapTo(long[] array, Mapper.LongTo<T> mapper) {
+        Object[] result = new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = mapper.map(array[i]);
+        }
+        return (T[]) result;
+    }
+
+    public static <T> T[] mapTo(int[] array, Mapper.IntTo<T> mapper) {
+        Object[] result = new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = mapper.map(array[i]);
+        }
+        return (T[]) result;
+    }
+
+    public static <T> T[] mapTo(short[] array, Mapper.ShortTo<T> mapper) {
+        Object[] result = new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = mapper.map(array[i]);
+        }
+        return (T[]) result;
+    }
+
+    public static <T> T[] mapTo(char[] array, Mapper.CharTo<T> mapper) {
+        Object[] result = new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = mapper.map(array[i]);
+        }
+        return (T[]) result;
+    }
+
+    public static <T> T[] mapTo(byte[] array, Mapper.ByteTo<T> mapper) {
+        Object[] result = new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = mapper.map(array[i]);
+        }
+        return (T[]) result;
+    }
+
+    public static <T> T[] mapTo(boolean[] array, Mapper.BoolTo<T> mapper) {
+        Object[] result = new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = mapper.map(array[i]);
+        }
+        return (T[]) result;
+    }
+
+    public static <T> T[] mapTo(float[] array, Mapper.FloatTo<T> mapper) {
+        Object[] result = new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = mapper.map(array[i]);
+        }
+        return (T[]) result;
+    }
+
+    public static <T> T[] mapTo(double[] array, Mapper.DoubleTo<T> mapper) {
+        Object[] result = new Object[array.length];
+        for (int i = 0; i < array.length; i++) {
+            result[i] = mapper.map(array[i]);
+        }
+        return (T[]) result;
     }
 
 }
