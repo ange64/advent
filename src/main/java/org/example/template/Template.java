@@ -9,8 +9,8 @@ import java.util.function.Function;
 public abstract class Template<T>  implements Runnable{
 
     static final ClassLoader loader = Template.class.getClassLoader();
-    private T testInput;
-    private T input;
+    private String[] testInput;
+    private String[] input;
 
     private int day;
     private int year;
@@ -34,10 +34,6 @@ public abstract class Template<T>  implements Runnable{
 
     protected void init() {}
 
-
-    protected void resetState() {}
-
-
     @Override
     public void run() {
         executePart(this::exec_part_1, 1);
@@ -47,26 +43,22 @@ public abstract class Template<T>  implements Runnable{
     private void executePart(ThrowConsumer<T> f, int part) {
         this.init();
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////");
-        System.out.println(" ---------------- execute day " + "day :" + name + " part " + part + " with test data ------");
-        resetState();
+        System.out.println(" ---------------- execute day " + "day :" + day + " " + name + " part " + part + " with test data ------");
         try {
-            if (testInput == null) {
-                testInput = parseInput(Files.readAllLines(Path.of(basePath +  "test.txt")).toArray(new String[0]));
-            }
-           f.accept(testInput);
+            if (testInput == null)
+                testInput = Files.readAllLines(Path.of(basePath +  "test.txt")).toArray(new String[0]);
+           f.accept(parseInput(testInput));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         this.init();
         System.out.println("////////////////////////////////////////////////////////////////////////////////////////////");
-        System.out.println(" ---------------- execute day " + "day :" + name + " part " + part + " with real data -------");
-        resetState();
+        System.out.println(" ---------------- execute day " + "day :" + day + " " + name + " part " + part + " with real data -------");
         try {
-            if (input == null) {
-                input = parseInput(Files.readAllLines(Path.of(basePath +  "real.txt")).toArray(new String[0]));
-            }
+            if (input == null)
+                input = Files.readAllLines(Path.of(basePath +  "real.txt")).toArray(new String[0]);
             long time = System.nanoTime();
-            f.accept(input);
+            f.accept(parseInput(input));
             long after = System.nanoTime();
             long delta = (after - time);
             System.out.println("delta time " + delta / 1_000_000 + "ms");

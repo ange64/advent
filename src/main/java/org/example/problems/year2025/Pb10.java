@@ -1,6 +1,7 @@
 package org.example.problems.year2025;
 
 import org.example.template.Template;
+import org.example.template.Utils;
 import org.example.template.primitive.PUtils;
 import org.example.template.primitive.arrays.ArrUtils;
 
@@ -18,7 +19,12 @@ public class Pb10 extends Template<Pb10.Command[]> {
         for (Command c : data) {
             sum += minMoves(c);
         }
-        System.out.println("sum " + sum);
+        List<Integer> max = new ArrayList<>();
+        for (Command datum : data) {
+            max.add(datum.buttons.length - datum.jolt.length);
+            System.out.println(datum.buttons.length - datum.jolt.length);
+        }
+        System.out.println(max.stream().max(Comparator.comparingInt(o -> o)));
     }
 
     int minMoves(Command target) {
@@ -50,7 +56,9 @@ public class Pb10 extends Template<Pb10.Command[]> {
         int sum = 0;
         for (Command c : data) {
             int[] uppers = upperBounds(c);
-            sum += solveMinMove(uppers, c.jolt, c.buttons);
+            int[][] m = matricize(c.jolt, c.buttons);
+            reduce(m);
+            //Utils.print2dArray(m, "| ",3);
         }
         System.out.println("sum " + sum);
     }
@@ -69,45 +77,30 @@ public class Pb10 extends Template<Pb10.Command[]> {
         return upperBounds;
     }
 
-    private int solveMinMove(int[] upper, int[] target, int[] buttons) {
-        var queue = new ArrayDeque<int[][]>();
-        var visited = new HashSet<Integer>();
-        var start = new int[2][target.length];
-        start[1] = upper.clone();
-        queue.add(start);
-        int depth = 0;
-        int nbLoops = 0;
-        outer:
-        while (!queue.isEmpty()) {
-            int leftOnLevel = queue.size();
-            while (leftOnLevel-- > 0) {
-                int[] current = queue.getFirst()[0];
-                int[] upperCurrent = queue.pop()[1];
-                if (Arrays.equals(target, current)) break outer;
-                if (visited.contains(Arrays.hashCode(current))) continue;
-                visited.add(Arrays.hashCode(current));
-                for (int i = 0; i < upperCurrent.length; i++) {
-                    if (upperCurrent[i] == 0) continue;
-                    int[] child = current.clone();
-                    for (int k = 0; k < child.length; k++) {
-                        child[k] += (buttons[i] >> k) & 1;
-                    }
-                    if (ArrUtils.any(child, (v, idx) -> v > target[idx])) continue;
-                    int[] childUpper = upperCurrent.clone();
-                    for (int j = 0; j < buttons.length; j++) {
-                        childUpper[j] -= (buttons[j] >> i) & 1;
-                    }
-                    nbLoops++;
-                    queue.add(new int[][]{child,childUpper});
-                }
+
+    int[][] matricize(int[] target, int[]buttons) {
+        //vectorize butons into matrix
+        int start = (int) Math.pow(10, buttons.length - 1);
+        int[][] matrix = new int[target.length][buttons.length + 2];
+        for (int i = 0; i < buttons.length; i++) {
+            int b = buttons[i];
+            for (int k = 0; k < matrix.length; k++) {
+                matrix[k][i] = (b >> k) & 1;
+                matrix[k][matrix[0].length - 1] += matrix[k][i] * start;
             }
-            depth++;
+            start /= 10;
         }
-        System.out.println(nbLoops);
-        System.out.println(depth);
-        return depth;
+        for (int i = 0; i < target.length; i++) {
+            matrix[i][buttons.length] = target[i];
+        }
+        Arrays.sort(matrix, Comparator.comparingInt(value -> 10000000 - value[value.length - 1]));
+        return matrix;
     }
 
+
+    private void reduce(int[][] matrix) {
+
+    }
 
 
     @Override
@@ -133,7 +126,7 @@ public class Pb10 extends Template<Pb10.Command[]> {
             String last = split[split.length - 1];
             int[] jolts = ArrUtils.strToI(last.substring(1, last.length() - 1).split(","));
             result[i] = new Command(lights, buttons, but2, jolts);
-            System.out.println(result[i]);
+            //System.out.println(result[i]);
         }
         return result;
     }

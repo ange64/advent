@@ -13,7 +13,7 @@ public class Pb2016_12 extends Template<Pb2016_12.Command[]> {
     }
 
     @Override
-    protected void resetState() {
+    protected void init() {
         registers = new int[126];
         cursor = 0;
     }
