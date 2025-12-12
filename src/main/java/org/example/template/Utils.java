@@ -45,7 +45,8 @@ public class Utils {
                 sb.append(String.format("%-" + minSize + "s", b));
                 sb.append(separator);
             }
-            sb.deleteCharAt(sb.length()  - separator.length());
+            if (!separator.isEmpty())
+                sb.deleteCharAt(sb.length() - separator.length());
             System.out.println(sb);
         }
     }
@@ -58,7 +59,8 @@ public class Utils {
                 sb.append(String.format("%-" + minSize + "s", b));
                 sb.append(separator);
             }
-            sb.deleteCharAt(sb.length() - separator.length());
+            if (!separator.isEmpty())
+                sb.deleteCharAt(sb.length() - separator.length());
             System.out.println(sb);
         }
     }

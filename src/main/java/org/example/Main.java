@@ -11,7 +11,7 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception {
-        var pb = new Pb11();
+        var pb = new Pb12();
         pb.run();
     }
 }

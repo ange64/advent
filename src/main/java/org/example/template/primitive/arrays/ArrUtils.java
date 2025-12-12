@@ -58,6 +58,14 @@ public abstract class ArrUtils {
         return -1;
     }
 
+    public static long sumBy(int[] array, Mapper.IntIndexed mapper) {
+        long sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
     public static long sum(byte[] array) {
         long sum = 0;
         for (byte v : array) sum += v;

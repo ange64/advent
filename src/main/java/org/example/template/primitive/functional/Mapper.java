@@ -2,6 +2,40 @@ package org.example.template.primitive.functional;
 
 public interface Mapper {
 
+
+    interface ByteIndexed {
+        byte map(byte i, int idx);
+    }
+
+    interface ShortIndexed {
+        short map(short i, int idx);
+    }
+
+    interface IntIndexed {
+        int map(int i, int idx);
+    }
+
+    interface LongIndexed {
+        long map(long i, int idx);
+    }
+
+    interface CharIndexed{
+        char map(char i, int idx);
+    }
+
+    interface BoolIndexed {
+        boolean map(boolean i, int idx);
+    }
+
+    interface FloatIndexed {
+        float map(float i, int idx);
+    }
+
+    interface DoubleIndexed {
+        double map(double i, int idx);
+    }
+
+
     interface Byte {
         byte map(byte i);
     }
