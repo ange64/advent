@@ -1,17 +1,15 @@
 package org.example.problems.year2025;
 
 import org.example.template.Template;
-import org.example.template.Utils;
 import org.example.template.primitive.arrays.ArrUtils;
-import org.example.template.primitive.collections.IntList;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 
 public class Pb11 extends Template<int[][]> {
 
-    HashMap<String, Integer> indexMap;
+    HashMap<String, Integer> idxs;
     int nbLoops = 0;
     public Pb11() {
         super(2025, 11, "Reactor");
@@ -23,39 +21,44 @@ public class Pb11 extends Template<int[][]> {
         System.out.println(nbLoops);
     }
 
-    long countPath(int[][] tree, int start, long[] visited) {
-        if (start == tree.length - 1)
-            return 1;
-        if (visited[start] >= 1) return visited[start];
+    long countPath(int[][] tree, int start,int end, long[] pathCount, boolean[] marked) {
+        if (start == end) return 1;
+        if (pathCount[start] != 0) return pathCount[start];
+        if (marked[start]) return 0;
+        marked[start] = true;
         for (int child : tree[start]) {
-            visited[start] += countPath(tree, child, visited);
+            pathCount[start] += countPath(tree, child, end, pathCount, marked);
         }
-        return visited[start];
+        return pathCount[start];
     }
+
 
     @Override
     protected void exec_part_2(int[][] data) throws Exception {
-        long[] visitedCount = new long[data.length];
-        System.out.println(countPath(data, indexMap.get("svr"), visitedCount));
-        System.out.println(visitedCount[indexMap.get("fft")] - visitedCount[indexMap.get("dac")]);
+        long stof = countPath(data, idxs.get("svr"), idxs.get("fft"), new long[data.length], new boolean[data.length]);
+        long ftod = countPath(data, idxs.get("fft"), idxs.get("dac"), new long[data.length], new boolean[data.length]);
+        long dtoo = countPath(data, idxs.get("dac"), idxs.get("out"), new long[data.length], new boolean[data.length]);
+        System.out.println(stof + " " + ftod  + " " + dtoo);
+        System.out.println(stof * ftod  * dtoo);
+
         System.out.println(nbLoops);
     }
 
     @Override
     protected int[][] parseInput(String[] lines) {
-        indexMap = new HashMap<>();
+        idxs = new HashMap<>();
         int k = 0;
         for (String line : lines) {
             String sub = line.substring(0,3);
-            indexMap.put(sub, k++);
+            idxs.put(sub, k++);
         }
-        indexMap.put("out", k);
+        idxs.put("out", k);
         int[][] result = new int[lines.length + 1][];
         for (int i = 0; i < lines.length; i++) {
             String[] split = lines[i].split(" ");
             result[i] = new int[split.length - 1];
             for (int j = 0; j < split.length - 1; j++) {
-                result[i][j] = indexMap.get(split[j + 1]);
+                result[i][j] = idxs.get(split[j + 1]);
             }
         }
         result[lines.length] = new int[0];

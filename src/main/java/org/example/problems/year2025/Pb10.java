@@ -4,6 +4,7 @@ import org.example.template.Template;
 import org.example.template.Utils;
 import org.example.template.primitive.PUtils;
 import org.example.template.primitive.arrays.ArrUtils;
+import org.example.template.primitive.arrays.GridUtils;
 
 import java.util.*;
 
@@ -15,16 +16,6 @@ public class Pb10 extends Template<Pb10.Command[]> {
 
     @Override
     protected void exec_part_1(Command[] data) throws Exception {
-        int sum = 0;
-        for (Command c : data) {
-            sum += minMoves(c);
-        }
-        List<Integer> max = new ArrayList<>();
-        for (Command datum : data) {
-            max.add(datum.buttons.length - datum.jolt.length);
-            System.out.println(datum.buttons.length - datum.jolt.length);
-        }
-        System.out.println(max.stream().max(Comparator.comparingInt(o -> o)));
     }
 
     int minMoves(Command target) {
@@ -55,10 +46,16 @@ public class Pb10 extends Template<Pb10.Command[]> {
     protected void exec_part_2(Command[] data) throws Exception {
         int sum = 0;
         for (Command c : data) {
-            int[] uppers = upperBounds(c);
             int[][] m = matricize(c.jolt, c.buttons);
-            reduce(m);
-            //Utils.print2dArray(m, "| ",3);
+            sum += findSystemSolutions(m);
+            int[] resultJoltage = new int[c.jolt.length];
+            for (int i = 0; i < c.butt2.length; i++) {
+                int[] button = c.butt2[i];
+                for (int cell : button) {
+                    resultJoltage[cell] += buttons[i];
+                }
+            }
+            System.out.println(Arrays.toString(resultJoltage));
         }
         System.out.println("sum " + sum);
     }
@@ -78,30 +75,156 @@ public class Pb10 extends Template<Pb10.Command[]> {
     }
 
 
-    int[][] matricize(int[] target, int[]buttons) {
+    int[][] matricize(int[] target, int[] buttons) {
         //vectorize butons into matrix
-        int start = (int) Math.pow(10, buttons.length - 1);
-        int[][] matrix = new int[target.length][buttons.length + 2];
+        int[][] matrix = new int[target.length][buttons.length + 1];
         for (int i = 0; i < buttons.length; i++) {
             int b = buttons[i];
             for (int k = 0; k < matrix.length; k++) {
                 matrix[k][i] = (b >> k) & 1;
-                matrix[k][matrix[0].length - 1] += matrix[k][i] * start;
             }
-            start /= 10;
         }
         for (int i = 0; i < target.length; i++) {
             matrix[i][buttons.length] = target[i];
         }
-        Arrays.sort(matrix, Comparator.comparingInt(value -> 10000000 - value[value.length - 1]));
         return matrix;
     }
 
 
-    private void reduce(int[][] matrix) {
-
+    private boolean rowEchelonForm(int[][] mat) {
+        int H = mat.length;
+        int L = mat[0].length;
+        int maxRows = Math.min(H, L - 1);
+        int d;
+        for (d = 0; d < maxRows; d++) { // for each diagonal elements
+            int d2 = GridUtils.firstRow(mat, d, d, cell -> cell != 0);
+            if (d2 == -1) continue;
+            GridUtils.swapRows(mat, d, d2);
+            int pivotCol = ArrUtils.first(mat[d], i -> i != 0);
+            if (pivotCol == -1) continue; // whole line is zero
+            if (pivotCol == L - 1) return false; //unsolvable state, all coeff zeros but result nonzero
+            for (int j = d + 1; j < H; j++) {
+                mulAddRow(mat[j], mat[d], pivotCol);
+            }
+        }
+        return true;
     }
 
+
+    private int[] backSubstitution(int[][] mat) {
+        int H = mat.length;
+        int L = mat[0].length;
+        int maxRows = Math.min(H, L - 1);
+        boolean[] hasPivot = new boolean[L - 1];
+        int freeCount = L - 1;
+        for (int i = maxRows - 1; i >= 0; i--) {
+            int pivotCol = i;
+            while (pivotCol < L && mat[i][pivotCol] == 0) pivotCol++;
+            if (pivotCol >= L - 1) continue;
+            hasPivot[pivotCol] = true;
+            freeCount--;
+            int pivotValue = mat[i][pivotCol];
+            if (Math.abs(pivotValue) != 1)// reduce factors
+                for (int k = pivotCol; k < L; k++)
+                    mat[i][k] /= pivotValue;
+            for (int row = i - 1; row >= 0; row--) {
+                mulAddRow(mat[row], mat[i], pivotCol);
+            }
+        }
+        int[] free = new int[freeCount];
+        for (int i = L - 2; i >= 0; i--) {
+            if (hasPivot[i]) continue;
+            free[--freeCount] = i;
+        }
+        for (int i = 0; i < H; i++) {
+            if (mat[i][L - 1] > 0) continue;
+            for (int j = 0; j < L; j++) {
+                mat[i][j] = -mat[i][j];
+            }
+        }
+        return free;
+    }
+
+    private void mulAddRow(int[] target, int[] ref, int pivotCol) {
+        if (target[pivotCol] == 0) return;
+        int factor = target[pivotCol];
+        int neg = target[target.length - 1] * ref[pivotCol] < ref[target.length - 1] * factor ? -1 : 1;
+        for (int i = 0; i < target.length; i++) {
+            target[i] *= ref[pivotCol];
+            target[i] -= ref[i] * factor;
+            target[i] *= neg;
+        }
+    }
+
+    private int[][] parseSolutions(int[][] mat, int[] free) {
+        int H = mat.length;
+        int L = mat[0].length;
+        int[][] sol = new int[free.length + 1][mat[0].length - 1];
+        int k = 0;
+        int freeIdx = 0;
+        for (int i = 0; i < sol[0].length; i++) {
+            if (freeIdx < free.length && i == free[freeIdx]) {
+                sol[1 + freeIdx++][i] = 1;
+            } else {
+                sol[0][i] = mat[k][mat[0].length - 1];
+                for (int j = 0; j < free.length; j++) {
+                    sol[j + 1][i] = -mat[k][free[j]];
+                }
+                k++;
+            }
+        }
+        Utils.print2dArray(sol, "| ", 4);
+        return sol;
+    }
+
+    private int findSystemSolutions(int[][] mat) {
+        Utils.print2dArray(mat, ",", 3);
+        if (!rowEchelonForm(mat)) return -1;
+        visited.clear();
+        int[] free = backSubstitution(mat);
+        Utils.print2dArray(mat, ",", 3);
+        int[][] sols = parseSolutions(mat, free);
+        if (sols.length == 1) {
+            System.out.println("no free variables : " + ArrUtils.sum(sols[0]));
+            return (int) ArrUtils.sum(sols[0]);
+        }
+        int[] minsum = new int[] {100000};
+        explore(sols, new int[sols.length - 1],  minsum, 0);
+        System.out.println("min sum found " + minsum[0]);
+
+        return minsum[0];
+    }
+
+    HashSet<Long> visited = new HashSet<>();
+    int[] buttons;
+    int maxDepth = 220;
+    void explore(int[][] sols, int[] factors, int[] minSum, int depth) {;
+        if (depth == maxDepth) return;
+        int currSum = 0;
+        boolean hasNeg = false;
+        int[] current = sols[0].clone();
+        for (int i = 0; i < sols[0].length; i++) {
+            for (int j = 1; j < sols.length; j++) {
+                current[i] += sols[j][i] * factors[j - 1];
+            }
+            currSum += current[i];
+            if (current[i] < 0) hasNeg = true;
+        }
+        long hash = ((long) depth << 48 | (long) currSum << 32 | Arrays.hashCode(factors));
+        if (visited.contains(hash)) return;
+        visited.add(hash);
+        if (!hasNeg && currSum < minSum[0]) {
+            buttons = current;
+            System.out.println("found better solution : " + currSum + " " + Arrays.toString(current) + " " + Arrays.toString(factors));
+            minSum[0] = currSum;
+            visited.remove(hash);
+        }
+        for (int i = 0; i < sols.length - 1; i++) { //for each free variable
+            factors[i]++;
+            explore(sols,factors, minSum, depth + 1);
+            factors[i]--;
+        }
+    }
 
     @Override
     protected Command[] parseInput(String[] lines) {
@@ -122,7 +245,6 @@ public class Pb10 extends Template<Pb10.Command[]> {
                     buttons[j - 1] |= 1 << (bd.charAt(0) - '0');
                 }
             }
-
             String last = split[split.length - 1];
             int[] jolts = ArrUtils.strToI(last.substring(1, last.length() - 1).split(","));
             result[i] = new Command(lights, buttons, but2, jolts);

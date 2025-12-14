@@ -101,4 +101,5 @@ public class IntList extends PrimitiveList{
         sb.deleteCharAt(sb.length() - 1).append("]");
         return sb.toString();
     }
+
 }

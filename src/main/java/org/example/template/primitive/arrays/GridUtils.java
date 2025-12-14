@@ -1,5 +1,8 @@
 package org.example.template.primitive.arrays;
 
+import org.example.template.primitive.functional.Consumer;
+import org.example.template.primitive.functional.Predicate;
+
 import java.util.Arrays;
 
 public class GridUtils {
@@ -42,7 +45,6 @@ public class GridUtils {
         return r;
     }
 
-
     public static char[][] flipH(char[][] grid) {
         var r = new char[grid.length][];
         for (int i = 0; i < grid.length; i++) {
@@ -51,6 +53,23 @@ public class GridUtils {
         return r;
     }
 
+    public static <T> void swapRows(T[][] array, int rowA, int rowB) {
+        var temp = array[rowA];
+        array[rowA] = array[rowB];
+        array[rowB] = temp;
+    }
 
+    public static void swapRows(int[][] array, int rowA, int rowB) {
+        var temp = array[rowA];
+        array[rowA] = array[rowB];
+        array[rowB] = temp;
+    }
+
+    public static int firstRow(int[][] grid, int rowStart, int colIndex, Predicate.Int c) {
+        for (int i = rowStart; i < grid.length; i++) {
+            if (c.test(grid[i][colIndex])) return i;
+        }
+        return -1;
+    }
 
 }
