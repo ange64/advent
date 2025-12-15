@@ -1261,4 +1261,81 @@ public abstract class ArrUtils {
         return Math.abs(a);
     }
 
+    public static int count(long[] array, Predicate.Long p) {
+        int c = 0;
+        for (int i = 0; i < array.length; i++) {
+            c += p.test(array[i]) ? 1 : 0;
+        }
+        return c;
+    }
+
+    public static int count(int[] array, Predicate.Int p) {
+        int c = 0;
+        for (int i = 0; i < array.length; i++) {
+            c += p.test(array[i]) ? 1 : 0;
+        }
+        return c;
+    }
+
+    public static int count(short[] array, Predicate.Short p) {
+        int c = 0;
+        for (int i = 0; i < array.length; i++) {
+            c += p.test(array[i]) ? 1 : 0;
+        }
+        return c;
+    }
+
+    public static int count(byte[] array, Predicate.Byte p) {
+        int c = 0;
+        for (int i = 0; i < array.length; i++) {
+            c += p.test(array[i]) ? 1 : 0;
+        }
+        return c;
+    }
+
+    public static int count(char[] array, Predicate.Char p) {
+        int c = 0;
+        for (int i = 0; i < array.length; i++) {
+            c += p.test(array[i]) ? 1 : 0;
+        }
+        return c;
+    }
+
+    public static int count(float[] array, Predicate.Float p) {
+        int c = 0;
+        for (int i = 0; i < array.length; i++) {
+            c += p.test(array[i]) ? 1 : 0;
+        }
+        return c;
+    }
+
+    public static int count(double[] array, Predicate.Double p) {
+        int c = 0;
+        for (int i = 0; i < array.length; i++) {
+            c += p.test(array[i]) ? 1 : 0;
+        }
+        return c;
+    }
+
+    public static int count(boolean[] array, Predicate.Boolean p) {
+        int c = 0;
+        for (int i = 0; i < array.length; i++) {
+            c += p.test(array[i]) ? 1 : 0;
+        }
+        return c;
+    }
+
+
+    public static long[] subArray(long[] array, int start, int len)  {
+        long[] arr = new long[len];
+        System.arraycopy(array, start, arr, 0, len);
+        return arr;
+    }
+
+    public static  int[] subArray(int[] array, int start, int len)  {
+        int[] arr = new int[len];
+        System.arraycopy(array, start, arr, 0, len);
+        return arr;
+    }
+
 }

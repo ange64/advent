@@ -1,12 +1,19 @@
 package org.example.problems.year2025;
 
+import org.chocosolver.solver.Model;
+import org.chocosolver.solver.exception.ContradictionException;
+import org.chocosolver.solver.search.strategy.Search;
+import org.chocosolver.solver.variables.IntVar;
 import org.example.template.Template;
 import org.example.template.Utils;
 import org.example.template.primitive.PUtils;
 import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.arrays.GridUtils;
+import org.example.template.primitive.collections.IntList;
+import org.example.template.primitive.functional.Predicate;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Pb10 extends Template<Pb10.Command[]> {
 
@@ -44,20 +51,32 @@ public class Pb10 extends Template<Pb10.Command[]> {
 
     @Override
     protected void exec_part_2(Command[] data) throws Exception {
-        int sum = 0;
-        for (Command c : data) {
-            int[][] m = matricize(c.jolt, c.buttons);
-            sum += findSystemSolutions(m);
-            int[] resultJoltage = new int[c.jolt.length];
-            for (int i = 0; i < c.butt2.length; i++) {
-                int[] button = c.butt2[i];
-                for (int cell : button) {
-                    resultJoltage[cell] += buttons[i];
+        AtomicInteger total = new AtomicInteger();
+        var all = Arrays.stream(data).parallel().map(c -> {
+            Model m = new Model();
+            IntVar[] presses = m.intVarArray("p", c.butt2.length, 0, ArrUtils.max(c.jolt));
+            IntVar t = m.intVar("tot", 0, 300);
+            m.sum(presses, "=", t).post();
+            for (int i = 0; i < c.jolt.length; i++) {
+                var list = new ArrayList<IntVar>();
+                for (int j = 0; j < c.butt2.length; j++) {
+                    int idx = ArrUtils.indexOf(c.butt2[j], i);
+                    if (idx != -1) list.add(presses[j]);
                 }
+                m.sum(list.toArray(IntVar[]::new), "=", c.jolt[i]).post();
             }
-            System.out.println(Arrays.toString(resultJoltage));
-        }
-        System.out.println("sum " + sum);
+            var s = m.getSolver();
+            s.setSearch(Search.minDomLBSearch(presses));
+            try {
+                s.propagate();
+            } catch (ContradictionException e) {
+                throw new RuntimeException(e);
+            }
+            var sol = s.findOptimalSolution(t, Model.MINIMIZE);
+            System.out.println(sol.getIntVal(t));
+            return sol.getIntVal(t);
+        }).toList();
+        System.out.println(all.stream().reduce(0, Integer::sum));
     }
 
     private int[] upperBounds(Command c) {
@@ -87,6 +106,7 @@ public class Pb10 extends Template<Pb10.Command[]> {
         for (int i = 0; i < target.length; i++) {
             matrix[i][buttons.length] = target[i];
         }
+        Utils.print2dArray(matrix, " ", 2);
         return matrix;
     }
 
@@ -115,14 +135,12 @@ public class Pb10 extends Template<Pb10.Command[]> {
         int H = mat.length;
         int L = mat[0].length;
         int maxRows = Math.min(H, L - 1);
-        boolean[] hasPivot = new boolean[L - 1];
-        int freeCount = L - 1;
+        int[] pivots = new int[L - 1];
         for (int i = maxRows - 1; i >= 0; i--) {
             int pivotCol = i;
             while (pivotCol < L && mat[i][pivotCol] == 0) pivotCol++;
             if (pivotCol >= L - 1) continue;
-            hasPivot[pivotCol] = true;
-            freeCount--;
+            pivots[pivotCol] = i + 1;
             int pivotValue = mat[i][pivotCol];
             if (Math.abs(pivotValue) != 1)// reduce factors
                 for (int k = pivotCol; k < L; k++)
@@ -131,18 +149,11 @@ public class Pb10 extends Template<Pb10.Command[]> {
                 mulAddRow(mat[row], mat[i], pivotCol);
             }
         }
-        int[] free = new int[freeCount];
-        for (int i = L - 2; i >= 0; i--) {
-            if (hasPivot[i]) continue;
-            free[--freeCount] = i;
-        }
         for (int i = 0; i < H; i++) {
             if (mat[i][L - 1] > 0) continue;
-            for (int j = 0; j < L; j++) {
-                mat[i][j] = -mat[i][j];
-            }
+            for (int j = 0; j < L; j++) mat[i][j] = -mat[i][j];
         }
-        return free;
+        return pivots;
     }
 
     private void mulAddRow(int[] target, int[] ref, int pivotCol) {
@@ -156,21 +167,21 @@ public class Pb10 extends Template<Pb10.Command[]> {
         }
     }
 
-    private int[][] parseSolutions(int[][] mat, int[] free) {
-        int H = mat.length;
-        int L = mat[0].length;
-        int[][] sol = new int[free.length + 1][mat[0].length - 1];
-        int k = 0;
+    private int[][] parseSolutions(int[][] mat, int[] pivots) {
+        IntList free = new IntList(mat[0].length - 1);
+        for (int i = 0; i < pivots.length; i++) {
+            if (pivots[i] == 0) free.add(i);
+        }
+        int[][] sol = new int[free.size() + 1][mat[0].length - 1];
         int freeIdx = 0;
-        for (int i = 0; i < sol[0].length; i++) {
-            if (freeIdx < free.length && i == free[freeIdx]) {
-                sol[1 + freeIdx++][i] = 1;
-            } else {
-                sol[0][i] = mat[k][mat[0].length - 1];
-                for (int j = 0; j < free.length; j++) {
-                    sol[j + 1][i] = -mat[k][free[j]];
+        for (int i = 0; i < pivots.length; i++) {
+            if (pivots[i] > 0) {
+                sol[0][i] = mat[pivots[i] - 1][mat[0].length - 1];
+                for (int j = 0; j < free.size(); j++) {
+                    sol[j + 1][i] = -mat[pivots[i] - 1][free.get(j)];
                 }
-                k++;
+            } else {
+                sol[freeIdx++ + 1][i] = 1;
             }
         }
         Utils.print2dArray(sol, "| ", 4);
@@ -181,9 +192,9 @@ public class Pb10 extends Template<Pb10.Command[]> {
         Utils.print2dArray(mat, ",", 3);
         if (!rowEchelonForm(mat)) return -1;
         visited.clear();
-        int[] free = backSubstitution(mat);
+        int[] pivots = backSubstitution(mat);
         Utils.print2dArray(mat, ",", 3);
-        int[][] sols = parseSolutions(mat, free);
+        int[][] sols = parseSolutions(mat, pivots);
         if (sols.length == 1) {
             System.out.println("no free variables : " + ArrUtils.sum(sols[0]));
             return (int) ArrUtils.sum(sols[0]);
@@ -197,7 +208,7 @@ public class Pb10 extends Template<Pb10.Command[]> {
 
     HashSet<Long> visited = new HashSet<>();
     int[] buttons;
-    int maxDepth = 220;
+    int maxDepth = 200;
     void explore(int[][] sols, int[] factors, int[] minSum, int depth) {;
         if (depth == maxDepth) return;
         int currSum = 0;
