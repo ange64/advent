@@ -2,13 +2,24 @@ package org.example.template;
 
 import org.example.template.primitive.functional.Predicate;
 
+import java.security.DigestException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class Utils {
 
     public static final String LINE_SEP = "---------------------------------------------------------------------------";
+    public static final MessageDigest MD5;
 
+    static {
+        try {
+            MD5 = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void print2dArray(byte[][] array, String separator, int minSize) {
         System.out.println(LINE_SEP);
@@ -90,5 +101,10 @@ public class Utils {
             str += "(" + (s >>> 16) + "," + (s & 0xFFFF) + ")";
         }
         System.out.println(str + ']');
+    }
+
+    public static void md5Hash(byte[] b, byte[] out) throws DigestException {
+        MD5.update(out);
+        MD5.digest(b, 0,16);
     }
 }

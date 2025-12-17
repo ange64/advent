@@ -2,6 +2,14 @@ package org.example.template.primitive;
 
 public class PUtils {
 
+    private static final char[][] HEX_PAIRS = new char[256][2];
+    static {
+        for (int i = 0; i < 256; i++) {
+            HEX_PAIRS[i][0] = "0123456789abcdef".charAt(i >>> 4);
+            HEX_PAIRS[i][1] = "0123456789abcdef".charAt(i & 0x0F);
+        }
+    }
+
     public static int strToI(String s) {
         return Integer.parseInt(s);
     }
@@ -28,6 +36,27 @@ public class PUtils {
         }
     }
 
+    public static String toBits(byte value, int targetLen) {
+        String str = Long.toBinaryString(value);
+        if (str.length() > targetLen) {
+            return str.substring(str.length() - targetLen);
+        } else {
+            return "0".repeat(targetLen - str.length()) + str;
+        }
+    }
+
+    public static String toBits(int value) {
+        return toBits(value, 32);
+    }
+
+    public static String toBits(long value) {
+        return toBits(value, 64);
+    }
+
+    public static String hexOf(byte b) {
+        return new String(HEX_PAIRS[b & 0xFF]);
+    }
+
     public static int gcd(int a, int b) {
         while (b != 0) {
             int temp = b;
@@ -36,5 +65,6 @@ public class PUtils {
         }
         return Math.abs(a);
     }
+
 
 }

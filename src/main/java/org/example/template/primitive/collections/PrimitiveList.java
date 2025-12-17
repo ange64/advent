@@ -14,7 +14,7 @@ public abstract class PrimitiveList {
         pointer = -1;
     }
 
-    public abstract void sort();
+    public abstract PrimitiveList sort();
 
     protected void throwOOB(int index) {
         throw new IndexOutOfBoundsException("Out of boud for size " + size() + " at index " + index);

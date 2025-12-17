@@ -67,8 +67,9 @@ public class LongList extends PrimitiveList{
     }
 
     @Override
-    public void sort() {
+    public LongList sort() {
         Arrays.sort(array, 0, pointer + 1);
+        return this;
     }
 
     public void sortBy(Comparator.Long c) {

@@ -1338,4 +1338,28 @@ public abstract class ArrUtils {
         return arr;
     }
 
+    public static  byte[] subArray(byte[] array, int start, int len)  {
+        byte[] arr = new byte[len];
+        System.arraycopy(array, start, arr, 0, len);
+        return arr;
+    }
+
+    public static  char[] subArray(char[] array, int start, int len)  {
+        char[] arr = new char[len];
+        System.arraycopy(array, start, arr, 0, len);
+        return arr;
+    }
+
+    public static  float[] subArray(float[] array, int start, int len)  {
+        float[] arr = new float[len];
+        System.arraycopy(array, start, arr, 0, len);
+        return arr;
+    }
+
+    public static double[] subArray(double[] array, int start, int len)  {
+        double[] arr = new double[len];
+        System.arraycopy(array, start, arr, 0, len);
+        return arr;
+    }
+
 }

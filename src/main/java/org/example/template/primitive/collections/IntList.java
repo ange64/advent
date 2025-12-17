@@ -71,8 +71,9 @@ public class IntList extends PrimitiveList{
     }
 
     @Override
-    public void sort() {
+    public IntList sort() {
         Arrays.sort(array, 0, pointer + 1);
+        return this;
     }
 
     public void hardClear(int defaultValue) {
