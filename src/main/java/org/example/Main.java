@@ -10,6 +10,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         var pb = new Pb17();
+        int test = 1000;
+        System.out.println((test >> 8) <<);
         pb.run();
     }
 }

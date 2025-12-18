@@ -2,21 +2,30 @@ package org.example.template.primitive.collections;
 
 public class LongSet {
 
+    private static final float MAX_LOAD_FACTOR = 0.7f;
     private long[] array;
-    int elemCount = 0;
+    private int elemCount = 0;
+    private int maxLoad = 0;
 
     LongSet() {
         array = new long[32];
+        maxLoad = (int) (32 * MAX_LOAD_FACTOR);
     }
 
     LongSet(int initial) {
         array = new long[initial];
+        maxLoad = (int) (initial * MAX_LOAD_FACTOR);
     }
 
 
     boolean add(long value) {
         elemCount++;
-        return false;
+        if (elemCount >= maxLoad) resize();
+
+    }
+
+    private void resize() {
+
     }
 
     int size() {
