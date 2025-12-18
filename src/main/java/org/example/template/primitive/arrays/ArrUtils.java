@@ -1,9 +1,9 @@
 package org.example.template.primitive.arrays;
 
-import org.example.template.primitive.PUtils;
-import  org.example.template.primitive.functional.*;
+import org.example.template.primitive.functional.*;
 
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 @SuppressWarnings("unused")
 public abstract class ArrUtils {
@@ -338,7 +338,7 @@ public abstract class ArrUtils {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
-        return  -1;
+        return -1;
     }
 
     /**
@@ -348,7 +348,7 @@ public abstract class ArrUtils {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
-        return  -1;
+        return -1;
     }
 
 
@@ -359,7 +359,7 @@ public abstract class ArrUtils {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
-        return  -1;
+        return -1;
     }
 
     /**
@@ -369,7 +369,7 @@ public abstract class ArrUtils {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
-        return  -1;
+        return -1;
     }
 
 
@@ -380,7 +380,7 @@ public abstract class ArrUtils {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
-        return  -1;
+        return -1;
     }
 
     /**
@@ -390,7 +390,7 @@ public abstract class ArrUtils {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
-        return  -1;
+        return -1;
     }
 
     public static long max(long[] array) {
@@ -622,7 +622,7 @@ public abstract class ArrUtils {
     public static long maxBy(long[] array, Comparator.Long c) {
         long m = 0;
         for (long i : array) {
-            if (c.compare(i,m) > 0) m = i;
+            if (c.compare(i, m) > 0) m = i;
         }
         return m;
     }
@@ -630,7 +630,7 @@ public abstract class ArrUtils {
     public static int maxBy(int[] array, Comparator.Int c) {
         int m = 0;
         for (int i : array) {
-            if (c.compare(i,m) > 0) m = i;
+            if (c.compare(i, m) > 0) m = i;
         }
         return m;
     }
@@ -638,7 +638,7 @@ public abstract class ArrUtils {
     public static short maxBy(short[] array, Comparator.Short c) {
         short m = 0;
         for (short i : array) {
-            if (c.compare(i,m) > 0) m = i;
+            if (c.compare(i, m) > 0) m = i;
         }
         return m;
     }
@@ -646,7 +646,7 @@ public abstract class ArrUtils {
     public static char maxBy(char[] array, Comparator.Char c) {
         char m = 0;
         for (char i : array) {
-            if (c.compare(i,m) > 0) m = i;
+            if (c.compare(i, m) > 0) m = i;
         }
         return m;
     }
@@ -654,7 +654,7 @@ public abstract class ArrUtils {
     public static byte maxBy(byte[] array, Comparator.Byte c) {
         byte m = 0;
         for (byte i : array) {
-            if (c.compare(i,m) > 0) m = i;
+            if (c.compare(i, m) > 0) m = i;
         }
         return m;
     }
@@ -662,7 +662,7 @@ public abstract class ArrUtils {
     public static float maxBy(float[] array, Comparator.Float c) {
         float m = 0;
         for (float i : array) {
-            if (c.compare(i,m) > 0) m = i;
+            if (c.compare(i, m) > 0) m = i;
         }
         return m;
     }
@@ -670,7 +670,7 @@ public abstract class ArrUtils {
     public static double maxBy(float[] array, Comparator.Double c) {
         double m = 0;
         for (double i : array) {
-            if (c.compare(i,m) > 0) m = i;
+            if (c.compare(i, m) > 0) m = i;
         }
         return m;
     }
@@ -679,7 +679,7 @@ public abstract class ArrUtils {
     public static long minBy(long[] array, Comparator.Long c) {
         long m = Long.MAX_VALUE;
         for (long i : array) {
-            if (c.compare(i,m) < 0) m = i;
+            if (c.compare(i, m) < 0) m = i;
         }
         return m;
     }
@@ -687,7 +687,7 @@ public abstract class ArrUtils {
     public static int minBy(int[] array, Comparator.Int c) {
         int m = Integer.MAX_VALUE;
         for (int i : array) {
-            if (c.compare(i,m) < 0) m = i;
+            if (c.compare(i, m) < 0) m = i;
         }
         return m;
     }
@@ -695,7 +695,7 @@ public abstract class ArrUtils {
     public static short minBy(short[] array, Comparator.Short c) {
         short m = Short.MAX_VALUE;
         for (short i : array) {
-            if (c.compare(i,m) < 0) m = i;
+            if (c.compare(i, m) < 0) m = i;
         }
         return m;
     }
@@ -703,7 +703,7 @@ public abstract class ArrUtils {
     public static char minBy(char[] array, Comparator.Char c) {
         char m = Character.MAX_VALUE;
         for (char i : array) {
-            if (c.compare(i,m) < 0) m = i;
+            if (c.compare(i, m) < 0) m = i;
         }
         return m;
     }
@@ -711,7 +711,7 @@ public abstract class ArrUtils {
     public static byte minBy(byte[] array, Comparator.Byte c) {
         byte m = Byte.MAX_VALUE;
         for (byte i : array) {
-            if (c.compare(i,m) < 0) m = i;
+            if (c.compare(i, m) < 0) m = i;
         }
         return m;
     }
@@ -719,7 +719,7 @@ public abstract class ArrUtils {
     public static float minBy(float[] array, Comparator.Float c) {
         float m = Float.MAX_VALUE;
         for (float i : array) {
-            if (c.compare(i,m) < 0) m = i;
+            if (c.compare(i, m) < 0) m = i;
         }
         return m;
     }
@@ -727,7 +727,7 @@ public abstract class ArrUtils {
     public static double minBy(float[] array, Comparator.Double c) {
         double m = Double.MAX_VALUE;
         for (double i : array) {
-            if (c.compare(i,m) < 0) m = i;
+            if (c.compare(i, m) < 0) m = i;
         }
         return m;
     }
@@ -735,7 +735,7 @@ public abstract class ArrUtils {
     public static long maxBy(long[] array, int start, int end, Comparator.Long c) {
         long m = 0;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) > 0) m = array[i];
+            if (c.compare(array[i], m) > 0) m = array[i];
         }
         return m;
     }
@@ -743,7 +743,7 @@ public abstract class ArrUtils {
     public static int maxBy(int[] array, int start, int end, Comparator.Int c) {
         int m = 0;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) > 0) m = array[i];
+            if (c.compare(array[i], m) > 0) m = array[i];
         }
         return m;
     }
@@ -751,7 +751,7 @@ public abstract class ArrUtils {
     public static short maxBy(short[] array, int start, int end, Comparator.Short c) {
         short m = 0;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) > 0) m = array[i];
+            if (c.compare(array[i], m) > 0) m = array[i];
         }
         return m;
     }
@@ -759,7 +759,7 @@ public abstract class ArrUtils {
     public static char maxBy(char[] array, int start, int end, Comparator.Char c) {
         char m = 0;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) > 0) m = array[i];
+            if (c.compare(array[i], m) > 0) m = array[i];
         }
         return m;
     }
@@ -767,7 +767,7 @@ public abstract class ArrUtils {
     public static byte maxBy(byte[] array, int start, int end, Comparator.Byte c) {
         byte m = 0;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) > 0) m = array[i];
+            if (c.compare(array[i], m) > 0) m = array[i];
         }
         return m;
     }
@@ -783,7 +783,7 @@ public abstract class ArrUtils {
     public static double maxBy(double[] array, int start, int end, Comparator.Double c) {
         double m = 0;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) > 0) m = array[i];
+            if (c.compare(array[i], m) > 0) m = array[i];
         }
         return m;
     }
@@ -791,7 +791,7 @@ public abstract class ArrUtils {
     public static long minBy(long[] array, int start, int end, Comparator.Long c) {
         long m = Long.MAX_VALUE;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) < 0) m = array[i];
+            if (c.compare(array[i], m) < 0) m = array[i];
         }
         return m;
     }
@@ -799,7 +799,7 @@ public abstract class ArrUtils {
     public static int minBy(int[] array, int start, int end, Comparator.Int c) {
         int m = Integer.MAX_VALUE;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) < 0) m = array[i];
+            if (c.compare(array[i], m) < 0) m = array[i];
         }
         return m;
     }
@@ -807,7 +807,7 @@ public abstract class ArrUtils {
     public static short minBy(short[] array, int start, int end, Comparator.Short c) {
         short m = Short.MAX_VALUE;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) < 0) m = array[i];
+            if (c.compare(array[i], m) < 0) m = array[i];
         }
         return m;
     }
@@ -815,7 +815,7 @@ public abstract class ArrUtils {
     public static char minBy(char[] array, int start, int end, Comparator.Char c) {
         char m = Character.MAX_VALUE;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) < 0) m = array[i];
+            if (c.compare(array[i], m) < 0) m = array[i];
         }
         return m;
     }
@@ -823,7 +823,7 @@ public abstract class ArrUtils {
     public static byte minBy(byte[] array, int start, int end, Comparator.Byte c) {
         byte m = Byte.MAX_VALUE;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) < 0) m = array[i];
+            if (c.compare(array[i], m) < 0) m = array[i];
         }
         return m;
     }
@@ -839,7 +839,7 @@ public abstract class ArrUtils {
     public static double minBy(double[] array, int start, int end, Comparator.Double c) {
         double m = Double.MAX_VALUE;
         for (int i = start; i < end; i++) {
-            if (c.compare(array[i],m) < 0) m = array[i];
+            if (c.compare(array[i], m) < 0) m = array[i];
         }
         return m;
     }
@@ -913,18 +913,21 @@ public abstract class ArrUtils {
         }
         return false;
     }
+
     public static boolean any(short[] array, Predicate.ShortIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
+
     public static boolean any(byte[] array, Predicate.ByteIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
+
     public static boolean any(char[] array, Predicate.CharIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
@@ -945,6 +948,7 @@ public abstract class ArrUtils {
         }
         return false;
     }
+
     public static boolean any(double[] array, Predicate.DoubleIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
@@ -965,6 +969,7 @@ public abstract class ArrUtils {
         }
         return false;
     }
+
     public static boolean any(short[] array, Predicate.Short p) {
         for (short value : array) {
             if (p.test(value)) return true;
@@ -1064,14 +1069,15 @@ public abstract class ArrUtils {
     }
 
     private static final char[][] HEX_PAIRS = new char[256][2];
+
     static {
         for (int i = 0; i < 256; i++) {
-            HEX_PAIRS[i][0] = "0123456789abcdef".charAt(i >>> 4);
-            HEX_PAIRS[i][1] = "0123456789abcdef".charAt(i & 0x0F);
+            HEX_PAIRS[i][0] = "0123456789ABCDEF".charAt(i >>> 4);
+            HEX_PAIRS[i][1] = "0123456789ABCDEF".charAt(i & 0x0F);
         }
     }
 
-    public static char[] hexOf(byte[] bytes) {
+    public static char[] toHexChars(byte[] bytes) {
         char[] out = new char[bytes.length * 2];
         int j = 0;
         for (byte b : bytes) {
@@ -1082,7 +1088,7 @@ public abstract class ArrUtils {
         return out;
     }
 
-    public static <T> void forAllPairs(T[] arr, BiConsumer<T,T> func) {
+    public static <T> void forAllPairs(T[] arr, BiConsumer<T, T> func) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 func.accept(arr[i], arr[j]);
@@ -1090,14 +1096,14 @@ public abstract class ArrUtils {
         }
     }
 
-    public static <T> void window(T[]arr, boolean looped, BiConsumer<T,T> func) {
+    public static <T> void window(T[] arr, boolean looped, BiConsumer<T, T> func) {
         for (int i = 0; i < arr.length - 1; i++) {
             func.accept(arr[i], arr[i + 1]);
         }
         if (looped) func.accept(arr[arr.length - 1], arr[0]);
     }
 
-    public static int[] strToI(String[] strs){
+    public static int[] strToI(String[] strs) {
         int[] result = new int[strs.length];
         for (int i = 0; i < strs.length; i++) {
             result[i] = Integer.parseInt(strs[i]);
@@ -1105,7 +1111,7 @@ public abstract class ArrUtils {
         return result;
     }
 
-    public static long[] strToL(String[] strs){
+    public static long[] strToL(String[] strs) {
         long[] result = new long[strs.length];
         for (int i = 0; i < strs.length; i++) {
             result[i] = Long.parseLong(strs[i]);
@@ -1188,56 +1194,56 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] init(T[] array, java.util.function.Supplier<T> init){
+    public static <T> T[] init(T[] array, java.util.function.Supplier<T> init) {
         for (int i = 0; i < array.length; i++) {
             array[i] = init.get();
         }
         return array;
     }
 
-    public static int[] init(int[] array, Supplier.Int sup){
+    public static int[] init(int[] array, Supplier.Int sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static short[] init(short[] array, Supplier.Short sup){
+    public static short[] init(short[] array, Supplier.Short sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static char[] init(char[] array, Supplier.Char sup){
+    public static char[] init(char[] array, Supplier.Char sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static byte[] init(byte[] array, Supplier.Byte sup){
+    public static byte[] init(byte[] array, Supplier.Byte sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static boolean[] init(boolean[] array, Supplier.Bool sup){
+    public static boolean[] init(boolean[] array, Supplier.Bool sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static float[] init(float[] array, Supplier.Long sup){
+    public static float[] init(float[] array, Supplier.Long sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static double[] init(double[] array, Supplier.Long sup){
+    public static double[] init(double[] array, Supplier.Long sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
@@ -1245,8 +1251,8 @@ public abstract class ArrUtils {
     }
 
     public static int gcd(int[] array) {
-        int result = gcd(array[0],array[1]);
-        for(int i = 2; i < array.length; i++){
+        int result = gcd(array[0], array[1]);
+        for (int i = 2; i < array.length; i++) {
             result = gcd(result, array[i]);
         }
         return result;
@@ -1326,40 +1332,150 @@ public abstract class ArrUtils {
     }
 
 
-    public static long[] subArray(long[] array, int start, int len)  {
+    public static long[] subArray(long[] array, int start, int len) {
         long[] arr = new long[len];
         System.arraycopy(array, start, arr, 0, len);
         return arr;
     }
 
-    public static  int[] subArray(int[] array, int start, int len)  {
+    public static int[] subArray(int[] array, int start, int len) {
         int[] arr = new int[len];
         System.arraycopy(array, start, arr, 0, len);
         return arr;
     }
 
-    public static  byte[] subArray(byte[] array, int start, int len)  {
+    public static byte[] subArray(byte[] array, int start, int len) {
         byte[] arr = new byte[len];
         System.arraycopy(array, start, arr, 0, len);
         return arr;
     }
 
-    public static  char[] subArray(char[] array, int start, int len)  {
+    public static char[] subArray(char[] array, int start, int len) {
         char[] arr = new char[len];
         System.arraycopy(array, start, arr, 0, len);
         return arr;
     }
 
-    public static  float[] subArray(float[] array, int start, int len)  {
+    public static float[] subArray(float[] array, int start, int len) {
         float[] arr = new float[len];
         System.arraycopy(array, start, arr, 0, len);
         return arr;
     }
 
-    public static double[] subArray(double[] array, int start, int len)  {
+    public static double[] subArray(double[] array, int start, int len) {
         double[] arr = new double[len];
         System.arraycopy(array, start, arr, 0, len);
         return arr;
     }
+
+
+    public static String toString(Object[] arr, String sep, int start, int len, Function<Object, Object> mapper) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < len - 1; i++) {
+            sb.append(mapper.apply(arr[i])).append(sep);
+        }
+        sb.append(mapper.apply(arr[len - 1])).append("]");
+        return sb.toString();
+    }
+
+    public static String toString(byte[] array, String sep, int start, int len, Mapper.ByteTo<String> mapper) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = start; i < len - 1; i++) {
+            sb.append(mapper.map(array[i])).append(sep);
+        }
+        sb.append(mapper.map(array[len - 1])).append("]");
+        return sb.toString();
+    }
+
+    public static String toString(int[] array, String sep, int start, int len, Mapper.IntTo<String> mapper) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = start; i < len - 1; i++) {
+            sb.append(mapper.map(array[i])).append(sep);
+        }
+        sb.append(mapper.map(array[len - 1])).append("]");
+        return sb.toString();
+    }
+
+    public static String toString(long[] array, String sep, int start, int len, Mapper.LongTo<String> mapper) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = start; i < len - 1; i++) {
+            sb.append(mapper.map(array[i])).append(sep);
+        }
+        sb.append(mapper.map(array[len - 1])).append("]");
+        return sb.toString();
+    }
+
+    public static String toString(char[] array, String sep, int start, int len, Mapper.CharTo<String> mapper) {
+        StringBuilder sb = new StringBuilder("ByteList[");
+        for (int i = start; i < len - 1; i++) {
+            sb.append(mapper.map(array[i])).append(sep);
+        }
+        sb.append(mapper.map(array[len - 1])).append("]");
+        return sb.toString();
+    }
+
+    public static String toString(short[] array, String sep, int start, int len, Mapper.ShortTo<String> mapper) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = start; i < len - 1; i++) {
+            sb.append(mapper.map(array[i])).append(sep);
+        }
+        sb.append(mapper.map(array[len - 1])).append("]");
+        return sb.toString();
+    }
+
+    public static String toString(float[] array, String sep, int start, int len, Mapper.FloatTo<String> mapper) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = start; i < len - 1; i++) {
+            sb.append(mapper.map(array[i])).append(sep);
+        }
+        sb.append(mapper.map(array[len - 1])).append("]");
+        return sb.toString();
+    }
+
+    public static String toString(double[] array, String sep, int start, int len, Mapper.DoubleTo<String> mapper) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = start; i < len - 1; i++) {
+            sb.append(mapper.map(array[i])).append(sep);
+        }
+        sb.append(mapper.map(array[len - 1])).append("]");
+        return sb.toString();
+    }
+
+    public static String toString(boolean[] array, String sep, int start, int len, Mapper.BoolTo<String> mapper) {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = start; i < len - 1; i++) {
+            sb.append(mapper.map(array[i])).append(sep);
+        }
+        sb.append(mapper.map(array[len - 1])).append("]");
+        return sb.toString();
+    }
+
+    private static long[] expand(long[] start, int power) {
+        long[] temp = new long[start.length << power];
+        System.arraycopy(start, 0, temp, 0, start.length);
+        return temp;
+    }
+
+
+    public static byte[] expand(byte[] start, int power) {
+        byte[] temp = new byte[start.length << power];
+        System.arraycopy(start, 0, temp, 0, start.length);
+        return temp;
+    }
+
+
+    private static int[] expand(int[] start, int power) {
+        int[] temp = new int[start.length << power];
+        System.arraycopy(start, 0, temp, 0, start.length);
+        return temp;
+    }
+
+
+    private static char[] expand(char[] start, int power) {
+        char[] temp = new char[start.length << power];
+        System.arraycopy(start, 0, temp, 0, start.length);
+        return temp;
+    }
+
 
 }

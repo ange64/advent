@@ -5,7 +5,6 @@ import org.example.template.primitive.functional.Comparator;
 public abstract class PrimitiveList {
 
     int pointer;
-
     public int size() {
         return pointer + 1;
     }

@@ -2,6 +2,7 @@ package org.example.template.primitive.collections;
 
 import org.example.template.primitive.PUtils;
 import org.example.template.primitive.arrays.ArrUtils;
+import org.example.template.primitive.functional.Consumer;
 import org.example.template.primitive.functional.Mapper;
 
 import java.security.DigestException;
@@ -39,7 +40,7 @@ public class ByteList extends PrimitiveList{
 
     public ByteList add(byte i) {
         if (pointer == array.length - 1) {
-            expand(1);
+            array = ArrUtils.expand(array,1);
         }
         array[++pointer] = i;
         return this;
@@ -49,18 +50,13 @@ public class ByteList extends PrimitiveList{
         if (b.length + size()  > array.length){
             int newPow =  Integer.numberOfLeadingZeros(b.length + size());
             int currPow = Integer.numberOfLeadingZeros(array.length);
-            expand(1 + currPow - newPow);
+            array = ArrUtils.expand(array, 1 + currPow - newPow);
         }
         System.arraycopy(b,0, array, pointer + 1, b.length);
         pointer += b.length;
         return this;
     }
 
-    private void expand(int power) {
-        byte[] temp = new byte[array.length << power];
-        System.arraycopy(array, 0, temp, 0, array.length);
-        array = temp;
-    }
 
     public void force(byte i) {
         array[++pointer] = i;
@@ -109,6 +105,12 @@ public class ByteList extends PrimitiveList{
         return this;
     }
 
+    public void forEach(Consumer.ByteIndexed c) {
+        for (int i = 0; i < array.length; i++) {
+            c.accept(array[i], i);
+        }
+    }
+
     public byte[] toArray() {
         byte[] result = new byte[pointer + 1];
         System.arraycopy(array, 0, result, 0, pointer + 1);
@@ -120,27 +122,13 @@ public class ByteList extends PrimitiveList{
         MD5.digest(out, 0, 16);
     }
 
-    public String toString(String sep) {
-        StringBuilder sb = new StringBuilder("ByteList[");
-        for (int i = 0; i < size() - 1; i++) {
-            sb.append(array[i]).append(sep);
-        }
-        sb.append(last()).append("]");
-        return sb.toString();
-    }
-
     public String toString(String sep, Mapper.ByteTo<String> mapper) {
-        StringBuilder sb = new StringBuilder("ByteList[");
-        for (int i = 0; i < size() - 1; i++) {
-            sb.append(mapper.map(array[i])).append(sep);
-        }
-        sb.append(mapper.map(last())).append("]");
-        return sb.toString();
+        return STR."ByteList\{ArrUtils.toString(array, sep, 0, size(), mapper)}";
     }
-
 
     @Override
     public String toString() {
-        return this.toString(",");
+        return this.toString(",", (String::valueOf));
     }
+
 }

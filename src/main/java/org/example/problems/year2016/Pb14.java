@@ -2,15 +2,11 @@ package org.example.problems.year2016;
 
 import org.example.template.Template;
 import org.example.template.primitive.arrays.ArrUtils;
-import org.example.template.primitive.collections.IntList;
-import org.example.template.primitive.functional.Comparator;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
-import java.util.HexFormat;
-import java.util.Set;
 
 public class Pb14 extends Template<String> {
 
@@ -28,7 +24,7 @@ public class Pb14 extends Template<String> {
         while (keyCount < 64) {
             curr++;
             byte[] hash = md.digest((data + curr).getBytes(StandardCharsets.UTF_8));
-            char[] str = ArrUtils.hexOf(hash);
+            char[] str = ArrUtils.toHexChars(hash);
             for (int i = 0; i < str.length - 4; i++) {
                 char c = str[i];
                 if (c == str[i + 1] && c == str[i + 2] && c == str[i + 3] && c == str[i + 4]) {
@@ -38,7 +34,7 @@ public class Pb14 extends Template<String> {
             }
             if (curr < 1000) continue;
             hash = md.digest((data + (curr - 1000)).getBytes(StandardCharsets.UTF_8));
-            str = ArrUtils.hexOf(hash);
+            str = ArrUtils.toHexChars(hash);
             for (int i = 0; i < str.length - 2; i++) {
                 char c = str[i];
                 if (c == str[i + 1] && c == str[i + 2]) {
@@ -66,10 +62,10 @@ public class Pb14 extends Template<String> {
             curr++;
             byte[] hash = md.digest((data + curr).getBytes(StandardCharsets.UTF_8));
             for (int i = 0; i < 2016; i++) {
-                String str = new String(ArrUtils.hexOf(hash));
+                String str = new String(ArrUtils.toHexChars(hash));
                hash = md.digest(str.getBytes(StandardCharsets.UTF_8));
             }
-            char[] str = ArrUtils.hexOf(hash);
+            char[] str = ArrUtils.toHexChars(hash);
             for (int i = 0; i < str.length - 4; i++) {
                 char c = str[i];
                 if (c == str[i + 1] && c == str[i + 2] && c == str[i + 3] && c == str[i + 4]) {
@@ -80,9 +76,9 @@ public class Pb14 extends Template<String> {
             if (curr < 1000) continue;
             hash = md.digest((data + (curr - 1000)).getBytes(StandardCharsets.UTF_8));
             for (int i = 0; i < 2016; i++) {
-                hash = md.digest(new String(ArrUtils.hexOf(hash)).getBytes(StandardCharsets.UTF_8));
+                hash = md.digest(new String(ArrUtils.toHexChars(hash)).getBytes(StandardCharsets.UTF_8));
             }
-            str = ArrUtils.hexOf(hash);
+            str = ArrUtils.toHexChars(hash);
             for (int i = 0; i < str.length - 2; i++) {
                 char c = str[i];
                 if (c == str[i + 1] && c == str[i + 2]) {

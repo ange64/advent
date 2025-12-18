@@ -5,8 +5,8 @@ public class PUtils {
     private static final char[][] HEX_PAIRS = new char[256][2];
     static {
         for (int i = 0; i < 256; i++) {
-            HEX_PAIRS[i][0] = "0123456789abcdef".charAt(i >>> 4);
-            HEX_PAIRS[i][1] = "0123456789abcdef".charAt(i & 0x0F);
+            HEX_PAIRS[i][0] = "0123456789ABCDEF".charAt(i >>> 4);
+            HEX_PAIRS[i][1] = "0123456789ABCDEF".charAt(i & 0x0F);
         }
     }
 
@@ -44,6 +44,9 @@ public class PUtils {
             return "0".repeat(targetLen - str.length()) + str;
         }
     }
+    public static String toBits(byte value) {
+        return toBits(value, 8);
+    }
 
     public static String toBits(int value) {
         return toBits(value, 32);
@@ -53,8 +56,12 @@ public class PUtils {
         return toBits(value, 64);
     }
 
-    public static String hexOf(byte b) {
+    public static String toHexString(byte b) {
         return new String(HEX_PAIRS[b & 0xFF]);
+    }
+
+    public static byte nibble(byte bits, boolean first) {
+        return (byte) ((bits >>> (first ? 4 : 0)) & 0xF);
     }
 
     public static int gcd(int a, int b) {
