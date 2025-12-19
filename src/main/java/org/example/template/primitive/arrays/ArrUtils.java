@@ -1450,7 +1450,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    private static long[] expand(long[] start, int power) {
+    public static long[] expand(long[] start, int power) {
         long[] temp = new long[start.length << power];
         System.arraycopy(start, 0, temp, 0, start.length);
         return temp;
