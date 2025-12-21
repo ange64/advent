@@ -3,8 +3,6 @@ package org.example.problems.year2016;
 import org.example.template.Template;
 
 import java.util.Arrays;
-import java.util.Stack;
-import java.util.stream.Collectors;
 
 public class Pb2016_9 extends Template<char[]> {
 
@@ -29,7 +27,6 @@ public class Pb2016_9 extends Template<char[]> {
         }
         System.out.println("row len : " + currLEn);
     }
-
 
 
     @Override
@@ -60,16 +57,17 @@ public class Pb2016_9 extends Template<char[]> {
     private RepeatInfo parseRepeat(int start, char[] row) {
         int end = start + 1;
         while (end < row.length && Character.isDigit(row[end])) end++;
-        if (end == row.length || row[end] != 'x') return new RepeatInfo(-1,-1, end ,-1);
+        if (end == row.length || row[end] != 'x') return new RepeatInfo(-1, -1, end, -1);
         int xIdx = end++;
         while (end < row.length && Character.isDigit(row[end])) end++;
-        if (end == row.length || row[end] != ')') return new RepeatInfo(-1,-1, end ,-1);
+        if (end == row.length || row[end] != ')') return new RepeatInfo(-1, -1, end, -1);
         int a = Integer.parseInt(new String(row, start, xIdx - start));
         int b = Integer.parseInt(new String(row, xIdx + 1, end - xIdx - 1));
-        return new RepeatInfo(a,b, end, end - start + 2);
+        return new RepeatInfo(a, b, end, end - start + 2);
     }
 
-    private record RepeatInfo(long nbAffected, long factor, long endIdx ,long size){}
+    private record RepeatInfo(long nbAffected, long factor, long endIdx, long size) {
+    }
 
 
     @Override

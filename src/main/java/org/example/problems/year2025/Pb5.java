@@ -1,7 +1,7 @@
 package org.example.problems.year2025;
 
-import org.example.template.primitive.collections.LongList;
 import org.example.template.Template;
+import org.example.template.primitive.collections.longs.LongList;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -32,7 +32,7 @@ public class Pb5 extends Template<Pb5.Data> {
         for (int i = 0; i < data.ranges.length; i++) {
             mergedRanges.add(ranges[i][0]);
             long maxEnd = ranges[i][1];
-            while(i < ranges.length - 1 && maxEnd >= ranges[i + 1][0]) {
+            while (i < ranges.length - 1 && maxEnd >= ranges[i + 1][0]) {
                 maxEnd = Math.max(maxEnd, ranges[i + 1][1]);
                 i++;
             }
@@ -52,7 +52,8 @@ public class Pb5 extends Template<Pb5.Data> {
         System.out.println(sum);
     }
 
-    protected record Data(long[][] ranges, long[] toCheck){}
+    protected record Data(long[][] ranges, long[] toCheck) {
+    }
 
     @Override
     protected Data parseInput(String[] lines) {

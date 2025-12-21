@@ -1,12 +1,9 @@
 package org.example.template;
 
-import org.example.template.primitive.functional.Predicate;
-
 import java.security.DigestException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.function.Supplier;
 
 public class Utils {
 
@@ -77,8 +74,7 @@ public class Utils {
     }
 
 
-
-    public static char[][] charGrid(int height, int width, char value){
+    public static char[][] charGrid(int height, int width, char value) {
         var r = new char[height][width];
         for (char[] chars : r) {
             Arrays.fill(chars, value);
@@ -105,6 +101,6 @@ public class Utils {
 
     public static void md5Hash(byte[] b, byte[] out) throws DigestException {
         MD5.update(out);
-        MD5.digest(b, 0,16);
+        MD5.digest(b, 0, 16);
     }
 }

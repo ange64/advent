@@ -50,6 +50,12 @@ public abstract class ArrUtils {
         return -1;
     }
 
+    public static int indexOf(float[] array, double target) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
 
     public static int indexOf(double[] array, double target) {
         for (int i = 0; i < array.length; i++) {
@@ -262,8 +268,8 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(long[] array, Mapper.Long m) {
-        for (int i = 0; i < array.length; i++) {
+    public static void mapInPlace(long[] array, int limit, Mapper.Long m) {
+        for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
     }
@@ -271,8 +277,8 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(int[] array, Mapper.Int m) {
-        for (int i = 0; i < array.length; i++) {
+    public static void mapInPlace(int[] array, int limit, Mapper.Int m) {
+        for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
     }
@@ -280,8 +286,8 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(short[] array, Mapper.Short m) {
-        for (int i = 0; i < array.length; i++) {
+    public static void mapInPlace(short[] array, int limit, Mapper.Short m) {
+        for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
     }
@@ -289,8 +295,8 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(byte[] array, Mapper.Byte m) {
-        for (int i = 0; i < array.length; i++) {
+    public static void mapInPlace(byte[] array, int limit, Mapper.Byte m) {
+        for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
     }
@@ -298,8 +304,8 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(char[] array, Mapper.Char m) {
-        for (int i = 0; i < array.length; i++) {
+    public static void mapInPlace(char[] array, int limit, Mapper.Char m) {
+        for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
     }
@@ -307,8 +313,8 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(boolean[] array, Mapper.Bool m) {
-        for (int i = 0; i < array.length; i++) {
+    public static void mapInPlace(boolean[] array, int limit, Mapper.Bool m) {
+        for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
     }
@@ -316,8 +322,8 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(float[] array, Mapper.Float m) {
-        for (int i = 0; i < array.length; i++) {
+    public static void mapInPlace(float[] array, int limit, Mapper.Float m) {
+        for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
     }
@@ -325,8 +331,8 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(double[] array, Mapper.Double m) {
-        for (int i = 0; i < array.length; i++) {
+    public static void mapInPlace(double[] array, int limit, Mapper.Double m) {
+        for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
     }
@@ -1456,26 +1462,149 @@ public abstract class ArrUtils {
         return temp;
     }
 
-
     public static byte[] expand(byte[] start, int power) {
         byte[] temp = new byte[start.length << power];
         System.arraycopy(start, 0, temp, 0, start.length);
         return temp;
     }
 
-
-    private static int[] expand(int[] start, int power) {
+    public static int[] expand(int[] start, int power) {
         int[] temp = new int[start.length << power];
         System.arraycopy(start, 0, temp, 0, start.length);
         return temp;
     }
 
-
-    private static char[] expand(char[] start, int power) {
+    public static char[] expand(char[] start, int power) {
         char[] temp = new char[start.length << power];
         System.arraycopy(start, 0, temp, 0, start.length);
         return temp;
     }
 
+    public static boolean remove(long[] array, int limit, long element) {
+        int i = ArrUtils.indexOf(array, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        return true;
+    }
 
+    public static boolean remove(int[] array, int limit, int element) {
+        int i = ArrUtils.indexOf(array, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        return true;
+    }
+
+    public static boolean remove(short[] array, int limit, short element) {
+        int i = ArrUtils.indexOf(array, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        return true;
+    }
+
+    public static boolean remove(byte[] array, int limit, byte element) {
+        int i = ArrUtils.indexOf(array, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        return true;
+    }
+
+    public static boolean remove(float[] array, int limit, float element) {
+        int i = ArrUtils.indexOf(array, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        return true;
+    }
+
+    public static boolean remove(double[] array, int limit, double element) {
+        int i = ArrUtils.indexOf(array, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        return true;
+    }
+
+    public static boolean remove(boolean[] array, int limit, boolean element) {
+        int i = ArrUtils.indexOf(array, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        return true;
+    }
+
+    public static void swap(long[] array, int idx1, int idx2) {
+        var temp = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = temp;
+    }
+
+    public static void swap(int[] array, int idx1, int idx2) {
+        var temp = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = temp;
+    }
+
+    public static void swap(short[] array, int idx1, int idx2) {
+        var temp = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = temp;
+    }
+
+    public static void swap(boolean[] array, int idx1, int idx2) {
+        var temp = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = temp;
+    }
+
+
+    public static void swap(byte[] array, int idx1, int idx2) {
+        var temp = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = temp;
+    }
+
+    public static void swap(float[] array, int idx1, int idx2) {
+        var temp = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = temp;
+    }
+
+    public static void swap(double[] array, int idx1, int idx2) {
+        var temp = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = temp;
+    }
+
+
+    public static void rotateInPlace(long[] array, int amount) {
+        if (amount >= array.length) amount %= array.length;
+        var visited = 0;
+        var currIdx = amount;
+        var saved = array[0];
+        int offset = 0;
+        while (visited++ < array.length) {
+            currIdx = amount + offset++;
+            while (currIdx < array.length) {
+                var temp = array[currIdx];
+                array[currIdx] = saved;
+                saved = temp;
+                currIdx += amount;
+                visited++;
+            }
+            currIdx -= array.length;
+            array[currIdx] = saved;
+            saved = array[currIdx + 1];
+        }
+    }
 }

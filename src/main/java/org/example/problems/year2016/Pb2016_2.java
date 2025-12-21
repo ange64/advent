@@ -9,17 +9,17 @@ public class Pb2016_2 extends Template<String[]> {
     private static final char[][] keypad = new char[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
     private static final char[][] keypad2 = new char[][]{
-            {0,0,'1',0,0},
-            {0,'2', '3', '4',0},
-            {'5', '6', '7','8','9'},
-            {0,'A', 'B', 'C',0},
-            {0,0,'D',0,0}};
+            {0, 0, '1', 0, 0},
+            {0, '2', '3', '4', 0},
+            {'5', '6', '7', '8', '9'},
+            {0, 'A', 'B', 'C', 0},
+            {0, 0, 'D', 0, 0}};
 
     private int x = 0;
     private int y = 2;
 
     public Pb2016_2() {
-        super(2016,2,  "Day 2: Bathroom Security");
+        super(2016, 2, "Day 2: Bathroom Security");
 
     }
 
@@ -31,8 +31,8 @@ public class Pb2016_2 extends Template<String[]> {
                 switch (c) {
                     case 'U' -> move2(0, -1);
                     case 'D' -> move2(0, 1);
-                    case 'L' -> move2(-1,0);
-                    case 'R' -> move2(1,0);
+                    case 'L' -> move2(-1, 0);
+                    case 'R' -> move2(1, 0);
                 }
             }
             result.add(keypad2[y][x]);

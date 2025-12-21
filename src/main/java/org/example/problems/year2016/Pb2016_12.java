@@ -8,6 +8,7 @@ public class Pb2016_12 extends Template<Pb2016_12.Command[]> {
 
     int[] registers;
     int cursor;
+
     public Pb2016_12() {
         super(2016, 12, "Leonardo's Monorail");
     }
@@ -21,7 +22,7 @@ public class Pb2016_12 extends Template<Pb2016_12.Command[]> {
     @Override
     protected void exec_part_1(Command[] data) throws Exception {
         while (cursor < data.length) {
-           //String str = data[cursor].ins + " | " + cursor;
+            //String str = data[cursor].ins + " | " + cursor;
             data[cursor++].apply();
             //System.out.println(str + "|" + registersStr());
         }
@@ -39,7 +40,7 @@ public class Pb2016_12 extends Template<Pb2016_12.Command[]> {
     }
 
     private void cpy(String value, String target) {
-        registers[target.charAt(0)] = value.charAt(0) >= 'a' ?  registers[value.charAt(0)] : Integer.parseInt(value);
+        registers[target.charAt(0)] = value.charAt(0) >= 'a' ? registers[value.charAt(0)] : Integer.parseInt(value);
     }
 
     private void jnz(String condition, String offset) {
@@ -62,7 +63,7 @@ public class Pb2016_12 extends Template<Pb2016_12.Command[]> {
         int i = 0;
         for (String line : lines) {
             var split = line.split(" ");
-            var c = switch (split[0]){
+            var c = switch (split[0]) {
                 case "cpy" -> new Command(split[0], this::cpy, split[1], split[2]);
                 case "jnz" -> new Command(split[0], this::jnz, split[1], split[2]);
                 case "dec" -> new Command(split[0], this::dec, split[1], "");

@@ -31,7 +31,7 @@ public class Pb2016_3 extends Template<int[][]> {
         int i = 0;
         for (String line : lines) {
             String[] elems = line.split(" +");
-            parsed[i++] = new int[] {Integer.parseInt(elems[1]), Integer.parseInt(elems[2]), Integer.parseInt(elems[3])};
+            parsed[i++] = new int[]{Integer.parseInt(elems[1]), Integer.parseInt(elems[2]), Integer.parseInt(elems[3])};
             System.out.println(Arrays.toString(parsed[i - 1]));
         }
         return parsed;

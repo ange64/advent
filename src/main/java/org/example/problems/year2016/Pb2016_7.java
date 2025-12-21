@@ -2,7 +2,6 @@ package org.example.problems.year2016;
 
 import org.example.template.Template;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +14,7 @@ public class Pb2016_7 extends Template<char[][]> {
 
 
     @Override
-    protected void exec_part_1(char[][]  data) throws Exception {
+    protected void exec_part_1(char[][] data) throws Exception {
         int count = 0;
         for (char[] ip : data) {
             boolean inside = false;
@@ -36,10 +35,11 @@ public class Pb2016_7 extends Template<char[][]> {
     }
 
     @Override
-    protected void exec_part_2(char[][]  data) throws Exception {
+    protected void exec_part_2(char[][] data) throws Exception {
         int count = 0;
         for (char[] ip : data) {
-            boolean inside = false;;
+            boolean inside = false;
+            ;
             Set<String> abas = new HashSet<>();
             Set<String> babs = new HashSet<>();
             for (int i = 2; i < ip.length; i++) {
@@ -49,12 +49,12 @@ public class Pb2016_7 extends Template<char[][]> {
                 }
                 if (ip[i - 2] == ip[i] && ip[i - 1] != ip[i]) {
                     if (inside) {
-                        abas.add(ip[i] + "" + ip[i - 1] + "" +  ip[i]);
+                        abas.add(ip[i] + "" + ip[i - 1] + "" + ip[i]);
                     } else {
-                        babs.add(ip[i - 1] + "" + ip[i] + "" +  ip[i - 1]);
+                        babs.add(ip[i - 1] + "" + ip[i] + "" + ip[i - 1]);
                     }
                 }
-                if (abas.stream().anyMatch(babs::contains)){
+                if (abas.stream().anyMatch(babs::contains)) {
                     count++;
                     break;
                 }

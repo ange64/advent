@@ -28,8 +28,8 @@ public class Pb2025_1 extends Template<int[]> {
         int clock = 50;
         int count = 0;
         for (int datum : data) {
-            if (datum > 0 ) {
-                for (int i = 0; i < datum ; i++) {
+            if (datum > 0) {
+                for (int i = 0; i < datum; i++) {
                     if (++clock == 100) {
                         count++;
                         clock = 0;
@@ -48,9 +48,9 @@ public class Pb2025_1 extends Template<int[]> {
 
     @Override
     protected int[] parseInput(String[] lines) {
-        return Arrays.stream(lines).mapToInt(it ->  {
+        return Arrays.stream(lines).mapToInt(it -> {
             int digit = Integer.parseInt(it.substring(1));
-            return it.charAt(0) == 'L'? -1 * digit : digit;
+            return it.charAt(0) == 'L' ? -1 * digit : digit;
         }).toArray();
     }
 

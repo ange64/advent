@@ -1,7 +1,7 @@
 package org.example.problems.year2025;
 
-import org.example.template.primitive.collections.IntList;
 import org.example.template.Template;
+import org.example.template.primitive.collections.integer.IntList;
 
 public class Pb2025_4 extends Template<byte[][]> {
 
@@ -15,8 +15,8 @@ public class Pb2025_4 extends Template<byte[][]> {
         for (int i = 1; i < data.length - 1; i++) {
             for (int j = 1; j < data[0].length - 1; j++) {
                 if (data[i][j] == 0) continue;
-                int neighborUp =   data[i - 1][j - 1] + data[i - 1][j] + data[i - 1][j + 1];
-                int sides =        data[i    ][j - 1] +                  data[i    ][j + 1];
+                int neighborUp = data[i - 1][j - 1] + data[i - 1][j] + data[i - 1][j + 1];
+                int sides = data[i][j - 1] + data[i][j + 1];
                 int neighborDown = data[i + 1][j - 1] + data[i + 1][j] + data[i + 1][j + 1];
                 if (neighborDown + neighborUp + sides < 4) movable++;
             }
@@ -41,8 +41,8 @@ public class Pb2025_4 extends Template<byte[][]> {
         for (int i = 1; i < data.length - 1; i++) {
             for (int j = 1; j < data[0].length - 1; j++) {
                 if (data[i][j] == 0) continue;
-                int neighborUp =   data[i - 1][j - 1] + data[i - 1][j] + data[i - 1][j + 1];
-                int sides =        data[i    ][j - 1] +                  data[i    ][j + 1];
+                int neighborUp = data[i - 1][j - 1] + data[i - 1][j] + data[i - 1][j + 1];
+                int sides = data[i][j - 1] + data[i][j + 1];
                 int neighborDown = data[i + 1][j - 1] + data[i + 1][j] + data[i + 1][j + 1];
                 if (neighborDown + neighborUp + sides < 4) {
                     movable++;
@@ -54,7 +54,7 @@ public class Pb2025_4 extends Template<byte[][]> {
             int idx = out.get(i);
             data[idx >>> 16][idx & 0xFFFF] = 0;
         }
-        out.softClear();
+        out.clear();
         return movable;
     }
 

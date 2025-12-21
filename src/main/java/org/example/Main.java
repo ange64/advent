@@ -1,17 +1,15 @@
 package org.example;
 
-import org.example.problems.year2016.*;
-import org.example.problems.year2025.*;
+import org.example.template.primitive.arrays.ArrUtils;
 
-import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 public class Main {
 
 
     public static void main(String[] args) throws Exception {
-        var pb = new Pb17();
-        int test = 1000;
-        System.out.println((test >> 8) <<);
-        pb.run();
+        long[] test = new long[]{ 1,2,3,4,5,6};
+        ArrUtils.rotateInPlace(test, 4);
+        System.out.println(Arrays.toString(test));
     }
 }

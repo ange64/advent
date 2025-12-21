@@ -9,10 +9,12 @@ import org.example.template.Utils;
 import org.example.template.primitive.PUtils;
 import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.arrays.GridUtils;
-import org.example.template.primitive.collections.IntList;
-import org.example.template.primitive.functional.Predicate;
+import org.example.template.primitive.collections.integer.IntList;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Pb10 extends Template<Pb10.Command[]> {
@@ -199,8 +201,8 @@ public class Pb10 extends Template<Pb10.Command[]> {
             System.out.println("no free variables : " + ArrUtils.sum(sols[0]));
             return (int) ArrUtils.sum(sols[0]);
         }
-        int[] minsum = new int[] {100000};
-        explore(sols, new int[sols.length - 1],  minsum, 0);
+        int[] minsum = new int[]{100000};
+        explore(sols, new int[sols.length - 1], minsum, 0);
         System.out.println("min sum found " + minsum[0]);
 
         return minsum[0];
@@ -209,7 +211,9 @@ public class Pb10 extends Template<Pb10.Command[]> {
     HashSet<Long> visited = new HashSet<>();
     int[] buttons;
     int maxDepth = 200;
-    void explore(int[][] sols, int[] factors, int[] minSum, int depth) {;
+
+    void explore(int[][] sols, int[] factors, int[] minSum, int depth) {
+        ;
         if (depth == maxDepth) return;
         int currSum = 0;
         boolean hasNeg = false;
@@ -232,7 +236,7 @@ public class Pb10 extends Template<Pb10.Command[]> {
         }
         for (int i = 0; i < sols.length - 1; i++) { //for each free variable
             factors[i]++;
-            explore(sols,factors, minSum, depth + 1);
+            explore(sols, factors, minSum, depth + 1);
             factors[i]--;
         }
     }

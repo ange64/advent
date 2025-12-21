@@ -16,13 +16,13 @@ public class Pb2016_4_12 extends Template<Pb2016_4_12.RoomInfo[]> {
         int sum = 0;
         for (var r : data) {
             int[] histogram = new int[26];
-            for (char c: r.letters) {
+            for (char c : r.letters) {
                 if (c == '-') continue;
                 histogram[c - 'a']++;
             }
             List<Entry> sorted = new ArrayList<>();
-            for (int i = 'a'; i < 'a' + 26; i++){
-                if ( histogram[i - 'a'] == 0) continue;
+            for (int i = 'a'; i < 'a' + 26; i++) {
+                if (histogram[i - 'a'] == 0) continue;
                 sorted.add(new Entry((char) i, histogram[i - 'a']));
             }
             sorted.sort((o1, o2) -> o2.f - o1.f);
@@ -64,7 +64,7 @@ public class Pb2016_4_12 extends Template<Pb2016_4_12.RoomInfo[]> {
             var idx1 = l.lastIndexOf('-');
             var idx2 = l.indexOf('[');
             result[i] = new RoomInfo(
-                    l.substring(0,idx1).toCharArray(),
+                    l.substring(0, idx1).toCharArray(),
                     Integer.parseInt(l.substring(idx1 + 1, idx2)),
                     l.substring(idx2 + 1, l.length() - 1).toCharArray()
             );
@@ -73,11 +73,11 @@ public class Pb2016_4_12 extends Template<Pb2016_4_12.RoomInfo[]> {
         return result;
     }
 
-    private record Entry(char c, int f){
+    private record Entry(char c, int f) {
 
     }
 
-    public record RoomInfo(char[] letters, int id, char[] checksum){
+    public record RoomInfo(char[] letters, int id, char[] checksum) {
         @Override
         public String toString() {
             return "letters: " + new String(letters) + " id: " + id + " checksum: " + new String(checksum) + "";

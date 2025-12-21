@@ -1,7 +1,6 @@
 package org.example.problems.year2025;
 
 import org.example.template.Template;
-import org.example.template.Utils;
 import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.arrays.GridUtils;
 
@@ -9,7 +8,7 @@ import java.util.*;
 
 public class Pb12 extends Template<Pb12.Data> {
     char[][][][] configs;
-    static int[] counts = new int[]{7,7,6,7,7,5};
+    static int[] counts = new int[]{7, 7, 6, 7, 7, 5};
 
     public Pb12() {
         super(2025, 12, "Tree Farm");
@@ -23,12 +22,11 @@ public class Pb12 extends Template<Pb12.Data> {
             var fit = data.toFit.get(i);
             int totalsize = (sizes.get(i)[0] * sizes.get(i)[1]);
             long needed = ArrUtils.sumBy(fit, (i1, idx) -> i1 * counts[idx]);
-           // var str = String.format("totalsize %s | needed %s", totalsize, needed);
+            // var str = String.format("totalsize %s | needed %s", totalsize, needed);
             if (totalsize >= needed) {
                 System.out.println("can fit");
                 sum++;
-            }
-            else System.out.println("can't fit");
+            } else System.out.println("can't fit");
             //System.out.println(str);
         }
         System.out.println(sum);
@@ -44,7 +42,7 @@ public class Pb12 extends Template<Pb12.Data> {
         int i = 0;
         List<char[][]> pres = new ArrayList<>();
         char c = 'A';
-        while (!lines[i].contains("x")){
+        while (!lines[i].contains("x")) {
             char[][] grid = new char[3][];
             grid[0] = lines[i + 1].replaceAll("#", String.valueOf(c)).toCharArray();
             grid[1] = lines[i + 2].replaceAll("#", String.valueOf(c)).toCharArray();
@@ -70,7 +68,8 @@ public class Pb12 extends Template<Pb12.Data> {
         this.configs = new char[grids.size()][][][];
         SequencedSet<char[][]> confSet = new TreeSet<>(Comparator.comparingInt(this::binaryHashCode));
         int i = 0;
-        for (char[][] grid : grids) {;
+        for (char[][] grid : grids) {
+            ;
             confSet.clear();
             confSet.add(grid);
             confSet.add(GridUtils.rotateCW(grid));
@@ -105,7 +104,7 @@ public class Pb12 extends Template<Pb12.Data> {
         return i;
     }
 
-    record Data(List<char[][]> presents, List<int[]> sizes, List<int[]> toFit){
+    record Data(List<char[][]> presents, List<int[]> sizes, List<int[]> toFit) {
 
     }
 }

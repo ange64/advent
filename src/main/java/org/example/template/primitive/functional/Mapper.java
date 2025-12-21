@@ -19,7 +19,7 @@ public interface Mapper {
         long map(long i, int idx);
     }
 
-    interface CharIndexed{
+    interface CharIndexed {
         char map(char i, int idx);
     }
 
@@ -52,7 +52,7 @@ public interface Mapper {
         long map(long i);
     }
 
-    interface Char{
+    interface Char {
         char map(char i);
     }
 
@@ -84,7 +84,7 @@ public interface Mapper {
         T map(long i);
     }
 
-    interface CharTo<T>{
+    interface CharTo<T> {
         T map(char i);
     }
 

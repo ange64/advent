@@ -17,7 +17,7 @@ public interface Comparator {
     }
 
     @FunctionalInterface
-    interface Char{
+    interface Char {
         int compare(char a, char b);
     }
 

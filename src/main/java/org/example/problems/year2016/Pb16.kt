@@ -1,22 +1,17 @@
 package org.example.problems.year2016
 
 import org.example.template.Template
-import org.example.template.Utils
 import org.example.template.primitive.arrays.ArrUtils
-import org.example.template.primitive.functional.Mapper
-import java.util.*
-import kotlin.experimental.inv
 import kotlin.experimental.xor
-import kotlin.math.max
 
 class Pb16 : Template<ByteArray>(2016, 16, "Checksum ") {
 
     var diskLen = 0
     override fun exec_part_1(data: ByteArray) {
         var temp = data
-        while(temp.size < diskLen) temp = fillDisk(temp)
+        while (temp.size < diskLen) temp = fillDisk(temp)
         var check = checksum(temp, diskLen);
-        while(check.size % 2 == 0) check = checksum(check, check.size)
+        while (check.size % 2 == 0) check = checksum(check, check.size)
         println(check.joinToString(""))
     }
 
@@ -24,7 +19,7 @@ class Pb16 : Template<ByteArray>(2016, 16, "Checksum ") {
         val result = ByteArray((data.size shl 1) + 1)
         for (i in data.indices) {
             result[i] = data[i]
-            result[result.lastIndex - i] = data[i] xor  1
+            result[result.lastIndex - i] = data[i] xor 1
         }
         return result
     }
@@ -41,12 +36,10 @@ class Pb16 : Template<ByteArray>(2016, 16, "Checksum ") {
 
     }
 
-    override fun parseInput(lines: Array<out String>) : ByteArray {
+    override fun parseInput(lines: Array<out String>): ByteArray {
         diskLen = lines[0].toInt()
         val arr = lines[1].toByteArray();
-        ArrUtils.mapInPlace(arr) { (it - 48).toByte() };
+        ArrUtils.mapInPlace(arr, arr.size) { (it - 48).toByte() };
         return arr;
     }
-
-
 }

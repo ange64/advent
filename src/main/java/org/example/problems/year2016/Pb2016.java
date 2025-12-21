@@ -1,16 +1,14 @@
 package org.example.problems.year2016;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class Pb2016 implements Runnable {
     static String[] text = new String[]{
             "R2", "L1", "R2", "R1", "R1", "L3", "R3", "L5", "L5", "L2", "L1", "R4", "R1", "R3", "L5", "L5", "R3", "L4", "L4", "R5", "R4", "R3", "L1", "L2", "R5", "R4", "L2", "R1", "R4", "R4", "L2", "L1", "L1", "R190", "R3", "L4", "R52", "R5", "R3", "L5", "R3", "R2", "R1", "L5", "L5", "L4", "R2", "L3", "R3", "L1", "L3", "R5", "L3", "L4", "R3", "R77", "R3", "L2", "R189", "R4", "R2", "L2", "R2", "L1", "R5", "R4", "R4", "R2", "L2", "L2", "L5", "L1", "R1", "R2", "L3", "L4", "L5", "R1", "L1", "L2", "L2", "R2", "L3", "R3", "L4", "L1", "L5", "L4", "L4", "R3", "R5", "L2", "R4", "R5", "R3", "L2", "L2", "L4", "L2", "R2", "L5", "L4", "R3", "R1", "L2", "R2", "R4", "L1", "L4", "L4", "L2", "R2", "L4", "L1", "L1", "R4", "L1", "L3", "L2", "L2", "L5", "R5", "R2", "R5", "L1", "L5", "R2", "R4", "R4", "L2", "R5", "L5", "R5", "R5", "L4", "R2", "R1", "R1", "R3", "L3", "L3", "L4", "L3", "L2", "L2", "L2", "R2", "L1", "L3", "R2", "R5", "R5", "L4", "R3", "L3", "L4", "R2", "L5", "R5"
     };
-    static String[] inputTest = new String[] {"R8", "R4", "R4", "R8"};
-    static String[] inputTest2 = new String[] {"R5", "L5", "R5", "R3"};
+    static String[] inputTest = new String[]{"R8", "R4", "R4", "R8"};
+    static String[] inputTest2 = new String[]{"R5", "L5", "R5", "R3"};
     static final Map<String, Character> dirMap = new HashMap<>();
 
     static {
@@ -52,7 +50,7 @@ public class Pb2016 implements Runnable {
             }
         }
         System.out.println("x : " + (x - 500) + " y : " + (y - 500));
-        System.out.println(Math.abs(x  - 500) + Math.abs(y - 500));
+        System.out.println(Math.abs(x - 500) + Math.abs(y - 500));
     }
 
 

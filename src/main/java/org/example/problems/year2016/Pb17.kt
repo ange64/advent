@@ -1,10 +1,7 @@
 package org.example.problems.year2016
 
 import org.example.template.Template
-import org.example.template.primitive.PUtils
-import org.example.template.primitive.arrays.ArrUtils
 import org.example.template.primitive.collections.ByteList
-import kotlin.experimental.and
 
 class Pb17 : Template<String>(2016, 17, "Two Steps Forward") {
 
@@ -63,8 +60,8 @@ class Pb17 : Template<String>(2016, 17, "Two Steps Forward") {
         }
     }
 
-    private fun hashHash(hash : ByteArray) : Long {
-        var result : Long = hash[0].toLong()
+    private fun hashHash(hash: ByteArray): Long {
+        var result: Long = hash[0].toLong()
         result += hash[1].toLong() shl 8
         result += hash[2].toLong() shl 16
         result += hash[3].toLong() shl 24

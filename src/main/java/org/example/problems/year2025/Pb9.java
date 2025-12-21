@@ -85,8 +85,8 @@ public class Pb9 extends Template<Pb9.Point[]> {
 
         if (data.length > 100) {
             var data2 = new Point[data.length];
-            System.out.println(mp1.x /200 + "," + mp1.y /200);
-            System.out.println(mp2.x /200 + "," + mp2.y /200);
+            System.out.println(mp1.x / 200 + "," + mp1.y / 200);
+            System.out.println(mp2.x / 200 + "," + mp2.y / 200);
             for (int i = 0; i < data.length; i++) {
                 data2[i] = new Point(data[i].x / 200, data[i].y / 200);
             }
@@ -97,8 +97,8 @@ public class Pb9 extends Template<Pb9.Point[]> {
             for (Point p : data2) {
                 test[(int) p.y][(int) p.x] = '#';
             }
-            test[(int) (mp1.y /200)][(int) (mp1.x /200)] = '$';
-            test[(int) (mp2.y /200)][(int) (mp2.x /200)] = '$';
+            test[(int) (mp1.y / 200)][(int) (mp1.x / 200)] = '$';
+            test[(int) (mp2.y / 200)][(int) (mp2.x / 200)] = '$';
 
         } else {
             var aaa = computeDirectLines(data);

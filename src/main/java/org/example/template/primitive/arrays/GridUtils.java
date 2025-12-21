@@ -1,9 +1,6 @@
 package org.example.template.primitive.arrays;
 
-import org.example.template.primitive.functional.Consumer;
 import org.example.template.primitive.functional.Predicate;
-
-import java.util.Arrays;
 
 public class GridUtils {
 
@@ -29,7 +26,7 @@ public class GridUtils {
         var r = new char[grid.length][grid.length];
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
-               r[i][j] =  grid[j][grid.length - i - 1];
+                r[i][j] = grid[j][grid.length - i - 1];
             }
         }
         return r;
@@ -39,7 +36,7 @@ public class GridUtils {
         var r = new char[grid.length][grid.length];
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
-                r[i][j] =  grid[grid.length - 1 - i][grid.length - 1 - j];
+                r[i][j] = grid[grid.length - 1 - i][grid.length - 1 - j];
             }
         }
         return r;

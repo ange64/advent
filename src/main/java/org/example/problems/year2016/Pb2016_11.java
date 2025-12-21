@@ -2,7 +2,9 @@ package org.example.problems.year2016;
 
 import org.example.template.Template;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,6 +16,7 @@ public class Pb2016_11 extends Template<Pb2016_11.Building> {
     public Pb2016_11() {
         super(2016, 11, "Radioisotope Thermoelectric Generators");
     }
+
     @Override
     protected void exec_part_1(Building data) throws Exception {
         //data.print();
@@ -24,7 +27,7 @@ public class Pb2016_11 extends Template<Pb2016_11.Building> {
         outer:
         while (!queue.isEmpty()) {
             int leftOnLevel = queue.size();
-            while (leftOnLevel --> 0) {
+            while (leftOnLevel-- > 0) {
                 var first = queue.pop();
                 Integer hash = first.perfectHash();
                 if (visited.contains(hash)) continue;
@@ -35,7 +38,7 @@ public class Pb2016_11 extends Template<Pb2016_11.Building> {
             }
             depth++;
         }
-        System.out.println("final depth : " + depth  + " " + queue.size());
+        System.out.println("final depth : " + depth + " " + queue.size());
     }
 
     @Override
@@ -80,7 +83,7 @@ public class Pb2016_11 extends Template<Pb2016_11.Building> {
         private final short[] tuples;
         private final int elevator;
 
-        Building(int nbFloors, int elevator, short[] tuples){
+        Building(int nbFloors, int elevator, short[] tuples) {
             this.floors = new byte[nbFloors][tuples.length];
             this.elevator = elevator;
             this.tuples = tuples;
@@ -120,7 +123,7 @@ public class Pb2016_11 extends Template<Pb2016_11.Building> {
         private void computeMoves(byte dir, ArrayDeque<Building> queue) {
             var tupleIdx = allSameTypeMoves(dir, GEN, queue);
             tupleIdx = allSameTypeMoves(dir, CHIP, queue);
-            if (tupleIdx > -1) cloneIfValid(moveTuples(this.tuples ,dir, TUPLE, tupleIdx), dir, queue);
+            if (tupleIdx > -1) cloneIfValid(moveTuples(this.tuples, dir, TUPLE, tupleIdx), dir, queue);
         }
 
         private byte allSameTypeMoves(byte dir, byte type, ArrayDeque<Building> queue) {
@@ -172,7 +175,7 @@ public class Pb2016_11 extends Template<Pb2016_11.Building> {
             System.out.println("------------------------");
             for (int i = floors.length - 1; i >= 0; i--) {
                 int nb = i + 1;
-                String e = nb + (elevator  + 1 == nb ? "E" : " ");
+                String e = nb + (elevator + 1 == nb ? "E" : " ");
                 System.out.println(e + Arrays.toString(floors[i]) + "|");
             }
             System.out.println("hash : " + this.perfectHash());

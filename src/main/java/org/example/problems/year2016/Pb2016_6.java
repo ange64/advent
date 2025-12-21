@@ -50,6 +50,6 @@ public class Pb2016_6 extends Template<char[][]> {
 
     @Override
     protected char[][] parseInput(String[] lines) {
-       return Arrays.stream(lines).map(String::toCharArray).toArray(char[][]::new);
+        return Arrays.stream(lines).map(String::toCharArray).toArray(char[][]::new);
     }
 }

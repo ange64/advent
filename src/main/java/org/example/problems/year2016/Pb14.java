@@ -41,7 +41,7 @@ public class Pb14 extends Template<String> {
                     if (quintuples.containsKey(c)) {
                         if (quintuples.get(c) <= (curr - 1000)) {
                             quintuples.remove(c);
-                        }else {
+                        } else {
                             System.out.printf("match %s found : %s, %s, %s\n", keyCount + 1, c, (curr - 1000), quintuples.get(c));
                             keyCount++;
                         }
@@ -63,7 +63,7 @@ public class Pb14 extends Template<String> {
             byte[] hash = md.digest((data + curr).getBytes(StandardCharsets.UTF_8));
             for (int i = 0; i < 2016; i++) {
                 String str = new String(ArrUtils.toHexChars(hash));
-               hash = md.digest(str.getBytes(StandardCharsets.UTF_8));
+                hash = md.digest(str.getBytes(StandardCharsets.UTF_8));
             }
             char[] str = ArrUtils.toHexChars(hash);
             for (int i = 0; i < str.length - 4; i++) {
@@ -85,7 +85,7 @@ public class Pb14 extends Template<String> {
                     if (quintuples.containsKey(c)) {
                         if (quintuples.get(c) <= (curr - 1000)) {
                             quintuples.remove(c);
-                        }else {
+                        } else {
                             System.out.printf("match %s found : %s, %s, %s\n", keyCount + 1, c, (curr - 1000), quintuples.get(c));
                             keyCount++;
                         }

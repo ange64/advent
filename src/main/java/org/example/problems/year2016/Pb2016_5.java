@@ -54,7 +54,7 @@ public class Pb2016_5 extends Template<String> {
             String hex = HexFormat.of().formatHex(temp);
             System.out.println(hex);
             System.out.println(hex.charAt(6) + " | " + hex.charAt(5));
-            if ( password[hex.charAt(5) - '0'] != '\0') {
+            if (password[hex.charAt(5) - '0'] != '\0') {
                 j--;
                 continue;
             }

@@ -1,9 +1,7 @@
 package org.example.problems.year2025;
 
-import org.example.template.Utils;
-import org.example.template.primitive.collections.ByteList;
-import org.example.template.primitive.collections.IntList;
 import org.example.template.Template;
+import org.example.template.primitive.collections.integer.IntList;
 
 import java.util.Arrays;
 
@@ -62,7 +60,7 @@ public class Pb6 extends Template<String[]> {
         System.out.println(sum);
     }
 
-    private long accumulate(int current, char operator, long acc){
+    private long accumulate(int current, char operator, long acc) {
         return switch (operator) {
             case '+' -> acc + current;
             case '*' -> acc * current;

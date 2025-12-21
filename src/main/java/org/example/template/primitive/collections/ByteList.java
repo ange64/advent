@@ -1,6 +1,5 @@
 package org.example.template.primitive.collections;
 
-import org.example.template.primitive.PUtils;
 import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.functional.Consumer;
 import org.example.template.primitive.functional.Mapper;
@@ -9,11 +8,11 @@ import java.security.DigestException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.function.Function;
 
-public class ByteList extends PrimitiveList{
+public class ByteList extends PList {
 
     private static final MessageDigest MD5;
+
     static {
         try {
             MD5 = MessageDigest.getInstance("MD5");
@@ -40,30 +39,25 @@ public class ByteList extends PrimitiveList{
 
     public ByteList add(byte i) {
         if (pointer == array.length - 1) {
-            array = ArrUtils.expand(array,1);
+            array = ArrUtils.expand(array, 1);
         }
         array[++pointer] = i;
         return this;
     }
 
     public ByteList addAll(byte[] b) {
-        if (b.length + size()  > array.length){
-            int newPow =  Integer.numberOfLeadingZeros(b.length + size());
+        if (b.length + size() > array.length) {
+            int newPow = Integer.numberOfLeadingZeros(b.length + size());
             int currPow = Integer.numberOfLeadingZeros(array.length);
             array = ArrUtils.expand(array, 1 + currPow - newPow);
         }
-        System.arraycopy(b,0, array, pointer + 1, b.length);
+        System.arraycopy(b, 0, array, pointer + 1, b.length);
         pointer += b.length;
         return this;
     }
 
-
-    public void force(byte i) {
-        array[++pointer] = i;
-    }
-
     public byte get(int i) {
-        if (i > pointer)  super.throwOOB(i);
+        if (i > pointer) super.throwOOB(i);
         return array[i];
     }
 
@@ -76,27 +70,11 @@ public class ByteList extends PrimitiveList{
         return array[pointer];
     }
 
-    public int size() {
-        return pointer + 1;
-    }
-
-    public int capacity() {
-        return array.length;
-    }
-
     public byte set(byte v, int idx) {
-        if (idx > pointer)  super.throwOOB(idx);
+        if (idx > pointer) super.throwOOB(idx);
         var temp = array[idx];
         array[idx] = v;
         return temp;
-    }
-
-    public void softClear() {
-        pointer = -1;
-    }
-
-    public void hardClear(byte defaultValue) {
-        Arrays.fill(array, defaultValue);
     }
 
     @Override
@@ -105,12 +83,13 @@ public class ByteList extends PrimitiveList{
         return this;
     }
 
-    public void forEach(Consumer.ByteIndexed c) {
+    public void forEachIndexed(Consumer.ByteIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
     }
 
+    @Override
     public byte[] toArray() {
         byte[] result = new byte[pointer + 1];
         System.arraycopy(array, 0, result, 0, pointer + 1);
@@ -122,13 +101,13 @@ public class ByteList extends PrimitiveList{
         MD5.digest(out, 0, 16);
     }
 
-    public String toString(String sep, Mapper.ByteTo<String> mapper) {
-        return STR."ByteList\{ArrUtils.toString(array, sep, 0, size(), mapper)}";
+    public String toString(Mapper.ByteTo<String> mapper) {
+        return PrimitiveCollections.toString(array, size(), this.getClass().getName(), o -> mapper.map((Byte) o));
     }
 
     @Override
     public String toString() {
-        return this.toString(",", (String::valueOf));
+        return PrimitiveCollections.toString(array, size(), this.getClass().getName());
     }
 
 }

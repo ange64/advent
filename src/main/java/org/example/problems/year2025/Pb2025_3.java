@@ -41,7 +41,7 @@ public class Pb2025_3 extends Template<char[][]> {
             for (int i = 0; i < digits.length; i++) {
                 char m = '0';
                 stop++;
-                for (int j = start; j < stop; j++){
+                for (int j = start; j < stop; j++) {
                     if (row[j] > m) {
                         m = row[j];
                         start = j + 1;

@@ -12,7 +12,7 @@ public class Pb2016_8 extends Template<Pb2016_8.Command[]> {
 
     @Override
     protected void exec_part_1(Command[] data) throws Exception {
-        char[][] grid = Utils.charGrid(6,50, '.');
+        char[][] grid = Utils.charGrid(6, 50, '.');
         for (Command c : data) {
             c.applyTo(grid);
             Utils.print2dArray(grid, " ", 0);
@@ -50,7 +50,7 @@ public class Pb2016_8 extends Template<Pb2016_8.Command[]> {
                 indices[y] = -1;
             } else {
                 grid[y][col] = '.';
-                indices[y] = y + amount >= h ?  y + amount - h : y + amount;
+                indices[y] = y + amount >= h ? y + amount - h : y + amount;
             }
         }
         for (int idx : indices) {
@@ -69,7 +69,7 @@ public class Pb2016_8 extends Template<Pb2016_8.Command[]> {
                 indices[x] = -1;
             } else {
                 grid[row][x] = '.';
-                indices[x] = x + amount >= w ?  x + amount -w : x + amount;
+                indices[x] = x + amount >= w ? x + amount - w : x + amount;
             }
         }
         for (int idx : indices) {
@@ -89,14 +89,14 @@ public class Pb2016_8 extends Template<Pb2016_8.Command[]> {
             } else {
                 int a = Integer.parseInt(split[2].substring(2));
                 int b = Integer.parseInt(split[4]);
-                result[i] = new Command(a, b, split[2].charAt(0) == 'x'  ? this::applyRotateX : this::applyRotateY);
+                result[i] = new Command(a, b, split[2].charAt(0) == 'x' ? this::applyRotateX : this::applyRotateY);
             }
             System.out.println(result[i]);
         }
         return result;
     }
 
-    protected record Command(int a, int b, GridConsumer gc){
+    protected record Command(int a, int b, GridConsumer gc) {
 
         public void applyTo(char[][] grid) {
             gc.accept(grid, a, b);

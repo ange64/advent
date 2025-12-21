@@ -3,6 +3,7 @@ package org.example.template.primitive;
 public class PUtils {
 
     private static final char[][] HEX_PAIRS = new char[256][2];
+
     static {
         for (int i = 0; i < 256; i++) {
             HEX_PAIRS[i][0] = "0123456789ABCDEF".charAt(i >>> 4);
@@ -44,6 +45,7 @@ public class PUtils {
             return "0".repeat(targetLen - str.length()) + str;
         }
     }
+
     public static String toBits(byte value) {
         return toBits(value, 8);
     }

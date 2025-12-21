@@ -1,12 +1,11 @@
 package org.example.problems.year2025;
 
-import com.sun.source.tree.Tree;
 import org.example.template.Template;
-import org.example.template.Utils;
-import org.example.template.primitive.collections.IntList;
-import org.example.template.primitive.functional.Mapper;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class Pb8 extends Template<Pb8.Point[]> {
 
@@ -111,7 +110,7 @@ public class Pb8 extends Template<Pb8.Point[]> {
 
         @Override
         public String toString() {
-            return String.format("pts[x:%s,y:%s,z%s]",x,y,z);
+            return String.format("pts[x:%s,y:%s,z%s]", x, y, z);
         }
     }
 }

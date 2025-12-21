@@ -14,7 +14,7 @@ public interface Supplier {
         int get();
     }
 
-    interface Long{
+    interface Long {
         long get();
     }
 
@@ -22,7 +22,7 @@ public interface Supplier {
         char get();
     }
 
-    interface Bool{
+    interface Bool {
         boolean get();
     }
 

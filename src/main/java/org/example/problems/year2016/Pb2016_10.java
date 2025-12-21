@@ -3,7 +3,8 @@ package org.example.problems.year2016;
 import org.example.template.Template;
 import org.example.template.primitive.arrays.ArrUtils;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Arrays;
 
 import static org.example.template.primitive.PUtils.strToI;
 

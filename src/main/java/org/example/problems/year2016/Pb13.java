@@ -6,7 +6,6 @@ import org.example.template.Utils;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Queue;
 
 public class Pb13 extends Template<Integer> {
     private static final int MAX_SIZE = 32;

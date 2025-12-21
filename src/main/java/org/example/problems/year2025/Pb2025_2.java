@@ -1,7 +1,6 @@
 package org.example.problems.year2025;
 
 import org.example.template.Template;
-import org.example.template.Utils;
 
 import java.util.Arrays;
 
@@ -12,12 +11,13 @@ public class Pb2025_2 extends Template<long[]> {
     };
     private static final long[] maxBounds = new long[]{0, 99, 9_999, 999_999, 99_999_999, 9_999_999_999L, 999_999_999_999L};
 
-    private static final int[][] multiples = new int[][]{{},{},{1},{1},{2},{1},{3,2},{1},{4},{3},{5,2}};
+    private static final int[][] multiples = new int[][]{{}, {}, {1}, {1}, {2}, {1}, {3, 2}, {1}, {4}, {3}, {5, 2}};
 
     private static final long[] maxAtDigit = new long[]
-            {0, 9, 99, 999, 9999, 99999, 999999, 9_999_999,99_999_999, 999_999_999, 9_999_999_999L};
+            {0, 9, 99, 999, 9999, 99999, 999999, 9_999_999, 99_999_999, 999_999_999, 9_999_999_999L};
     private static final long[] minAtDigit = new long[]
-            {0, 1, 10, 100, 1_000, 10_000, 100_000, 1_000_000,10_000_000, 100_000_000, 1_000_000_000};
+            {0, 1, 10, 100, 1_000, 10_000, 100_000, 1_000_000, 10_000_000, 100_000_000, 1_000_000_000};
+
     public Pb2025_2() {
         super(2025, 2, "Day 2: Gift Shop");
     }
@@ -57,7 +57,7 @@ public class Pb2025_2 extends Template<long[]> {
             for (long n = a; n <= b; n++) {
                 String parsed = String.valueOf(n);
                 for (int split : multiples[parsed.length()]) {
-                    String ref = parsed.substring(0,split);
+                    String ref = parsed.substring(0, split);
                     int k = split;
                     while (k < parsed.length() && parsed.substring(k, k + split).equals(ref)) {
                         k += split;

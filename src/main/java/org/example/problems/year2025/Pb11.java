@@ -1,27 +1,25 @@
 package org.example.problems.year2025;
 
 import org.example.template.Template;
-import org.example.template.primitive.arrays.ArrUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class Pb11 extends Template<int[][]> {
 
     HashMap<String, Integer> idxs;
     int nbLoops = 0;
+
     public Pb11() {
         super(2025, 11, "Reactor");
     }
 
     @Override
     protected void exec_part_1(int[][] data) throws Exception {
-       // System.out.println(countPath(data, 0, new int[data.length], data.length - 1));
+        // System.out.println(countPath(data, 0, new int[data.length], data.length - 1));
         System.out.println(nbLoops);
     }
 
-    long countPath(int[][] tree, int start,int end, long[] pathCount, boolean[] marked) {
+    long countPath(int[][] tree, int start, int end, long[] pathCount, boolean[] marked) {
         if (start == end) return 1;
         if (pathCount[start] != 0) return pathCount[start];
         if (marked[start]) return 0;
@@ -38,8 +36,8 @@ public class Pb11 extends Template<int[][]> {
         long stof = countPath(data, idxs.get("svr"), idxs.get("fft"), new long[data.length], new boolean[data.length]);
         long ftod = countPath(data, idxs.get("fft"), idxs.get("dac"), new long[data.length], new boolean[data.length]);
         long dtoo = countPath(data, idxs.get("dac"), idxs.get("out"), new long[data.length], new boolean[data.length]);
-        System.out.println(stof + " " + ftod  + " " + dtoo);
-        System.out.println(stof * ftod  * dtoo);
+        System.out.println(stof + " " + ftod + " " + dtoo);
+        System.out.println(stof * ftod * dtoo);
 
         System.out.println(nbLoops);
     }
@@ -49,7 +47,7 @@ public class Pb11 extends Template<int[][]> {
         idxs = new HashMap<>();
         int k = 0;
         for (String line : lines) {
-            String sub = line.substring(0,3);
+            String sub = line.substring(0, 3);
             idxs.put(sub, k++);
         }
         idxs.put("out", k);

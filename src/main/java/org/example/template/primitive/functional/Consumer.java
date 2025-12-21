@@ -38,31 +38,31 @@ public interface Consumer {
         void accept(byte i, int index);
     }
 
-    interface ShortIndexed  {
+    interface ShortIndexed {
         void accept(short i, int index);
     }
 
-    interface IntIndexed  {
+    interface IntIndexed {
         void accept(int i, int index);
     }
 
-    interface LongIndexed  {
+    interface LongIndexed {
         void accept(long i, int index);
     }
 
-    interface CharIndexed  {
+    interface CharIndexed {
         void accept(char i, int index);
     }
 
-    interface BoolIndexed  {
+    interface BoolIndexed {
         void accept(boolean i, int index);
     }
 
-    interface FloatIndexed  {
+    interface FloatIndexed {
         void accept(float i, int index);
     }
 
-    interface DoubleIndexed  {
+    interface DoubleIndexed {
         void accept(double i, int index);
     }
 
