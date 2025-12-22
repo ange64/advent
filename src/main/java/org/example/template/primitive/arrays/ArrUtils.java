@@ -4,6 +4,7 @@ import org.example.template.primitive.functional.*;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 @SuppressWarnings("unused")
 public abstract class ArrUtils {
@@ -50,7 +51,7 @@ public abstract class ArrUtils {
         return -1;
     }
 
-    public static int indexOf(float[] array, double target) {
+    public static int indexOf(float[] array, float target) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == target) return i;
         }
@@ -62,6 +63,21 @@ public abstract class ArrUtils {
             if (array[i] == target) return i;
         }
         return -1;
+    }
+
+    public static <T> int indexOf(T[] array, T target) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
+
+    public static <T> long sumBy(T[] array, Function<Object, Integer> mapper) {
+        long sum = 0;
+        for (T t : array) {
+            sum += mapper.apply(t);
+        }
+        return sum;
     }
 
     public static long sumBy(int[] array, Mapper.IntIndexed mapper) {
@@ -1480,6 +1496,22 @@ public abstract class ArrUtils {
         return temp;
     }
 
+    public static void move(char[] array, int i1, int i2) {
+        if (i2 > i1) {
+            var saved = array[i1];
+            for (int i = i1; i < i2; i++) {
+                array[i] = array[i + 1];
+            }
+            array[i2] = saved;
+        } else {
+            var saved = array[i1];
+            for (int i = i1; i > i2; i--) {
+                array[i] = array[i - 1];
+            }
+            array[i2] = saved;
+        }
+    }
+
     public static boolean remove(long[] array, int limit, long element) {
         int i = ArrUtils.indexOf(array, element);
         if (i == -1) return false;
@@ -1561,6 +1593,12 @@ public abstract class ArrUtils {
         array[idx2] = temp;
     }
 
+    public static void swap(char[] array, int idx1, int idx2) {
+        var temp = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = temp;
+    }
+
     public static void swap(boolean[] array, int idx1, int idx2) {
         var temp = array[idx1];
         array[idx1] = array[idx2];
@@ -1586,25 +1624,41 @@ public abstract class ArrUtils {
         array[idx2] = temp;
     }
 
+    public static <T> void swap(T[] array, int idx1, int idx2) {
+        var temp = array[idx1];
+        array[idx1] = array[idx2];
+        array[idx2] = temp;
+    }
 
-    public static void rotateInPlace(long[] array, int amount) {
-        if (amount >= array.length) amount %= array.length;
-        var visited = 0;
-        var currIdx = amount;
-        var saved = array[0];
-        int offset = 0;
-        while (visited++ < array.length) {
-            currIdx = amount + offset++;
-            while (currIdx < array.length) {
-                var temp = array[currIdx];
-                array[currIdx] = saved;
-                saved = temp;
-                currIdx += amount;
-                visited++;
-            }
-            currIdx -= array.length;
-            array[currIdx] = saved;
-            saved = array[currIdx + 1];
+    public static void rotate(int[] array, int amount) {
+        amount %= array.length;
+        reverse(array, 0, array.length - 1);
+        reverse(array, 0, amount - 1);
+        reverse(array, amount, array.length - 1);
+    }
+
+    public static void rotate(char[] array, int amount) {
+        amount %= array.length;
+        reverse(array, 0, array.length - 1);
+        reverse(array, 0, amount - 1);
+        reverse(array, amount, array.length - 1);
+    }
+
+    public static void reverse(int[] array, int start, int end) {
+        while (start < end) {
+            swap(array, start++, end--);
+        }
+    }
+
+    public static void reverse(char[] array, int start, int end) {
+        while (start < end) {
+            swap(array, start++, end--);
+        }
+    }
+
+    public static <T> void reverse(T[] array, int start, int end) {
+        while (start < end) {
+            swap(array, start++, end--);
         }
     }
 }
