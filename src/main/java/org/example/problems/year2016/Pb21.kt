@@ -8,6 +8,8 @@ class Pb21 : Template<Array<out String>>(2016, 21, "Scrambled Letters and Hash "
     lateinit var start : CharArray
 
     override fun exec_part_1(data: Array<out String>) {
+        start = data[0].toCharArray()
+        println(start.joinToString(""))
         for (c in data) {
             val split = c.split(" ")
             when (split[0]) {
@@ -18,9 +20,7 @@ class Pb21 : Template<Array<out String>>(2016, 21, "Scrambled Letters and Hash "
             }
         }
         println(start.joinToString(""))
-    }
 
-    override fun exec_part_2(data: Array<out String>) {
         data.reverse()
         for (c in data) {
             val split = c.split(" ")
@@ -31,6 +31,10 @@ class Pb21 : Template<Array<out String>>(2016, 21, "Scrambled Letters and Hash "
                 "rotate" -> handleRotateRev(split)
             }
         }
+        println(start.joinToString(""))
+    }
+
+    override fun exec_part_2(data: Array<out String>) {
     }
 
     private fun handleSwap(command: List<String>) {
@@ -86,7 +90,6 @@ class Pb21 : Template<Array<out String>>(2016, 21, "Scrambled Letters and Hash "
 
 
     override fun parseInput(lines: Array<out String>): Array<out String> {
-        start = lines[0].toCharArray()
         return lines
     }
 
