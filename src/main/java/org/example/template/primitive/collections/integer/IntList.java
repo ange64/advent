@@ -2,8 +2,10 @@ package org.example.template.primitive.collections.integer;
 
 import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.collections.PList;
+import org.example.template.primitive.functional.Comparator;
 import org.example.template.primitive.functional.Consumer;
 import org.example.template.primitive.functional.Mapper;
+import org.example.template.primitive.functional.Predicate;
 
 import java.util.Arrays;
 
@@ -52,7 +54,44 @@ public class IntList extends PList implements IntCollection {
 
     @Override
     public boolean remove(int element) {
-        return ArrUtils.remove(array, size(), element);
+        return ArrUtils.remove(array, size(), element, 0);
+    }
+
+
+    public boolean removeAt(int element) {
+        return ArrUtils.removeAt(array, size(), element, 0);
+    }
+
+    public long sum() {
+        return ArrUtils.sum(array, size());
+    }
+
+    public long sumBy(Mapper.IntIndexed m ) {
+        return ArrUtils.sumBy(array, size(), m);
+    }
+
+    public long count(Predicate.Int p) {
+        return ArrUtils.count(array, size(), p);
+    }
+
+    public long max() {
+        return ArrUtils.max(array, 0, size());
+    }
+
+    public long min() {
+        return ArrUtils.min(array, 0, size());
+    }
+
+    public long maxBy(Comparator.Int m) {
+        return ArrUtils.maxBy(array, 0, size(), m);
+    }
+
+    public long minBy(Comparator.Int m) {
+        return ArrUtils.minBy(array, 0, size(), m);
+    }
+
+    public int indexOf(int value) {
+        return ArrUtils.indexOf(array, size(), value);
     }
 
     @Override
@@ -74,6 +113,14 @@ public class IntList extends PList implements IntCollection {
     }
 
     @Override
+    public void removeIf(Predicate.Int p) {
+        for (int i = size() - 1; i >= 0; i--) {
+            if (p.test(array[i])) {
+                removeAt(i);
+            }
+        }
+    }
+
     public IntCollection mapInPlace(Mapper.Int m) {
         for (int i = 0; i < size(); i++) {
             array[i] = m.map(array[i]);
@@ -100,6 +147,7 @@ public class IntList extends PList implements IntCollection {
         System.arraycopy(array, 0, result, 0, pointer + 1);
         return result;
     }
+
 
     public void set(int v, int idx) {
         if (idx > pointer) super.throwOOB(pointer);

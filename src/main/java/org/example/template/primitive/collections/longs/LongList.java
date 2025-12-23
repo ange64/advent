@@ -53,7 +53,7 @@ public class LongList extends PList implements LongCollection {
 
     @Override
     public boolean remove(long element) {
-        return ArrUtils.remove(array, size(), element);
+        return ArrUtils.remove(array, size(), element, 0);
     }
 
     @Override
@@ -74,7 +74,6 @@ public class LongList extends PList implements LongCollection {
         return false;
     }
 
-    @Override
     public LongCollection mapInPlace(Mapper.Long m) {
         for (int i = 0; i < size(); i++) {
             array[i] = m.map(array[i]);

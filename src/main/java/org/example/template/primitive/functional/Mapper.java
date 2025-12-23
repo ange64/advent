@@ -101,4 +101,28 @@ public interface Mapper {
     }
 
 
+    interface CharToIntIndexed {
+        int map(char i, int index);
+    }
+
+    interface FloatToIntIndexed {
+        int map(float i, int index);
+    }
+
+    interface DoubleToIntIndexed {
+        int map(double i, int index);
+    }
+
+    interface BoolToIntIndexed {
+        int map(boolean i, int index);
+    }
+
+    interface ObjToLongIndexed<T> {
+        long map(T obj, int index);
+    }
+
+    interface ObjToDoubleIndexed<T> {
+        double map(T obj, int index);
+    }
+
 }

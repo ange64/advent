@@ -82,12 +82,6 @@ public class LongSet implements LongCollection, PCollection {
     }
 
     @Override
-    public LongSet mapInPlace(Mapper.Long m) {
-        ArrUtils.mapInPlace(array, size(), m);
-        return this;
-    }
-
-    @Override
     public void forEach(Consumer.Long c) {
         for (int i = 0; i < size(); i++) {
             if (array[i] == empty || array[i] == tomb) continue;

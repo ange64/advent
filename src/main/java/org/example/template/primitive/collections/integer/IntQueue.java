@@ -3,6 +3,7 @@ package org.example.template.primitive.collections.integer;
 import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.functional.Consumer;
 import org.example.template.primitive.functional.Mapper;
+import org.example.template.primitive.functional.Predicate;
 
 import java.util.NoSuchElementException;
 
@@ -42,7 +43,16 @@ public class IntQueue implements IntCollection {
 
     @Override
     public boolean remove(int element) {
-        return ArrUtils.remove(array, size(), element);
+        for (int i = start; i <= end; i++) {
+            if (array[i] == element) {
+                for (int j = i; j < end; j++) {
+                    array[j] = array[j + 1];
+                }
+                end--;
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -54,6 +64,14 @@ public class IntQueue implements IntCollection {
     }
 
     @Override
+    public void removeIf(Predicate.Int p) {
+        for (int i = start; i <= end; i++) {
+            if (p.test(array[i])) {
+                remove(array[i]);
+            }
+        }
+    }
+
     public IntQueue mapInPlace(Mapper.Int m) {
         for (int i = start; i <= end; i++) {
             array[i] = m.map(array[i]);
@@ -103,7 +121,6 @@ public class IntQueue implements IntCollection {
     public int last() {
         return array[end];
     }
-
 
     private void shiftDown() {
         for (int i = start; i <= end; i++) {

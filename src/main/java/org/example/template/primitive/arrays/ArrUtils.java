@@ -10,80 +10,272 @@ import java.util.function.UnaryOperator;
 public abstract class ArrUtils {
 
     public static int indexOf(long[] array, long target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) return i;
-        }
-        return -1;
+        return ArrUtils.indexOf(array, array.length, target);
     }
 
     public static int indexOf(int[] array, int target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) return i;
-        }
-        return -1;
-    }
-
-    public static int indexOf(short[] array, short target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) return i;
-        }
-        return -1;
-    }
-
-    public static int indexOf(char[] array, char target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) return i;
-        }
-        return -1;
+        return ArrUtils.indexOf(array, array.length, target);
     }
 
     public static int indexOf(byte[] array, byte target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) return i;
-        }
-        return -1;
+        return ArrUtils.indexOf(array, array.length, target);
+    }
+
+    public static int indexOf(short[] array, short target) {
+        return ArrUtils.indexOf(array, array.length, target);
     }
 
     public static int indexOf(boolean[] array, boolean target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) return i;
-        }
-        return -1;
+        return ArrUtils.indexOf(array, array.length, target);
+    }
+
+    public static int indexOf(char[] array, char target) {
+        return ArrUtils.indexOf(array, array.length, target);
     }
 
     public static int indexOf(float[] array, float target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) return i;
-        }
-        return -1;
+        return ArrUtils.indexOf(array, array.length, target);
     }
 
     public static int indexOf(double[] array, double target) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == target) return i;
-        }
-        return -1;
+        return ArrUtils.indexOf(array, array.length, target);
     }
 
     public static <T> int indexOf(T[] array, T target) {
-        for (int i = 0; i < array.length; i++) {
+        return ArrUtils.indexOf(array, array.length, target);
+    }
+
+    public static int indexOf(long[] array, int end, long target) {
+        for (int i = 0; i < end; i++) {
             if (array[i] == target) return i;
         }
         return -1;
     }
 
-    public static <T> long sumBy(T[] array, Function<Object, Integer> mapper) {
+    public static int indexOf(int[] array, int end, int target) {
+        for (int i = 0; i < end; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
+
+    public static int indexOf(short[] array, int end, short target) {
+        for (int i = 0; i < end; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
+
+    public static int indexOf(char[] array, int end, char target) {
+        for (int i = 0; i < end; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
+
+    public static int indexOf(byte[] array, int end, byte target) {
+        for (int i = 0; i < end; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
+
+    public static int indexOf(boolean[] array, int end, boolean target) {
+        for (int i = 0; i < end; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
+
+    public static int indexOf(float[] array, int end, float target) {
+        for (int i = 0; i < end; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
+
+    public static int indexOf(double[] array, int end, double target) {
+        for (int i = 0; i < end; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
+
+    public static <T> int indexOf(T[] array, int end, T target) {
+        for (int i = 0; i < end; i++) {
+            if (array[i] == target) return i;
+        }
+        return -1;
+    }
+
+    public static <T> double sumBy(T[] array, Mapper.ObjToDoubleIndexed<T> mapper) {
+        return ArrUtils.sumBy(array, array.length, mapper);
+    }
+
+    public static <T> long sumBy(T[] array, Mapper.ObjToLongIndexed<T> mapper) {
+        return ArrUtils.sumBy(array, array.length, mapper);
+    }
+
+    public static long sumBy(long[] array, Mapper.LongIndexed mapper) {
+        return ArrUtils.sumBy(array, array.length, mapper);
+    }
+
+    public static long sumBy(int[] array, Mapper.IntIndexed mapper) {
+        return ArrUtils.sumBy(array, array.length, mapper);
+    }
+
+    public static long sumBy(char[] array, Mapper.CharToIntIndexed mapper) {
+        return ArrUtils.sumBy(array, array.length, mapper);
+    }
+
+    public static long sumBy(short[] array, Mapper.ShortIndexed mapper) {
+        return ArrUtils.sumBy(array, array.length, mapper);
+    }
+
+    public static long sumBy(byte[] array, Mapper.ByteIndexed mapper) {
+        return ArrUtils.sumBy(array, array.length, mapper);
+    }
+
+    public static double sumBy(float[] array, Mapper.FloatIndexed mapper) {
+        return ArrUtils.sumBy(array, array.length, mapper);
+    }
+
+    public static double sumBy(double[] array, Mapper.DoubleIndexed mapper) {
+        return ArrUtils.sumBy(array, array.length, mapper);
+    }
+
+    private static <T> long sumBy(T[] array, int end, Mapper.ObjToLongIndexed<T> mapper) {
         long sum = 0;
-        for (T t : array) {
-            sum += mapper.apply(t);
+        for (var i = 0; i < end; i++) {
+            sum += mapper.map(array[i], i);
         }
         return sum;
     }
 
-    public static long sumBy(int[] array, Mapper.IntIndexed mapper) {
-        long sum = 0;
-        for (int i = 0; i < array.length; i++) {
+    private static <T> double sumBy(T[] array, int end, Mapper.ObjToDoubleIndexed<T> mapper) {
+        double sum = 0;
+        for (var i = 0; i < end; i++) {
             sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
+    public static long sumBy(long[] array, int end, Mapper.LongIndexed mapper) {
+        long sum = 0;
+        for (var i = 0; i < end; i++) {
+            sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
+    public static long sumBy(int[] array, int end, Mapper.IntIndexed mapper) {
+        long sum = 0;
+        for (var i = 0; i < end; i++) {
+            sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
+    public static long sumBy(short[] array, int end, Mapper.ShortIndexed mapper) {
+        long sum = 0;
+        for (var i = 0; i < end; i++) {
+            sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
+    public static long sumBy(byte[] array, int end, Mapper.ByteIndexed mapper) {
+        long sum = 0;
+        for (var i = 0; i < end; i++) {
+            sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
+    public static long sumBy(boolean[] array, int end, Mapper.BoolToIntIndexed mapper) {
+        long sum = 0;
+        for (var i = 0; i < end; i++) {
+            sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
+    public static long sumBy(char[] array, int end, Mapper.CharToIntIndexed mapper) {
+        long sum = 0;
+        for (var i = 0; i < array.length; i++) {
+            sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
+    public static double sumBy(float[] array, int end, Mapper.FloatIndexed mapper) {
+        double sum = 0;
+        for (var i = 0; i < array.length; i++) {
+            sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
+    public static double sumBy(double[] array, int end, Mapper.DoubleIndexed mapper) {
+        double sum = 0;
+        for (var i = 0; i < array.length; i++) {
+            sum += mapper.map(array[i], i);
+        }
+        return sum;
+    }
+
+    public static long sum(long[] array, int end) {
+        long sum = 0;
+        for (int i = 0; i < end; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+    public static long sum(int[] array, int end) {
+        long sum = 0;
+        for (int i = 0; i < end; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+    public static long sum(short[] array, int end) {
+        long sum = 0;
+        for (int i = 0; i < end; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+    public static long sum(char[] array, int end) {
+        long sum = 0;
+        for (int i = 0; i < end; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+    public static double sum(float[] array, int end) {
+        double sum = 0;
+        for (int i = 0; i < end; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+    public static double sum(double[] array, int end) {
+        double sum = 0;
+        for (int i = 0; i < end; i++) {
+            sum += array[i];
+        }
+        return sum;
+    }
+
+    public static long sum(byte[] array, int end) {
+        long sum = 0;
+        for (int i = 0; i < end; i++) {
+            sum += array[i];
         }
         return sum;
     }
@@ -127,12 +319,6 @@ public abstract class ArrUtils {
     public static double sum(double[] array) {
         double sum = 0;
         for (double v : array) sum += v;
-        return sum;
-    }
-
-    public static int sum(boolean[] array) {
-        int sum = 0;
-        for (boolean b : array) if (b) sum++;
         return sum;
     }
 
@@ -354,6 +540,15 @@ public abstract class ArrUtils {
     }
 
     /**
+     * Maps an element to another value in place in the array.
+     */
+    public static <T> void mapInPlace(T[] array, int limit, UnaryOperator<T> m) {
+        for (int i = 0; i < limit; i++) {
+            array[i] = m.apply(array[i]);
+        }
+    }
+
+    /**
      * @return the first index of array matching the predicate, -1 otherwise
      */
     public static int first(long[] array, Predicate.Long p) {
@@ -393,7 +588,6 @@ public abstract class ArrUtils {
         }
         return -1;
     }
-
 
     /**
      * @return the first index of array matching the predicate, -1 otherwise
@@ -636,120 +830,6 @@ public abstract class ArrUtils {
         double m = Double.MAX_VALUE;
         for (int i = start; i < end; i++) {
             if (i < m) m = array[i];
-        }
-        return m;
-    }
-
-
-    public static long maxBy(long[] array, Comparator.Long c) {
-        long m = 0;
-        for (long i : array) {
-            if (c.compare(i, m) > 0) m = i;
-        }
-        return m;
-    }
-
-    public static int maxBy(int[] array, Comparator.Int c) {
-        int m = 0;
-        for (int i : array) {
-            if (c.compare(i, m) > 0) m = i;
-        }
-        return m;
-    }
-
-    public static short maxBy(short[] array, Comparator.Short c) {
-        short m = 0;
-        for (short i : array) {
-            if (c.compare(i, m) > 0) m = i;
-        }
-        return m;
-    }
-
-    public static char maxBy(char[] array, Comparator.Char c) {
-        char m = 0;
-        for (char i : array) {
-            if (c.compare(i, m) > 0) m = i;
-        }
-        return m;
-    }
-
-    public static byte maxBy(byte[] array, Comparator.Byte c) {
-        byte m = 0;
-        for (byte i : array) {
-            if (c.compare(i, m) > 0) m = i;
-        }
-        return m;
-    }
-
-    public static float maxBy(float[] array, Comparator.Float c) {
-        float m = 0;
-        for (float i : array) {
-            if (c.compare(i, m) > 0) m = i;
-        }
-        return m;
-    }
-
-    public static double maxBy(float[] array, Comparator.Double c) {
-        double m = 0;
-        for (double i : array) {
-            if (c.compare(i, m) > 0) m = i;
-        }
-        return m;
-    }
-
-
-    public static long minBy(long[] array, Comparator.Long c) {
-        long m = Long.MAX_VALUE;
-        for (long i : array) {
-            if (c.compare(i, m) < 0) m = i;
-        }
-        return m;
-    }
-
-    public static int minBy(int[] array, Comparator.Int c) {
-        int m = Integer.MAX_VALUE;
-        for (int i : array) {
-            if (c.compare(i, m) < 0) m = i;
-        }
-        return m;
-    }
-
-    public static short minBy(short[] array, Comparator.Short c) {
-        short m = Short.MAX_VALUE;
-        for (short i : array) {
-            if (c.compare(i, m) < 0) m = i;
-        }
-        return m;
-    }
-
-    public static char minBy(char[] array, Comparator.Char c) {
-        char m = Character.MAX_VALUE;
-        for (char i : array) {
-            if (c.compare(i, m) < 0) m = i;
-        }
-        return m;
-    }
-
-    public static byte minBy(byte[] array, Comparator.Byte c) {
-        byte m = Byte.MAX_VALUE;
-        for (byte i : array) {
-            if (c.compare(i, m) < 0) m = i;
-        }
-        return m;
-    }
-
-    public static float minBy(float[] array, Comparator.Float c) {
-        float m = Float.MAX_VALUE;
-        for (float i : array) {
-            if (c.compare(i, m) < 0) m = i;
-        }
-        return m;
-    }
-
-    public static double minBy(float[] array, Comparator.Double c) {
-        double m = Double.MAX_VALUE;
-        for (double i : array) {
-            if (c.compare(i, m) < 0) m = i;
         }
         return m;
     }
@@ -1289,70 +1369,77 @@ public abstract class ArrUtils {
         return Math.abs(a);
     }
 
-    public static int count(long[] array, Predicate.Long p) {
-        int c = 0;
-        for (int i = 0; i < array.length; i++) {
+    public static long count(long[] array, int end, Predicate.Long p) {
+        long c = 0;
+        for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
         }
         return c;
     }
 
-    public static int count(int[] array, Predicate.Int p) {
-        int c = 0;
-        for (int i = 0; i < array.length; i++) {
+    public static long count(int[] array, int end, Predicate.Int p) {
+        long c = 0;
+        for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
         }
         return c;
     }
 
-    public static int count(short[] array, Predicate.Short p) {
-        int c = 0;
-        for (int i = 0; i < array.length; i++) {
+    public static long count(short[] array, int end, Predicate.Short p) {
+        long c = 0;
+        for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
         }
         return c;
     }
 
-    public static int count(byte[] array, Predicate.Byte p) {
-        int c = 0;
-        for (int i = 0; i < array.length; i++) {
+    public static long count(byte[] array, int end, Predicate.Byte p) {
+        long c = 0;
+        for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
         }
         return c;
     }
 
-    public static int count(char[] array, Predicate.Char p) {
-        int c = 0;
-        for (int i = 0; i < array.length; i++) {
+    public static long count(char[] array, int end, Predicate.Char p) {
+        long c = 0;
+        for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
         }
         return c;
     }
 
-    public static int count(float[] array, Predicate.Float p) {
-        int c = 0;
-        for (int i = 0; i < array.length; i++) {
+    public static long count(float[] array, int end, Predicate.Float p) {
+        long c = 0;
+        for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
         }
         return c;
     }
 
-    public static int count(double[] array, Predicate.Double p) {
-        int c = 0;
-        for (int i = 0; i < array.length; i++) {
+    public static long count(double[] array, int end, Predicate.Double p) {
+        long c = 0;
+        for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
         }
         return c;
     }
 
-    public static int count(boolean[] array, Predicate.Boolean p) {
-        int c = 0;
-        for (int i = 0; i < array.length; i++) {
+    public static long count(boolean[] array, int end, Predicate.Boolean p) {
+        long c = 0;
+        for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
         }
         return c;
     }
 
+    public static <T> long count(T[] array, int end, java.util.function.Predicate<T> p) {
+        long c = 0;
+        for (int i = 0; i < end; i++) {
+            c += p.test(array[i]) ? 1 : 0;
+        }
+        return c;
+    }
 
     public static long[] subArray(long[] array, int start, int len) {
         long[] arr = new long[len];
@@ -1389,7 +1476,6 @@ public abstract class ArrUtils {
         System.arraycopy(array, start, arr, 0, len);
         return arr;
     }
-
 
     public static String toString(Object[] arr, String sep, int start, int len, Function<Object, Object> mapper) {
         StringBuilder sb = new StringBuilder("[");
@@ -1428,7 +1514,7 @@ public abstract class ArrUtils {
     }
 
     public static String toString(char[] array, String sep, int start, int len, Mapper.CharTo<String> mapper) {
-        StringBuilder sb = new StringBuilder("ByteList[");
+        StringBuilder sb = new StringBuilder("[");
         for (int i = start; i < len - 1; i++) {
             sb.append(mapper.map(array[i])).append(sep);
         }
@@ -1497,81 +1583,163 @@ public abstract class ArrUtils {
     }
 
     public static void move(char[] array, int i1, int i2) {
+        var saved = array[i1];
         if (i2 > i1) {
-            var saved = array[i1];
             for (int i = i1; i < i2; i++) {
                 array[i] = array[i + 1];
             }
-            array[i2] = saved;
         } else {
-            var saved = array[i1];
             for (int i = i1; i > i2; i--) {
                 array[i] = array[i - 1];
             }
-            array[i2] = saved;
         }
+        array[i2] = saved;
     }
 
-    public static boolean remove(long[] array, int limit, long element) {
-        int i = ArrUtils.indexOf(array, element);
+    public static boolean removeAt(long[] array, int limit, int i, long tombStone) {
         if (i == -1) return false;
         for (int j = i + 1; j < limit; j++) {
             array[j - 1] = array[j];
         }
+        array[limit - 1] = tombStone;
         return true;
     }
 
-    public static boolean remove(int[] array, int limit, int element) {
-        int i = ArrUtils.indexOf(array, element);
-        if (i == -1) return false;
+    public static boolean removeAt(int[] array, int limit, int i, int tombStone) {
         for (int j = i + 1; j < limit; j++) {
             array[j - 1] = array[j];
         }
+        array[limit - 1] = tombStone;
         return true;
     }
 
-    public static boolean remove(short[] array, int limit, short element) {
-        int i = ArrUtils.indexOf(array, element);
+    public static boolean removeAt(short[] array, int limit, int i, short tombStone) {
         if (i == -1) return false;
         for (int j = i + 1; j < limit; j++) {
             array[j - 1] = array[j];
         }
+        array[limit - 1] = tombStone;
         return true;
     }
 
-    public static boolean remove(byte[] array, int limit, byte element) {
-        int i = ArrUtils.indexOf(array, element);
-        if (i == -1) return false;
+    public static boolean removeAt(byte[] array, int limit, int i, byte tombStone) {
         for (int j = i + 1; j < limit; j++) {
             array[j - 1] = array[j];
         }
+        array[limit - 1] = tombStone;
         return true;
     }
 
-    public static boolean remove(float[] array, int limit, float element) {
-        int i = ArrUtils.indexOf(array, element);
-        if (i == -1) return false;
+    public static boolean removeAt(float[] array, int limit, int i, float tombStone) {
         for (int j = i + 1; j < limit; j++) {
             array[j - 1] = array[j];
         }
+        array[limit - 1] = tombStone;
         return true;
     }
 
-    public static boolean remove(double[] array, int limit, double element) {
-        int i = ArrUtils.indexOf(array, element);
-        if (i == -1) return false;
+    public static boolean removeAt(double[] array, int limit, int i, float tombStone) {
         for (int j = i + 1; j < limit; j++) {
             array[j - 1] = array[j];
         }
+        array[limit - 1] = tombStone;
         return true;
     }
 
-    public static boolean remove(boolean[] array, int limit, boolean element) {
-        int i = ArrUtils.indexOf(array, element);
+    public static boolean removeAt(boolean[] array, int limit, int i, boolean tombStone) {
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        array[limit - 1] = tombStone;
+        return true;
+    }
+
+    public static <T> boolean removeAt(T[] array, int limit, int i, T tombStone) {
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        array[limit - 1] = tombStone;
+        return true;
+    }
+
+    //
+    public static boolean remove(long[] array, int limit, long element, long tombStone) {
+        int i = ArrUtils.indexOf(array, limit, element);
         if (i == -1) return false;
         for (int j = i + 1; j < limit; j++) {
             array[j - 1] = array[j];
         }
+        array[limit - 1] = tombStone;
+        return true;
+    }
+
+    public static boolean remove(int[] array, int limit, int element, int tombStone) {
+        int i = ArrUtils.indexOf(array, limit, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        array[limit - 1] = tombStone;
+        return true;
+    }
+
+    public static boolean remove(short[] array, int limit, short element, short tombStone) {
+        int i = ArrUtils.indexOf(array, limit, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        array[limit - 1] = tombStone;
+        return true;
+    }
+
+    public static boolean remove(byte[] array, int limit, byte element, byte tombStone) {
+        int i = ArrUtils.indexOf(array, limit, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        array[limit - 1] = tombStone;
+        return true;
+    }
+
+    public static boolean remove(float[] array, int limit, float element, float tombStone) {
+        int i = ArrUtils.indexOf(array, limit, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        array[limit - 1] = tombStone;
+        return true;
+    }
+
+    public static boolean remove(double[] array, int limit, double element, double tombStone) {
+        int i = ArrUtils.indexOf(array, limit, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        array[limit - 1] = tombStone;
+        return true;
+    }
+
+    public static boolean remove(boolean[] array, int limit, boolean element, boolean tombStone) {
+        int i = ArrUtils.indexOf(array, limit, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        array[limit - 1] = tombStone;
+        return true;
+    }
+
+    public static <T> boolean remove(T[] array, int limit, boolean element, T tombStone) {
+        int i = ArrUtils.indexOf(array, limit, element);
+        if (i == -1) return false;
+        for (int j = i + 1; j < limit; j++) {
+            array[j - 1] = array[j];
+        }
+        array[limit - 1] = tombStone;
         return true;
     }
 
@@ -1630,12 +1798,42 @@ public abstract class ArrUtils {
         array[idx2] = temp;
     }
 
+    public static <T> void rotate(T[] array, int amount) {
+        amount %= array.length;
+        reverse(array, 0, array.length - 1);
+        reverse(array, 0, amount - 1);
+        reverse(array, amount, array.length - 1);
+    }
+
+    public static void rotate(long[] array, int amount) {
+        amount %= array.length;
+        reverse(array, 0, array.length - 1);
+        reverse(array, 0, amount - 1);
+        reverse(array, amount, array.length - 1);
+    }
+
     public static void rotate(int[] array, int amount) {
         amount %= array.length;
         reverse(array, 0, array.length - 1);
         reverse(array, 0, amount - 1);
         reverse(array, amount, array.length - 1);
     }
+
+    public static void rotate(short[] array, int amount) {
+        amount %= array.length;
+        reverse(array, 0, array.length - 1);
+        reverse(array, 0, amount - 1);
+        reverse(array, amount, array.length - 1);
+    }
+
+
+    public static void rotate(byte[] array, int amount) {
+        amount %= array.length;
+        reverse(array, 0, array.length - 1);
+        reverse(array, 0, amount - 1);
+        reverse(array, amount, array.length - 1);
+    }
+
 
     public static void rotate(char[] array, int amount) {
         amount %= array.length;
@@ -1644,13 +1842,72 @@ public abstract class ArrUtils {
         reverse(array, amount, array.length - 1);
     }
 
+    public static void rotate(boolean[] array, int amount) {
+        amount %= array.length;
+        reverse(array, 0, array.length - 1);
+        reverse(array, 0, amount - 1);
+        reverse(array, amount, array.length - 1);
+    }
+
+
+    public static void rotate(float[] array, int amount) {
+        amount %= array.length;
+        reverse(array, 0, array.length - 1);
+        reverse(array, 0, amount - 1);
+        reverse(array, amount, array.length - 1);
+    }
+
+    public static void rotate(double[] array, int amount) {
+        amount %= array.length;
+        reverse(array, 0, array.length - 1);
+        reverse(array, 0, amount - 1);
+        reverse(array, amount, array.length - 1);
+    }
+
+    public static void reverse(long[] array, int start, int end) {
+        while (start < end) {
+            swap(array, start++, end--);
+        }
+    }
+
     public static void reverse(int[] array, int start, int end) {
         while (start < end) {
             swap(array, start++, end--);
         }
     }
 
+
+    public static void reverse(short[] array, int start, int end) {
+        while (start < end) {
+            swap(array, start++, end--);
+        }
+    }
+
     public static void reverse(char[] array, int start, int end) {
+        while (start < end) {
+            swap(array, start++, end--);
+        }
+    }
+
+    public static void reverse(byte[] array, int start, int end) {
+        while (start < end) {
+            swap(array, start++, end--);
+        }
+    }
+
+    public static void reverse(float[] array, int start, int end) {
+        while (start < end) {
+            swap(array, start++, end--);
+        }
+    }
+
+    public static void reverse(double[] array, int start, int end) {
+        while (start < end) {
+            swap(array, start++, end--);
+        }
+    }
+
+    public static void reverse(boolean[] array, int start, int end) {
         while (start < end) {
             swap(array, start++, end--);
         }

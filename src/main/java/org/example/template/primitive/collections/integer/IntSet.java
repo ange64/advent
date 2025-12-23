@@ -5,6 +5,7 @@ import org.example.template.primitive.collections.PCollection;
 import org.example.template.primitive.collections.PrimitiveCollections;
 import org.example.template.primitive.functional.Consumer;
 import org.example.template.primitive.functional.Mapper;
+import org.example.template.primitive.functional.Predicate;
 
 import java.util.Arrays;
 
@@ -82,16 +83,19 @@ public class IntSet implements IntCollection, PCollection {
     }
 
     @Override
-    public IntSet mapInPlace(Mapper.Int m) {
-        ArrUtils.mapInPlace(array, size(), m);
-        return this;
-    }
-
-    @Override
     public void forEach(Consumer.Int c) {
         for (int i = 0; i < size(); i++) {
             if (array[i] == empty || array[i] == tomb) continue;
             c.accept(array[i]);
+        }
+    }
+
+    @Override
+    public void removeIf(Predicate.Int p) {
+        for (int j : array) {
+            if (j != tomb && j != empty && p.test(j)) {
+                remove(j);
+            }
         }
     }
 
@@ -182,6 +186,8 @@ public class IntSet implements IntCollection, PCollection {
                 array, (o, i) -> array[i] == empty, this.getClass().getName(), Object::toString
         );
     }
+
+
 
     static int hash32(int x) {
         x ^= x >>> 16;

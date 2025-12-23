@@ -3,6 +3,7 @@ package org.example.template.primitive.collections.integer;
 import org.example.template.primitive.collections.PCollection;
 import org.example.template.primitive.functional.Consumer;
 import org.example.template.primitive.functional.Mapper;
+import org.example.template.primitive.functional.Predicate;
 
 public interface IntCollection extends PCollection {
 
@@ -37,7 +38,7 @@ public interface IntCollection extends PCollection {
 
     boolean contains(int value);
 
-    IntCollection mapInPlace(Mapper.Int m);
+    void removeIf(Predicate.Int p);
 
     void forEach(Consumer.Int c);
 

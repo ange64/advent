@@ -16,7 +16,6 @@ public final class PrimitiveCollections {
         return capacity;
     }
 
-
     public static String toString(Object array, int limit, String prefix) {
         var sb = new StringBuilder(prefix + "[");
         for (int i = 0; i < limit + 1; i++) {

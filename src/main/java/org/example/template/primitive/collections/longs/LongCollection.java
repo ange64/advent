@@ -37,8 +37,6 @@ public interface LongCollection extends PCollection {
 
     boolean contains(long value);
 
-    LongCollection mapInPlace(Mapper.Long m);
-
     void forEach(Consumer.Long c);
 
 }
