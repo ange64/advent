@@ -1,4 +1,4 @@
-fbgdceah
+abcdefgh
 move position 2 to position 6
 move position 0 to position 5
 move position 6 to position 4

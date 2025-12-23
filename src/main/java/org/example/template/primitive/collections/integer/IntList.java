@@ -57,7 +57,6 @@ public class IntList extends PList implements IntCollection {
         return ArrUtils.remove(array, size(), element, 0);
     }
 
-
     public boolean removeAt(int element) {
         return ArrUtils.removeAt(array, size(), element, 0);
     }

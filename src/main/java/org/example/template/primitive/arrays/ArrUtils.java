@@ -1918,4 +1918,44 @@ public abstract class ArrUtils {
             swap(array, start++, end--);
         }
     }
+
+    /**
+     * efficiently recurses on all possible permutations of the parameter array.
+     */
+    public static void heapPermute(char[] array, java.util.function.Consumer<char[]> c) {
+        heapPermute(array, array.length, c);
+    }
+
+    private static void heapPermute(char[] array, int index, java.util.function.Consumer<char[]> c) {
+        if (index == 1) {
+            c.accept(array);
+            return;
+        }
+        heapPermute(array, index - 1, c);
+        for (int i = 0; i < index - 1; i++) {
+            if (index % 2 == 0) ArrUtils.swap(array, i, index - 1);
+            else  ArrUtils.swap(array, 0, index - 1);
+            heapPermute(array, index - 1, c);
+        }
+    }
+
+    /**
+     * efficiently recurses on all possible permutations of the parameter array.
+     */
+    public static <T> void heapPermute(T[] array, java.util.function.Consumer<T[]> c) {
+        heapPermute(array, array.length, c);
+    }
+
+    private static <T> void heapPermute(T[] array, int index, java.util.function.Consumer<T[]> c) {
+        if (index == 1) {
+            c.accept(array);
+            return;
+        }
+        heapPermute(array, index - 1, c);
+        for (int i = 0; i < index - 1; i++) {
+            if (index % 2 == 0) ArrUtils.swap(array, i, index - 1);
+            else  ArrUtils.swap(array, 0, index - 1);
+            heapPermute(array, index - 1, c);
+        }
+    }
 }
