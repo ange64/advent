@@ -2,12 +2,14 @@ package org.example.template.primitive.collections.integer;
 
 import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.collections.PList;
-import org.example.template.primitive.functional.Comparator;
-import org.example.template.primitive.functional.Consumer;
-import org.example.template.primitive.functional.Mapper;
-import org.example.template.primitive.functional.Predicate;
+import org.example.template.primitive.collections.PrimitiveCollections;
+import org.example.template.primitive.functional.Pcomparator;
+import org.example.template.primitive.functional.Pconsumer;
+import org.example.template.primitive.functional.Pmapper;
+import org.example.template.primitive.functional.Ppredicate;
 
 import java.util.Arrays;
+import java.util.function.Function;
 
 import static org.example.template.primitive.collections.PrimitiveCollections.computeExpendLength;
 
@@ -30,7 +32,7 @@ public class IntList extends PList implements IntCollection {
     }
 
     public boolean add(int i) {
-        if (pointer == size()) array = ArrUtils.expand(array, 1);
+        if (pointer == array.length - 1) array = ArrUtils.expand(array, 1);
         array[++pointer] = i;
         return true;
     }
@@ -65,11 +67,11 @@ public class IntList extends PList implements IntCollection {
         return ArrUtils.sum(array, size());
     }
 
-    public long sumBy(Mapper.IntIndexed m ) {
+    public long sumBy(Pmapper.IntIndexed m ) {
         return ArrUtils.sumBy(array, size(), m);
     }
 
-    public long count(Predicate.Int p) {
+    public long count(Ppredicate.Int p) {
         return ArrUtils.count(array, size(), p);
     }
 
@@ -81,11 +83,11 @@ public class IntList extends PList implements IntCollection {
         return ArrUtils.min(array, 0, size());
     }
 
-    public long maxBy(Comparator.Int m) {
+    public long maxBy(Pcomparator.Int m) {
         return ArrUtils.maxBy(array, 0, size(), m);
     }
 
-    public long minBy(Comparator.Int m) {
+    public long minBy(Pcomparator.Int m) {
         return ArrUtils.minBy(array, 0, size(), m);
     }
 
@@ -112,7 +114,7 @@ public class IntList extends PList implements IntCollection {
     }
 
     @Override
-    public void removeIf(Predicate.Int p) {
+    public void removeIf(Ppredicate.Int p) {
         for (int i = size() - 1; i >= 0; i--) {
             if (p.test(array[i])) {
                 removeAt(i);
@@ -120,7 +122,7 @@ public class IntList extends PList implements IntCollection {
         }
     }
 
-    public IntCollection mapInPlace(Mapper.Int m) {
+    public IntCollection mapInPlace(Pmapper.Int m) {
         for (int i = 0; i < size(); i++) {
             array[i] = m.map(array[i]);
         }
@@ -128,7 +130,7 @@ public class IntList extends PList implements IntCollection {
     }
 
     @Override
-    public void forEach(Consumer.Int c) {
+    public void forEach(Pconsumer.Int c) {
         for (int i = 0; i < size(); i++) {
             c.accept(array[i]);
         }
@@ -175,10 +177,21 @@ public class IntList extends PList implements IntCollection {
         return pointer + 1;
     }
 
-    public void forEachIndexed(Consumer.IntIndexed c) {
+    public void forEachIndexed(Pconsumer.IntIndexed c) {
         for (int i = 0; i < size(); i++) {
             c.accept(array[i], i);
         }
     }
+
+    @Override
+    public String toString() {
+        return PrimitiveCollections.toString(array, size(), this.getClass().getSimpleName());
+    }
+
+    public String toString(Function<Object, String> mapper) {
+        return PrimitiveCollections.toString(array, size(), this.getClass().getSimpleName(),mapper);
+    }
+
+
 
 }

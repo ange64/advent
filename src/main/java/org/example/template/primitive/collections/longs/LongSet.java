@@ -1,10 +1,8 @@
 package org.example.template.primitive.collections.longs;
 
-import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.collections.PCollection;
 import org.example.template.primitive.collections.PrimitiveCollections;
-import org.example.template.primitive.functional.Consumer;
-import org.example.template.primitive.functional.Mapper;
+import org.example.template.primitive.functional.Pconsumer;
 
 import java.util.Arrays;
 
@@ -82,7 +80,7 @@ public class LongSet implements LongCollection, PCollection {
     }
 
     @Override
-    public void forEach(Consumer.Long c) {
+    public void forEach(Pconsumer.Long c) {
         for (int i = 0; i < size(); i++) {
             if (array[i] == empty || array[i] == tomb) continue;
             c.accept(array[i]);

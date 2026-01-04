@@ -1,9 +1,9 @@
 package org.example.template.primitive.collections.integer;
 
 import org.example.template.primitive.arrays.ArrUtils;
-import org.example.template.primitive.functional.Consumer;
-import org.example.template.primitive.functional.Mapper;
-import org.example.template.primitive.functional.Predicate;
+import org.example.template.primitive.functional.Pconsumer;
+import org.example.template.primitive.functional.Pmapper;
+import org.example.template.primitive.functional.Ppredicate;
 
 import java.util.NoSuchElementException;
 
@@ -64,7 +64,7 @@ public class IntQueue implements IntCollection {
     }
 
     @Override
-    public void removeIf(Predicate.Int p) {
+    public void removeIf(Ppredicate.Int p) {
         for (int i = start; i <= end; i++) {
             if (p.test(array[i])) {
                 remove(array[i]);
@@ -72,7 +72,7 @@ public class IntQueue implements IntCollection {
         }
     }
 
-    public IntQueue mapInPlace(Mapper.Int m) {
+    public IntQueue mapInPlace(Pmapper.Int m) {
         for (int i = start; i <= end; i++) {
             array[i] = m.map(array[i]);
         }
@@ -80,7 +80,7 @@ public class IntQueue implements IntCollection {
     }
 
     @Override
-    public void forEach(Consumer.Int c) {
+    public void forEach(Pconsumer.Int c) {
         for (int i = 0; i < size(); i++) {
             c.accept(array[i]);
         }

@@ -1,9 +1,8 @@
 package org.example.template.primitive.collections.integer;
 
 import org.example.template.primitive.collections.PCollection;
-import org.example.template.primitive.functional.Consumer;
-import org.example.template.primitive.functional.Mapper;
-import org.example.template.primitive.functional.Predicate;
+import org.example.template.primitive.functional.Pconsumer;
+import org.example.template.primitive.functional.Ppredicate;
 
 public interface IntCollection extends PCollection {
 
@@ -38,8 +37,8 @@ public interface IntCollection extends PCollection {
 
     boolean contains(int value);
 
-    void removeIf(Predicate.Int p);
+    void removeIf(Ppredicate.Int p);
 
-    void forEach(Consumer.Int c);
+    void forEach(Pconsumer.Int c);
 
 }

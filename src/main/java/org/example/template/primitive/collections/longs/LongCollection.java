@@ -1,8 +1,7 @@
 package org.example.template.primitive.collections.longs;
 
 import org.example.template.primitive.collections.PCollection;
-import org.example.template.primitive.functional.Consumer;
-import org.example.template.primitive.functional.Mapper;
+import org.example.template.primitive.functional.Pconsumer;
 
 public interface LongCollection extends PCollection {
 
@@ -37,6 +36,6 @@ public interface LongCollection extends PCollection {
 
     boolean contains(long value);
 
-    void forEach(Consumer.Long c);
+    void forEach(Pconsumer.Long c);
 
 }

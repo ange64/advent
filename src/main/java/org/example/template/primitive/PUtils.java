@@ -1,5 +1,7 @@
 package org.example.template.primitive;
 
+import java.util.NoSuchElementException;
+
 public class PUtils {
 
     private static final char[][] HEX_PAIRS = new char[256][2];
@@ -62,10 +64,6 @@ public class PUtils {
         return new String(HEX_PAIRS[b & 0xFF]);
     }
 
-    public static byte nibble(byte bits, boolean first) {
-        return (byte) ((bits >>> (first ? 4 : 0)) & 0xF);
-    }
-
     public static int gcd(int a, int b) {
         while (b != 0) {
             int temp = b;
@@ -74,6 +72,4 @@ public class PUtils {
         }
         return Math.abs(a);
     }
-
-
 }

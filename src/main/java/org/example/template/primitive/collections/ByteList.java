@@ -1,8 +1,8 @@
 package org.example.template.primitive.collections;
 
 import org.example.template.primitive.arrays.ArrUtils;
-import org.example.template.primitive.functional.Consumer;
-import org.example.template.primitive.functional.Mapper;
+import org.example.template.primitive.functional.Pconsumer;
+import org.example.template.primitive.functional.Pmapper;
 
 import java.security.DigestException;
 import java.security.MessageDigest;
@@ -83,7 +83,7 @@ public class ByteList extends PList {
         return this;
     }
 
-    public void forEachIndexed(Consumer.ByteIndexed c) {
+    public void forEachIndexed(Pconsumer.ByteIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
@@ -101,7 +101,7 @@ public class ByteList extends PList {
         MD5.digest(out, 0, 16);
     }
 
-    public String toString(Mapper.ByteTo<String> mapper) {
+    public String toString(Pmapper.ByteTo<String> mapper) {
         return PrimitiveCollections.toString(array, size(), this.getClass().getName(), o -> mapper.map((Byte) o));
     }
 

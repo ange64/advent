@@ -2,8 +2,8 @@ package org.example.template.primitive.collections.longs;
 
 import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.collections.PList;
-import org.example.template.primitive.functional.Consumer;
-import org.example.template.primitive.functional.Mapper;
+import org.example.template.primitive.functional.Pconsumer;
+import org.example.template.primitive.functional.Pmapper;
 
 import java.util.Arrays;
 
@@ -28,7 +28,7 @@ public class LongList extends PList implements LongCollection {
     }
 
     public boolean add(long i) {
-        if (pointer == size()) array = ArrUtils.expand(array, 1);
+        if (pointer == array.length - 1) array = ArrUtils.expand(array, 1);
         array[++pointer] = i;
         return true;
     }
@@ -74,7 +74,7 @@ public class LongList extends PList implements LongCollection {
         return false;
     }
 
-    public LongCollection mapInPlace(Mapper.Long m) {
+    public LongCollection mapInPlace(Pmapper.Long m) {
         for (int i = 0; i < size(); i++) {
             array[i] = m.map(array[i]);
         }
@@ -82,7 +82,7 @@ public class LongList extends PList implements LongCollection {
     }
 
     @Override
-    public void forEach(Consumer.Long c) {
+    public void forEach(Pconsumer.Long c) {
         for (int i = 0; i < size(); i++) {
             c.accept(i);
         }
@@ -128,7 +128,7 @@ public class LongList extends PList implements LongCollection {
         return pointer + 1;
     }
 
-    public void forEachIndexed(Consumer.LongIndexed c) {
+    public void forEachIndexed(Pconsumer.LongIndexed c) {
         for (int i = 0; i < size(); i++) {
             c.accept(array[i], i);
         }

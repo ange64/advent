@@ -1,26 +1,19 @@
 package org.example.template;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 public abstract class Template<T> implements Runnable {
 
-    static final ClassLoader loader = Template.class.getClassLoader();
+
     private String[] testInput;
     private String[] input;
 
-    private int day;
-    private int year;
-
-    private String basePath;
-
+    private String day;
+    private String year;
     private String name;
 
     public Template(int year, int day, String name) {
-        this.day = day;
-        this.year = year;
+        this.day = String.valueOf(day);
+        this.year = String.valueOf(year);
         this.name = name;
-        basePath = loader.getResource(year + "/" + day + "/").toString().substring(6);
     }
 
     protected abstract void exec_part_1(T data) throws Exception;
@@ -44,7 +37,7 @@ public abstract class Template<T> implements Runnable {
         System.out.println(" ---------------- execute day " + "day :" + day + " " + name + " part " + part + " with test data ------");
         try {
             if (testInput == null)
-                testInput = Files.readAllLines(Path.of(basePath + "test.txt")).toArray(new String[0]);
+                testInput = Utils.readFile(year, day, "test.txt");
             f.accept(parseInput(testInput));
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -54,7 +47,7 @@ public abstract class Template<T> implements Runnable {
         System.out.println(" ---------------- execute day " + "day :" + day + " " + name + " part " + part + " with real data -------");
         try {
             if (input == null)
-                input = Files.readAllLines(Path.of(basePath + "real.txt")).toArray(new String[0]);
+                testInput = Utils.readFile(year, day, "real.txt");
             long time = System.nanoTime();
             f.accept(parseInput(input));
             long after = System.nanoTime();

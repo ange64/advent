@@ -1,6 +1,6 @@
 package org.example.template.primitive.arrays;
 
-import org.example.template.primitive.functional.Predicate;
+import org.example.template.primitive.functional.Ppredicate;
 
 public class GridUtils {
 
@@ -62,7 +62,7 @@ public class GridUtils {
         array[rowB] = temp;
     }
 
-    public static int firstRow(int[][] grid, int rowStart, int colIndex, Predicate.Int c) {
+    public static int firstRow(int[][] grid, int rowStart, int colIndex, Ppredicate.Int c) {
         for (int i = rowStart; i < grid.length; i++) {
             if (c.test(grid[i][colIndex])) return i;
         }

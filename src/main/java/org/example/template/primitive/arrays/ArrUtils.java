@@ -108,43 +108,43 @@ public abstract class ArrUtils {
         return -1;
     }
 
-    public static <T> double sumBy(T[] array, Mapper.ObjToDoubleIndexed<T> mapper) {
+    public static <T> double sumBy(T[] array, Pmapper.ObjToDoubleIndexed<T> mapper) {
         return ArrUtils.sumBy(array, array.length, mapper);
     }
 
-    public static <T> long sumBy(T[] array, Mapper.ObjToLongIndexed<T> mapper) {
+    public static <T> long sumBy(T[] array, Pmapper.ObjToLongIndexed<T> mapper) {
         return ArrUtils.sumBy(array, array.length, mapper);
     }
 
-    public static long sumBy(long[] array, Mapper.LongIndexed mapper) {
+    public static long sumBy(long[] array, Pmapper.LongIndexed mapper) {
         return ArrUtils.sumBy(array, array.length, mapper);
     }
 
-    public static long sumBy(int[] array, Mapper.IntIndexed mapper) {
+    public static long sumBy(int[] array, Pmapper.IntIndexed mapper) {
         return ArrUtils.sumBy(array, array.length, mapper);
     }
 
-    public static long sumBy(char[] array, Mapper.CharToIntIndexed mapper) {
+    public static long sumBy(char[] array, Pmapper.CharToIntIndexed mapper) {
         return ArrUtils.sumBy(array, array.length, mapper);
     }
 
-    public static long sumBy(short[] array, Mapper.ShortIndexed mapper) {
+    public static long sumBy(short[] array, Pmapper.ShortIndexed mapper) {
         return ArrUtils.sumBy(array, array.length, mapper);
     }
 
-    public static long sumBy(byte[] array, Mapper.ByteIndexed mapper) {
+    public static long sumBy(byte[] array, Pmapper.ByteIndexed mapper) {
         return ArrUtils.sumBy(array, array.length, mapper);
     }
 
-    public static double sumBy(float[] array, Mapper.FloatIndexed mapper) {
+    public static double sumBy(float[] array, Pmapper.FloatIndexed mapper) {
         return ArrUtils.sumBy(array, array.length, mapper);
     }
 
-    public static double sumBy(double[] array, Mapper.DoubleIndexed mapper) {
+    public static double sumBy(double[] array, Pmapper.DoubleIndexed mapper) {
         return ArrUtils.sumBy(array, array.length, mapper);
     }
 
-    private static <T> long sumBy(T[] array, int end, Mapper.ObjToLongIndexed<T> mapper) {
+    private static <T> long sumBy(T[] array, int end, Pmapper.ObjToLongIndexed<T> mapper) {
         long sum = 0;
         for (var i = 0; i < end; i++) {
             sum += mapper.map(array[i], i);
@@ -152,7 +152,7 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    private static <T> double sumBy(T[] array, int end, Mapper.ObjToDoubleIndexed<T> mapper) {
+    private static <T> double sumBy(T[] array, int end, Pmapper.ObjToDoubleIndexed<T> mapper) {
         double sum = 0;
         for (var i = 0; i < end; i++) {
             sum += mapper.map(array[i], i);
@@ -160,7 +160,7 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    public static long sumBy(long[] array, int end, Mapper.LongIndexed mapper) {
+    public static long sumBy(long[] array, int end, Pmapper.LongIndexed mapper) {
         long sum = 0;
         for (var i = 0; i < end; i++) {
             sum += mapper.map(array[i], i);
@@ -168,7 +168,7 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    public static long sumBy(int[] array, int end, Mapper.IntIndexed mapper) {
+    public static long sumBy(int[] array, int end, Pmapper.IntIndexed mapper) {
         long sum = 0;
         for (var i = 0; i < end; i++) {
             sum += mapper.map(array[i], i);
@@ -176,7 +176,7 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    public static long sumBy(short[] array, int end, Mapper.ShortIndexed mapper) {
+    public static long sumBy(short[] array, int end, Pmapper.ShortIndexed mapper) {
         long sum = 0;
         for (var i = 0; i < end; i++) {
             sum += mapper.map(array[i], i);
@@ -184,7 +184,7 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    public static long sumBy(byte[] array, int end, Mapper.ByteIndexed mapper) {
+    public static long sumBy(byte[] array, int end, Pmapper.ByteIndexed mapper) {
         long sum = 0;
         for (var i = 0; i < end; i++) {
             sum += mapper.map(array[i], i);
@@ -192,7 +192,7 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    public static long sumBy(boolean[] array, int end, Mapper.BoolToIntIndexed mapper) {
+    public static long sumBy(boolean[] array, int end, Pmapper.BoolToIntIndexed mapper) {
         long sum = 0;
         for (var i = 0; i < end; i++) {
             sum += mapper.map(array[i], i);
@@ -200,7 +200,7 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    public static long sumBy(char[] array, int end, Mapper.CharToIntIndexed mapper) {
+    public static long sumBy(char[] array, int end, Pmapper.CharToIntIndexed mapper) {
         long sum = 0;
         for (var i = 0; i < array.length; i++) {
             sum += mapper.map(array[i], i);
@@ -208,7 +208,7 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    public static double sumBy(float[] array, int end, Mapper.FloatIndexed mapper) {
+    public static double sumBy(float[] array, int end, Pmapper.FloatIndexed mapper) {
         double sum = 0;
         for (var i = 0; i < array.length; i++) {
             sum += mapper.map(array[i], i);
@@ -216,7 +216,7 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    public static double sumBy(double[] array, int end, Mapper.DoubleIndexed mapper) {
+    public static double sumBy(double[] array, int end, Pmapper.DoubleIndexed mapper) {
         double sum = 0;
         for (var i = 0; i < array.length; i++) {
             sum += mapper.map(array[i], i);
@@ -322,146 +322,146 @@ public abstract class ArrUtils {
         return sum;
     }
 
-    public static void forEach(long[] array, Consumer.Long c, int start, int end, int step) {
+    public static void forEach(long[] array, Pconsumer.Long c, int start, int end, int step) {
         for (int i = start; i < end; i += step) {
             c.accept(array[i]);
         }
     }
 
-    public static void forEach(int[] array, Consumer.Int c, int start, int end, int step) {
+    public static void forEach(int[] array, Pconsumer.Int c, int start, int end, int step) {
         for (int i = start; i < end; i += step) {
             c.accept(array[i]);
         }
     }
 
-    public static void forEach(short[] array, Consumer.Short c, int start, int end, int step) {
+    public static void forEach(short[] array, Pconsumer.Short c, int start, int end, int step) {
         for (int i = start; i < end; i += step) {
             c.accept(array[i]);
         }
     }
 
-    public static void forEach(byte[] array, Consumer.Byte c, int start, int end, int step) {
+    public static void forEach(byte[] array, Pconsumer.Byte c, int start, int end, int step) {
         for (int i = start; i < end; i += step) {
             c.accept(array[i]);
         }
     }
 
-    public static void forEach(char[] array, Consumer.Char c, int start, int end, int step) {
+    public static void forEach(char[] array, Pconsumer.Char c, int start, int end, int step) {
         for (int i = start; i < end; i += step) {
             c.accept(array[i]);
         }
     }
 
-    public static void forEach(boolean[] array, Consumer.Bool c, int start, int end, int step) {
+    public static void forEach(boolean[] array, Pconsumer.Bool c, int start, int end, int step) {
         for (int i = start; i < end; i += step) {
             c.accept(array[i]);
         }
     }
 
-    public static void forEach(float[] array, Consumer.Float c, int start, int end, int step) {
+    public static void forEach(float[] array, Pconsumer.Float c, int start, int end, int step) {
         for (int i = start; i < end; i += step) {
             c.accept(array[i]);
         }
     }
 
-    public static void forEach(double[] array, Consumer.Double c, int start, int end, int step) {
+    public static void forEach(double[] array, Pconsumer.Double c, int start, int end, int step) {
         for (int i = start; i < end; i += step) {
             c.accept(array[i]);
         }
     }
 
-    public static void forEach(long[] array, Consumer.Long c) {
+    public static void forEach(long[] array, Pconsumer.Long c) {
         for (long l : array) {
             c.accept(l);
         }
     }
 
-    public static void forEach(int[] array, Consumer.Int c) {
+    public static void forEach(int[] array, Pconsumer.Int c) {
         for (int j : array) {
             c.accept(j);
         }
     }
 
-    public static void forEach(short[] array, Consumer.Short c) {
+    public static void forEach(short[] array, Pconsumer.Short c) {
         for (short value : array) {
             c.accept(value);
         }
     }
 
-    public static void forEach(byte[] array, Consumer.Byte c) {
+    public static void forEach(byte[] array, Pconsumer.Byte c) {
         for (byte b : array) {
             c.accept(b);
         }
     }
 
-    public static void forEach(char[] array, Consumer.Char c) {
+    public static void forEach(char[] array, Pconsumer.Char c) {
         for (char value : array) {
             c.accept(value);
         }
     }
 
-    public static void forEach(boolean[] array, Consumer.Bool c) {
+    public static void forEach(boolean[] array, Pconsumer.Bool c) {
         for (boolean b : array) {
             c.accept(b);
         }
     }
 
-    public static void forEach(float[] array, Consumer.Float c) {
+    public static void forEach(float[] array, Pconsumer.Float c) {
         for (float v : array) {
             c.accept(v);
         }
     }
 
-    public static void forEach(double[] array, Consumer.Double c) {
+    public static void forEach(double[] array, Pconsumer.Double c) {
         for (double v : array) {
             c.accept(v);
         }
     }
 
 
-    public static void forEachIndexed(long[] array, Consumer.LongIndexed c) {
+    public static void forEachIndexed(long[] array, Pconsumer.LongIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
     }
 
-    public static void forEachIndexed(int[] array, Consumer.IntIndexed c) {
+    public static void forEachIndexed(int[] array, Pconsumer.IntIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
     }
 
-    public static void forEachIndexed(short[] array, Consumer.ShortIndexed c) {
+    public static void forEachIndexed(short[] array, Pconsumer.ShortIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
     }
 
-    public static void forEachIndexed(byte[] array, Consumer.ByteIndexed c) {
+    public static void forEachIndexed(byte[] array, Pconsumer.ByteIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
     }
 
-    public static void forEachIndexed(char[] array, Consumer.CharIndexed c) {
+    public static void forEachIndexed(char[] array, Pconsumer.CharIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
     }
 
-    public static void forEachIndexed(boolean[] array, Consumer.BoolIndexed c) {
+    public static void forEachIndexed(boolean[] array, Pconsumer.BoolIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
     }
 
-    public static void forEachIndexed(float[] array, Consumer.FloatIndexed c) {
+    public static void forEachIndexed(float[] array, Pconsumer.FloatIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
     }
 
-    public static void forEachIndexed(double[] array, Consumer.DoubleIndexed c) {
+    public static void forEachIndexed(double[] array, Pconsumer.DoubleIndexed c) {
         for (int i = 0; i < array.length; i++) {
             c.accept(array[i], i);
         }
@@ -470,7 +470,7 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(long[] array, int limit, Mapper.Long m) {
+    public static void mapInPlace(long[] array, int limit, Pmapper.Long m) {
         for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
@@ -479,7 +479,7 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(int[] array, int limit, Mapper.Int m) {
+    public static void mapInPlace(int[] array, int limit, Pmapper.Int m) {
         for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
@@ -488,7 +488,7 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(short[] array, int limit, Mapper.Short m) {
+    public static void mapInPlace(short[] array, int limit, Pmapper.Short m) {
         for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
@@ -497,7 +497,7 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(byte[] array, int limit, Mapper.Byte m) {
+    public static void mapInPlace(byte[] array, int limit, Pmapper.Byte m) {
         for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
@@ -506,7 +506,7 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(char[] array, int limit, Mapper.Char m) {
+    public static void mapInPlace(char[] array, int limit, Pmapper.Char m) {
         for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
@@ -515,7 +515,7 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(boolean[] array, int limit, Mapper.Bool m) {
+    public static void mapInPlace(boolean[] array, int limit, Pmapper.Bool m) {
         for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
@@ -524,7 +524,7 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(float[] array, int limit, Mapper.Float m) {
+    public static void mapInPlace(float[] array, int limit, Pmapper.Float m) {
         for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
@@ -533,7 +533,7 @@ public abstract class ArrUtils {
     /**
      * Maps an element to another value in place in the array.
      */
-    public static void mapInPlace(double[] array, int limit, Mapper.Double m) {
+    public static void mapInPlace(double[] array, int limit, Pmapper.Double m) {
         for (int i = 0; i < limit; i++) {
             array[i] = m.map(array[i]);
         }
@@ -551,7 +551,7 @@ public abstract class ArrUtils {
     /**
      * @return the first index of array matching the predicate, -1 otherwise
      */
-    public static int first(long[] array, Predicate.Long p) {
+    public static int first(long[] array, Ppredicate.Long p) {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
@@ -561,7 +561,7 @@ public abstract class ArrUtils {
     /**
      * @return the first index of array matching the predicate, -1 otherwise
      */
-    public static int first(int[] array, Predicate.Int p) {
+    public static int first(int[] array, Ppredicate.Int p) {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
@@ -572,7 +572,7 @@ public abstract class ArrUtils {
     /**
      * @return the first index of array matching the predicate, -1 otherwise
      */
-    public static int first(short[] array, Predicate.Short p) {
+    public static int first(short[] array, Ppredicate.Short p) {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
@@ -582,7 +582,7 @@ public abstract class ArrUtils {
     /**
      * @return the first index of array matching the predicate, -1 otherwise
      */
-    public static int first(char[] array, Predicate.Char p) {
+    public static int first(char[] array, Ppredicate.Char p) {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
@@ -592,7 +592,7 @@ public abstract class ArrUtils {
     /**
      * @return the first index of array matching the predicate, -1 otherwise
      */
-    public static int first(byte[] array, Predicate.Byte p) {
+    public static int first(byte[] array, Ppredicate.Byte p) {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
@@ -602,7 +602,7 @@ public abstract class ArrUtils {
     /**
      * @return the first index of array matching the predicate, -1 otherwise
      */
-    public static int first(boolean[] array, Predicate.Boolean p) {
+    public static int first(boolean[] array, Ppredicate.Boolean p) {
         for (int i = 0; i < array.length; i++) {
             if (p.test(array[i])) return i;
         }
@@ -834,7 +834,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static long maxBy(long[] array, int start, int end, Comparator.Long c) {
+    public static long maxBy(long[] array, int start, int end, Pcomparator.Long c) {
         long m = 0;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) > 0) m = array[i];
@@ -842,7 +842,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static int maxBy(int[] array, int start, int end, Comparator.Int c) {
+    public static int maxBy(int[] array, int start, int end, Pcomparator.Int c) {
         int m = 0;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) > 0) m = array[i];
@@ -850,7 +850,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static short maxBy(short[] array, int start, int end, Comparator.Short c) {
+    public static short maxBy(short[] array, int start, int end, Pcomparator.Short c) {
         short m = 0;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) > 0) m = array[i];
@@ -858,7 +858,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static char maxBy(char[] array, int start, int end, Comparator.Char c) {
+    public static char maxBy(char[] array, int start, int end, Pcomparator.Char c) {
         char m = 0;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) > 0) m = array[i];
@@ -866,7 +866,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static byte maxBy(byte[] array, int start, int end, Comparator.Byte c) {
+    public static byte maxBy(byte[] array, int start, int end, Pcomparator.Byte c) {
         byte m = 0;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) > 0) m = array[i];
@@ -874,7 +874,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static float maxBy(float[] array, int start, int end, Comparator.Float c) {
+    public static float maxBy(float[] array, int start, int end, Pcomparator.Float c) {
         float m = 0;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) > 0) m = array[i];
@@ -882,7 +882,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static double maxBy(double[] array, int start, int end, Comparator.Double c) {
+    public static double maxBy(double[] array, int start, int end, Pcomparator.Double c) {
         double m = 0;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) > 0) m = array[i];
@@ -890,7 +890,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static long minBy(long[] array, int start, int end, Comparator.Long c) {
+    public static long minBy(long[] array, int start, int end, Pcomparator.Long c) {
         long m = Long.MAX_VALUE;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) < 0) m = array[i];
@@ -898,7 +898,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static int minBy(int[] array, int start, int end, Comparator.Int c) {
+    public static int minBy(int[] array, int start, int end, Pcomparator.Int c) {
         int m = Integer.MAX_VALUE;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) < 0) m = array[i];
@@ -906,7 +906,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static short minBy(short[] array, int start, int end, Comparator.Short c) {
+    public static short minBy(short[] array, int start, int end, Pcomparator.Short c) {
         short m = Short.MAX_VALUE;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) < 0) m = array[i];
@@ -914,7 +914,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static char minBy(char[] array, int start, int end, Comparator.Char c) {
+    public static char minBy(char[] array, int start, int end, Pcomparator.Char c) {
         char m = Character.MAX_VALUE;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) < 0) m = array[i];
@@ -922,7 +922,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static byte minBy(byte[] array, int start, int end, Comparator.Byte c) {
+    public static byte minBy(byte[] array, int start, int end, Pcomparator.Byte c) {
         byte m = Byte.MAX_VALUE;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) < 0) m = array[i];
@@ -930,7 +930,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static float minBy(float[] array, int start, int end, Comparator.Float c) {
+    public static float minBy(float[] array, int start, int end, Pcomparator.Float c) {
         float m = Float.MAX_VALUE;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) < 0) m = array[i];
@@ -938,7 +938,7 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static double minBy(double[] array, int start, int end, Comparator.Double c) {
+    public static double minBy(double[] array, int start, int end, Pcomparator.Double c) {
         double m = Double.MAX_VALUE;
         for (int i = start; i < end; i++) {
             if (c.compare(array[i], m) < 0) m = array[i];
@@ -946,224 +946,224 @@ public abstract class ArrUtils {
         return m;
     }
 
-    public static boolean windowMatch(long[] array, int start, int length, Predicate.Long p) {
+    public static boolean windowMatch(long[] array, int start, int length, Ppredicate.Long p) {
         for (int i = start; i < start + length; i++) {
             if (!p.test(array[i])) return false;
         }
         return true;
     }
 
-    public static boolean windowMatch(int[] array, int start, int length, Predicate.Int p) {
+    public static boolean windowMatch(int[] array, int start, int length, Ppredicate.Int p) {
         for (int i = start; i < start + length; i++) {
             if (!p.test(array[i])) return false;
         }
         return true;
     }
 
-    public static boolean windowMatch(short[] array, int start, int length, Predicate.Short p) {
+    public static boolean windowMatch(short[] array, int start, int length, Ppredicate.Short p) {
         for (int i = start; i < start + length; i++) {
             if (!p.test(array[i])) return false;
         }
         return true;
     }
 
-    public static boolean windowMatch(char[] array, int start, int length, Predicate.Char p) {
+    public static boolean windowMatch(char[] array, int start, int length, Ppredicate.Char p) {
         for (int i = start; i < start + length; i++) {
             if (!p.test(array[i])) return false;
         }
         return true;
     }
 
-    public static boolean windowMatch(byte[] array, int start, int length, Predicate.Byte p) {
+    public static boolean windowMatch(byte[] array, int start, int length, Ppredicate.Byte p) {
         for (int i = start; i < start + length; i++) {
             if (!p.test(array[i])) return false;
         }
         return true;
     }
 
-    public static boolean windowMatch(boolean[] array, int start, int length, Predicate.Boolean p) {
+    public static boolean windowMatch(boolean[] array, int start, int length, Ppredicate.Boolean p) {
         for (int i = start; i < start + length; i++) {
             if (!p.test(array[i])) return false;
         }
         return true;
     }
 
-    public static boolean windowMatch(float[] array, int start, int length, Predicate.Float p) {
+    public static boolean windowMatch(float[] array, int start, int length, Ppredicate.Float p) {
         for (int i = start; i < start + length; i++) {
             if (!p.test(array[i])) return false;
         }
         return true;
     }
 
-    public static boolean windowMatch(double[] array, int start, int length, Predicate.Double p) {
+    public static boolean windowMatch(double[] array, int start, int length, Ppredicate.Double p) {
         for (int i = start; i < start + length; i++) {
             if (!p.test(array[i])) return false;
         }
         return true;
     }
 
-    public static boolean any(long[] array, Predicate.LongIndexed pi) {
+    public static boolean any(long[] array, Ppredicate.LongIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
 
-    public static boolean any(int[] array, Predicate.IntIndexed pi) {
+    public static boolean any(int[] array, Ppredicate.IntIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
 
-    public static boolean any(short[] array, Predicate.ShortIndexed pi) {
+    public static boolean any(short[] array, Ppredicate.ShortIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
 
-    public static boolean any(byte[] array, Predicate.ByteIndexed pi) {
+    public static boolean any(byte[] array, Ppredicate.ByteIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
 
-    public static boolean any(char[] array, Predicate.CharIndexed pi) {
+    public static boolean any(char[] array, Ppredicate.CharIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
 
-    public static boolean any(boolean[] array, Predicate.BooleanIndexed pi) {
+    public static boolean any(boolean[] array, Ppredicate.BooleanIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
 
-    public static boolean any(float[] array, Predicate.FloatIndexed pi) {
+    public static boolean any(float[] array, Ppredicate.FloatIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
 
-    public static boolean any(double[] array, Predicate.DoubleIndexed pi) {
+    public static boolean any(double[] array, Ppredicate.DoubleIndexed pi) {
         for (int i = 0; i < array.length; i++) {
             if (pi.test(array[i], i)) return true;
         }
         return false;
     }
 
-    public static boolean any(long[] array, Predicate.Long p) {
+    public static boolean any(long[] array, Ppredicate.Long p) {
         for (long l : array) {
             if (p.test(l)) return true;
         }
         return false;
     }
 
-    public static boolean any(int[] array, Predicate.Int p) {
+    public static boolean any(int[] array, Ppredicate.Int p) {
         for (int j : array) {
             if (p.test(j)) return true;
         }
         return false;
     }
 
-    public static boolean any(short[] array, Predicate.Short p) {
+    public static boolean any(short[] array, Ppredicate.Short p) {
         for (short value : array) {
             if (p.test(value)) return true;
         }
         return false;
     }
 
-    public static boolean any(byte[] array, Predicate.Byte p) {
+    public static boolean any(byte[] array, Ppredicate.Byte p) {
         for (byte b : array) {
             if (p.test(b)) return true;
         }
         return false;
     }
 
-    public static boolean any(char[] array, Predicate.Char p) {
+    public static boolean any(char[] array, Ppredicate.Char p) {
         for (char c : array) {
             if (p.test(c)) return true;
         }
         return false;
     }
 
-    public static boolean any(boolean[] array, Predicate.Boolean p) {
+    public static boolean any(boolean[] array, Ppredicate.Boolean p) {
         for (boolean b : array) {
             if (p.test(b)) return true;
         }
         return false;
     }
 
-    public static boolean any(float[] array, Predicate.Float p) {
+    public static boolean any(float[] array, Ppredicate.Float p) {
         for (float v : array) {
             if (p.test(v)) return true;
         }
         return false;
     }
 
-    public static boolean any(double[] array, Predicate.Double p) {
+    public static boolean any(double[] array, Ppredicate.Double p) {
         for (double v : array) {
             if (p.test(v)) return true;
         }
         return false;
     }
 
-    public static boolean none(long[] array, Predicate.Long p) {
+    public static boolean none(long[] array, Ppredicate.Long p) {
         for (long l : array) {
             if (p.test(l)) return false;
         }
         return true;
     }
 
-    public static boolean none(int[] array, Predicate.Int p) {
+    public static boolean none(int[] array, Ppredicate.Int p) {
         for (int j : array) {
             if (p.test(j)) return false;
         }
         return true;
     }
 
-    public static boolean none(short[] array, Predicate.Short p) {
+    public static boolean none(short[] array, Ppredicate.Short p) {
         for (short value : array) {
             if (p.test(value)) return false;
         }
         return true;
     }
 
-    public static boolean none(byte[] array, Predicate.Byte p) {
+    public static boolean none(byte[] array, Ppredicate.Byte p) {
         for (byte b : array) {
             if (p.test(b)) return false;
         }
         return true;
     }
 
-    public static boolean none(char[] array, Predicate.Char p) {
+    public static boolean none(char[] array, Ppredicate.Char p) {
         for (char c : array) {
             if (p.test(c)) return false;
         }
         return true;
     }
 
-    public static boolean none(boolean[] array, Predicate.Boolean p) {
+    public static boolean none(boolean[] array, Ppredicate.Boolean p) {
         for (boolean b : array) {
             if (p.test(b)) return false;
         }
         return true;
     }
 
-    public static boolean none(float[] array, Predicate.Float p) {
+    public static boolean none(float[] array, Ppredicate.Float p) {
         for (float v : array) {
             if (p.test(v)) return false;
         }
         return true;
     }
 
-    public static boolean none(double[] array, Predicate.Double p) {
+    public static boolean none(double[] array, Ppredicate.Double p) {
         for (double v : array) {
             if (p.test(v)) return false;
         }
@@ -1232,7 +1232,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static <T> T[] map(long[] array, Mapper.LongTo<T> mapper) {
+    public static <T> T[] map(long[] array, Pmapper.LongTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1240,7 +1240,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] map(int[] array, Mapper.IntTo<T> mapper) {
+    public static <T> T[] map(int[] array, Pmapper.IntTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1248,7 +1248,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] map(short[] array, Mapper.ShortTo<T> mapper) {
+    public static <T> T[] map(short[] array, Pmapper.ShortTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1256,7 +1256,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] map(char[] array, Mapper.CharTo<T> mapper) {
+    public static <T> T[] map(char[] array, Pmapper.CharTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1264,7 +1264,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] map(byte[] array, Mapper.ByteTo<T> mapper) {
+    public static <T> T[] map(byte[] array, Pmapper.ByteTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1272,7 +1272,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] map(boolean[] array, Mapper.BoolTo<T> mapper) {
+    public static <T> T[] map(boolean[] array, Pmapper.BoolTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1280,7 +1280,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] map(float[] array, Mapper.FloatTo<T> mapper) {
+    public static <T> T[] map(float[] array, Pmapper.FloatTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1288,7 +1288,7 @@ public abstract class ArrUtils {
         return (T[]) result;
     }
 
-    public static <T> T[] map(double[] array, Mapper.DoubleTo<T> mapper) {
+    public static <T> T[] map(double[] array, Pmapper.DoubleTo<T> mapper) {
         Object[] result = new Object[array.length];
         for (int i = 0; i < array.length; i++) {
             result[i] = mapper.map(array[i]);
@@ -1303,49 +1303,49 @@ public abstract class ArrUtils {
         return array;
     }
 
-    public static int[] init(int[] array, Supplier.Int sup) {
+    public static int[] init(int[] array, Psupplier.Int sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static short[] init(short[] array, Supplier.Short sup) {
+    public static short[] init(short[] array, Psupplier.Short sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static char[] init(char[] array, Supplier.Char sup) {
+    public static char[] init(char[] array, Psupplier.Char sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static byte[] init(byte[] array, Supplier.Byte sup) {
+    public static byte[] init(byte[] array, Psupplier.Byte sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static boolean[] init(boolean[] array, Supplier.Bool sup) {
+    public static boolean[] init(boolean[] array, Psupplier.Bool sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static float[] init(float[] array, Supplier.Long sup) {
+    public static float[] init(float[] array, Psupplier.Long sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
         return array;
     }
 
-    public static double[] init(double[] array, Supplier.Long sup) {
+    public static double[] init(double[] array, Psupplier.Long sup) {
         for (int i = 0; i < array.length; i++) {
             array[i] = sup.get();
         }
@@ -1369,7 +1369,7 @@ public abstract class ArrUtils {
         return Math.abs(a);
     }
 
-    public static long count(long[] array, int end, Predicate.Long p) {
+    public static long count(long[] array, int end, Ppredicate.Long p) {
         long c = 0;
         for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
@@ -1377,7 +1377,7 @@ public abstract class ArrUtils {
         return c;
     }
 
-    public static long count(int[] array, int end, Predicate.Int p) {
+    public static long count(int[] array, int end, Ppredicate.Int p) {
         long c = 0;
         for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
@@ -1385,7 +1385,7 @@ public abstract class ArrUtils {
         return c;
     }
 
-    public static long count(short[] array, int end, Predicate.Short p) {
+    public static long count(short[] array, int end, Ppredicate.Short p) {
         long c = 0;
         for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
@@ -1393,7 +1393,7 @@ public abstract class ArrUtils {
         return c;
     }
 
-    public static long count(byte[] array, int end, Predicate.Byte p) {
+    public static long count(byte[] array, int end, Ppredicate.Byte p) {
         long c = 0;
         for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
@@ -1401,7 +1401,7 @@ public abstract class ArrUtils {
         return c;
     }
 
-    public static long count(char[] array, int end, Predicate.Char p) {
+    public static long count(char[] array, int end, Ppredicate.Char p) {
         long c = 0;
         for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
@@ -1409,7 +1409,7 @@ public abstract class ArrUtils {
         return c;
     }
 
-    public static long count(float[] array, int end, Predicate.Float p) {
+    public static long count(float[] array, int end, Ppredicate.Float p) {
         long c = 0;
         for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
@@ -1417,7 +1417,7 @@ public abstract class ArrUtils {
         return c;
     }
 
-    public static long count(double[] array, int end, Predicate.Double p) {
+    public static long count(double[] array, int end, Ppredicate.Double p) {
         long c = 0;
         for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
@@ -1425,7 +1425,7 @@ public abstract class ArrUtils {
         return c;
     }
 
-    public static long count(boolean[] array, int end, Predicate.Boolean p) {
+    public static long count(boolean[] array, int end, Ppredicate.Boolean p) {
         long c = 0;
         for (int i = 0; i < end; i++) {
             c += p.test(array[i]) ? 1 : 0;
@@ -1486,7 +1486,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static String toString(byte[] array, String sep, int start, int len, Mapper.ByteTo<String> mapper) {
+    public static String toString(byte[] array, String sep, int start, int len, Pmapper.ByteTo<String> mapper) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = start; i < len - 1; i++) {
             sb.append(mapper.map(array[i])).append(sep);
@@ -1495,7 +1495,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static String toString(int[] array, String sep, int start, int len, Mapper.IntTo<String> mapper) {
+    public static String toString(int[] array, String sep, int start, int len, Pmapper.IntTo<String> mapper) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = start; i < len - 1; i++) {
             sb.append(mapper.map(array[i])).append(sep);
@@ -1504,7 +1504,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static String toString(long[] array, String sep, int start, int len, Mapper.LongTo<String> mapper) {
+    public static String toString(long[] array, String sep, int start, int len, Pmapper.LongTo<String> mapper) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = start; i < len - 1; i++) {
             sb.append(mapper.map(array[i])).append(sep);
@@ -1513,7 +1513,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static String toString(char[] array, String sep, int start, int len, Mapper.CharTo<String> mapper) {
+    public static String toString(char[] array, String sep, int start, int len, Pmapper.CharTo<String> mapper) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = start; i < len - 1; i++) {
             sb.append(mapper.map(array[i])).append(sep);
@@ -1522,7 +1522,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static String toString(short[] array, String sep, int start, int len, Mapper.ShortTo<String> mapper) {
+    public static String toString(short[] array, String sep, int start, int len, Pmapper.ShortTo<String> mapper) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = start; i < len - 1; i++) {
             sb.append(mapper.map(array[i])).append(sep);
@@ -1531,7 +1531,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static String toString(float[] array, String sep, int start, int len, Mapper.FloatTo<String> mapper) {
+    public static String toString(float[] array, String sep, int start, int len, Pmapper.FloatTo<String> mapper) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = start; i < len - 1; i++) {
             sb.append(mapper.map(array[i])).append(sep);
@@ -1540,7 +1540,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static String toString(double[] array, String sep, int start, int len, Mapper.DoubleTo<String> mapper) {
+    public static String toString(double[] array, String sep, int start, int len, Pmapper.DoubleTo<String> mapper) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = start; i < len - 1; i++) {
             sb.append(mapper.map(array[i])).append(sep);
@@ -1549,7 +1549,7 @@ public abstract class ArrUtils {
         return sb.toString();
     }
 
-    public static String toString(boolean[] array, String sep, int start, int len, Mapper.BoolTo<String> mapper) {
+    public static String toString(boolean[] array, String sep, int start, int len, Pmapper.BoolTo<String> mapper) {
         StringBuilder sb = new StringBuilder("[");
         for (int i = start; i < len - 1; i++) {
             sb.append(mapper.map(array[i])).append(sep);
@@ -1922,31 +1922,67 @@ public abstract class ArrUtils {
     /**
      * efficiently recurses on all possible permutations of the parameter array.
      */
-    public static void heapPermute(char[] array, java.util.function.Consumer<char[]> c) {
+    public static <T> void heapPermute(T[] array, java.util.function.Consumer<T[]> c) {
         heapPermute(array, array.length, c);
-    }
-
-    private static void heapPermute(char[] array, int index, java.util.function.Consumer<char[]> c) {
-        if (index == 1) {
-            c.accept(array);
-            return;
-        }
-        heapPermute(array, index - 1, c);
-        for (int i = 0; i < index - 1; i++) {
-            if (index % 2 == 0) ArrUtils.swap(array, i, index - 1);
-            else  ArrUtils.swap(array, 0, index - 1);
-            heapPermute(array, index - 1, c);
-        }
     }
 
     /**
      * efficiently recurses on all possible permutations of the parameter array.
      */
-    public static <T> void heapPermute(T[] array, java.util.function.Consumer<T[]> c) {
+    public static void heapPermute(char[] array, java.util.function.Consumer<char[]> c) {
         heapPermute(array, array.length, c);
     }
 
-    private static <T> void heapPermute(T[] array, int index, java.util.function.Consumer<T[]> c) {
+    /**
+     * efficiently recurses on all possible permutations of the parameter array.
+     */
+    public static void heapPermute(byte[] array, java.util.function.Consumer<byte[]> c) {
+        heapPermute(array, array.length, c);
+    }
+
+    /**
+     * efficiently recurses on all possible permutations of the parameter array.
+     */
+    public static void heapPermute(boolean[] array, java.util.function.Consumer<boolean[]> c) {
+        heapPermute(array, array.length, c);
+    }
+
+    /**
+     * efficiently recurses on all possible permutations of the parameter array.
+     */
+    public static void heapPermute(float[] array, java.util.function.Consumer<float[]> c) {
+        heapPermute(array, array.length, c);
+    }
+
+    /**
+     * efficiently recurses on all possible permutations of the parameter array.
+     */
+    public static void heapPermute(double[] array, java.util.function.Consumer<double[]> c) {
+        heapPermute(array, array.length, c);
+    }
+
+    /**
+     * efficiently recurses on all possible permutations of the parameter array.
+     */
+    public static void heapPermute(int[] array, java.util.function.Consumer<int[]> c) {
+        heapPermute(array, array.length, c);
+    }
+
+    /**
+     * efficiently recurses on all possible permutations of the parameter array.
+     */
+    public static void heapPermute(long[] array, java.util.function.Consumer<long[]> c) {
+        heapPermute(array, array.length, c);
+    }
+
+    /**
+     * efficiently recurses on all possible permutations of the parameter array.
+     */
+    public static void heapPermute(short[] array, java.util.function.Consumer<short[]> c) {
+        heapPermute(array, array.length, c);
+    }
+
+    public static void heapPermute(char[] array, int index, java.util.function.Consumer<char[]> c) {
         if (index == 1) {
             c.accept(array);
             return;
@@ -1958,4 +1994,133 @@ public abstract class ArrUtils {
             heapPermute(array, index - 1, c);
         }
     }
+
+
+
+    public static <T> void heapPermute(T[] array, int index, java.util.function.Consumer<T[]> c) {
+        if (index == 1) {
+            c.accept(array);
+            return;
+        }
+        heapPermute(array, index - 1, c);
+        for (int i = 0; i < index - 1; i++) {
+            if (index % 2 == 0) ArrUtils.swap(array, i, index - 1);
+            else  ArrUtils.swap(array, 0, index - 1);
+            heapPermute(array, index - 1, c);
+        }
+    }
+
+
+    public static void heapPermute(int[] array, int size, java.util.function.Consumer<int[]> consumer) {
+        if (size == 1) {
+            consumer.accept(array.clone());
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            heapPermute(array, size - 1, consumer);
+            if (size % 2 == 0) {
+                swap(array, i, size - 1);
+            } else {
+                swap(array, 0, size - 1);
+            }
+        }
+    }
+
+    // Heap's algorithm for long[]
+    public static void heapPermute(long[] array, int size, java.util.function.Consumer<long[]> consumer) {
+        if (size == 1) {
+            consumer.accept(array.clone());
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            heapPermute(array, size - 1, consumer);
+            if (size % 2 == 0) {
+                swap(array, i, size - 1);
+            } else {
+                swap(array, 0, size - 1);
+            }
+        }
+    }
+
+    // Heap's algorithm for short[]
+    public static void heapPermute(short[] array, int size, java.util.function.Consumer<short[]> consumer) {
+        if (size == 1) {
+            consumer.accept(array.clone());
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            heapPermute(array, size - 1, consumer);
+            if (size % 2 == 0) {
+                swap(array, i, size - 1);
+            } else {
+                swap(array, 0, size - 1);
+            }
+        }
+    }
+
+    // Heap's algorithm for byte[]
+    public static void heapPermute(byte[] array, int size, java.util.function.Consumer<byte[]> consumer) {
+        if (size == 1) {
+            consumer.accept(array.clone());
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            heapPermute(array, size - 1, consumer);
+            if (size % 2 == 0) {
+                swap(array, i, size - 1);
+            } else {
+                swap(array, 0, size - 1);
+            }
+        }
+    }
+
+    // Heap's algorithm for float[]
+    public static void heapPermute(float[] array, int size, java.util.function.Consumer<float[]> consumer) {
+        if (size == 1) {
+            consumer.accept(array.clone());
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            heapPermute(array, size - 1, consumer);
+            if (size % 2 == 0) {
+                swap(array, i, size - 1);
+            } else {
+                swap(array, 0, size - 1);
+            }
+        }
+    }
+
+    // Heap's algorithm for double[]
+    public static void heapPermute(double[] array, int size, java.util.function.Consumer<double[]> consumer) {
+        if (size == 1) {
+            consumer.accept(array.clone());
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            heapPermute(array, size - 1, consumer);
+            if (size % 2 == 0) {
+                swap(array, i, size - 1);
+            } else {
+                swap(array, 0, size - 1);
+            }
+        }
+    }
+
+    // Heap's algorithm for boolean[]
+    public static void heapPermute(boolean[] array, int size, java.util.function.Consumer<boolean[]> consumer) {
+        if (size == 1) {
+            consumer.accept(array.clone());
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            heapPermute(array, size - 1, consumer);
+            if (size % 2 == 0) {
+                swap(array, i, size - 1);
+            } else {
+                swap(array, 0, size - 1);
+            }
+        }
+    }
+
+
 }

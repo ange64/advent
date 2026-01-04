@@ -1,11 +1,9 @@
 package org.example.template.primitive.collections.integer;
 
-import org.example.template.primitive.arrays.ArrUtils;
 import org.example.template.primitive.collections.PCollection;
 import org.example.template.primitive.collections.PrimitiveCollections;
-import org.example.template.primitive.functional.Consumer;
-import org.example.template.primitive.functional.Mapper;
-import org.example.template.primitive.functional.Predicate;
+import org.example.template.primitive.functional.Pconsumer;
+import org.example.template.primitive.functional.Ppredicate;
 
 import java.util.Arrays;
 
@@ -83,7 +81,7 @@ public class IntSet implements IntCollection, PCollection {
     }
 
     @Override
-    public void forEach(Consumer.Int c) {
+    public void forEach(Pconsumer.Int c) {
         for (int i = 0; i < size(); i++) {
             if (array[i] == empty || array[i] == tomb) continue;
             c.accept(array[i]);
@@ -91,7 +89,7 @@ public class IntSet implements IntCollection, PCollection {
     }
 
     @Override
-    public void removeIf(Predicate.Int p) {
+    public void removeIf(Ppredicate.Int p) {
         for (int j : array) {
             if (j != tomb && j != empty && p.test(j)) {
                 remove(j);
