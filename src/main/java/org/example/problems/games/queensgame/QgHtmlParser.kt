@@ -56,7 +56,7 @@ class QgVercelParser: QgParser() {
     }
 
     override fun getUrl(): String {
-        return "https://queensgame.vercel.app/level/"
+        return "https://queensgame.vercel.app/community-level/"
     }
 }
 

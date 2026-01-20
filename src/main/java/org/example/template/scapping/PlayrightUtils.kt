@@ -9,7 +9,7 @@ object PlayrightUtils {
     @JvmStatic
     fun fetchAllMatching(url: String, pattern: String): String {
         val context = Playwright.create()
-        val chromium: Browser = context.chromium().launch(BrowserType.LaunchOptions().setHeadless(true).setSlowMo(100.0))
+        val chromium: Browser = context.chromium().launch(BrowserType.LaunchOptions().setHeadless(false).setSlowMo(100.0))
         val timeout = Page.WaitForSelectorOptions().setTimeout(30_000.0)
         val page = chromium.newPage()
         page.setDefaultTimeout(timeout.timeout)
